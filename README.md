@@ -22,7 +22,7 @@ pod "PryntTrimmerView"
 
 ## Author
 
-henryhuck@hotmail.fr, henryhuck@hotmail.fr
+henry@prynt.co
 
 ## License
 
