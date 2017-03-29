@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PryntTrimmerView_Example' do
+  pod 'PryntTrimmerView', :path => '../'
+
+  target 'PryntTrimmerView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
