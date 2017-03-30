@@ -14,9 +14,9 @@ class AssetVideoScrollView: UIScrollView {
     private var widthConstraint: NSLayoutConstraint?
     
     let contentView = UIView()
-    var thumbnailViews = [UIImageView]()
     var maxDuration: Double = 15
-
+    private var generator: AVAssetImageGenerator?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
@@ -36,6 +36,7 @@ class AssetVideoScrollView: UIScrollView {
         
         contentView.backgroundColor = .clear
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.tag = -1
         addSubview(contentView)
         
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -55,12 +56,13 @@ class AssetVideoScrollView: UIScrollView {
             return
         }
         
+        generator?.cancelAllCGImageGeneration()
         removeFormerThumbnails()
         let newContentSize = setContentSize(for: asset)
         let thumbnailCount = Int(ceil(newContentSize.width / thumbnailSize.width))
         addThumbnailViews(thumbnailCount, size: thumbnailSize)
         let timesForThumbnail = getThumbnailTimes(for: asset, numberOfThumbnails: thumbnailCount)
-        generateImages(for: asset, at: timesForThumbnail)
+        generateImages(for: asset, at: timesForThumbnail, with: thumbnailSize)
     }
     
     private func getThumbnailFrameSize(from asset: AVAsset) -> CGSize? {
@@ -75,8 +77,7 @@ class AssetVideoScrollView: UIScrollView {
     }
     
     private func removeFormerThumbnails() {
-        thumbnailViews.forEach({ $0.removeFromSuperview() })
-        thumbnailViews.removeAll()
+        contentView.subviews.forEach({ $0.removeFromSuperview() })
     }
     
     private func setContentSize(for asset: AVAsset) -> CGSize {
@@ -107,7 +108,7 @@ class AssetVideoScrollView: UIScrollView {
             }
             
             thumbnailView.frame.origin = CGPoint(x: CGFloat(index) * size.width, y: 0)
-            thumbnailViews.append(thumbnailView)
+            thumbnailView.tag = index
             contentView.addSubview(thumbnailView)
         }
     }
@@ -124,19 +125,26 @@ class AssetVideoScrollView: UIScrollView {
         return timesForThumbnails
     }
     
-    private func generateImages(for asset: AVAsset, at times: [NSValue]) {
+    private func generateImages(for asset: AVAsset, at times: [NSValue], with maximumSize: CGSize) {
         
-        let generator = AVAssetImageGenerator(asset: asset)
-        generator.appliesPreferredTrackTransform = true
+        generator = AVAssetImageGenerator(asset: asset)
+        generator?.appliesPreferredTrackTransform = true
+        let scaledSize = CGSize(width: maximumSize.width * UIScreen.main.scale, height: maximumSize.height *  UIScreen.main.scale)
+        generator?.maximumSize = scaledSize
         var count = 0
-
-        generator.generateCGImagesAsynchronously(forTimes: times,
-                                                 completionHandler: { [weak self] (time, cgimage, time2, result, error) in
+        
+        print("Generating \(times.count) images")
+        generator?.generateCGImagesAsynchronously(forTimes: times,
+                                                  completionHandler: { [weak self] (time, cgimage, time2, result, error) in
+            
             if let cgimage = cgimage, error == nil && result == AVAssetImageGeneratorResult.succeeded {
-                DispatchQueue.main.async(execute: {
-                    let uiimage = UIImage(cgImage: cgimage, scale: 1.0, orientation: UIImageOrientation.up)
-                    self?.thumbnailViews[count].image = uiimage
-                    count += 1
+                DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                    if let imageView = self?.contentView.viewWithTag(count) as? UIImageView {
+                        let uiimage = UIImage(cgImage: cgimage, scale: 1.0, orientation: UIImageOrientation.up)
+                        imageView.image = uiimage
+                        print("image \(count)")
+                        count += 1
+                    }
                 })
             }
         })
