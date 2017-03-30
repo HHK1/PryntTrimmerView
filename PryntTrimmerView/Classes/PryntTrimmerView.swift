@@ -43,6 +43,7 @@ public protocol TrimmerViewDelegate: class {
         didSet {
             if let asset = asset {
                 assetPreview.regenerateThumbnails(for: asset)
+                resetHandleViewPosition()
             }
         }
     }
@@ -272,7 +273,13 @@ public protocol TrimmerViewDelegate: class {
         let newConstraint = max(min(0, currentRightConstraint + translation.x), maxConstraint)
         rightConstraint?.constant = newConstraint
     }
-
+    
+    private func resetHandleViewPosition() {
+        leftConstraint?.constant = 0
+        rightConstraint?.constant = 0
+        layoutIfNeeded()
+    }
+    
     //MARK: - Time Equivalence
     
     public func seek(to time: CMTime) {
