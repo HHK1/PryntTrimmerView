@@ -309,7 +309,6 @@ public protocol TrimmerViewDelegate: class {
         }
         if stoppedMoving {
             let duration = (endTime! - startTime!).seconds
-            print(duration)
             delegate?.positionBarStoppedMoving(playerTime)
         } else {
             delegate?.didChangePositionBar(playerTime)

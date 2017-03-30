@@ -133,7 +133,6 @@ class AssetVideoScrollView: UIScrollView {
         generator?.maximumSize = scaledSize
         var count = 0
         
-        print("Generating \(times.count) images")
         generator?.generateCGImagesAsynchronously(forTimes: times,
                                                   completionHandler: { [weak self] (time, cgimage, time2, result, error) in
             
@@ -142,7 +141,6 @@ class AssetVideoScrollView: UIScrollView {
                     if let imageView = self?.contentView.viewWithTag(count) as? UIImageView {
                         let uiimage = UIImage(cgImage: cgimage, scale: 1.0, orientation: UIImageOrientation.up)
                         imageView.image = uiimage
-                        print("image \(count)")
                         count += 1
                     }
                 })
