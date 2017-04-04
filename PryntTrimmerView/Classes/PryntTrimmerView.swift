@@ -2,7 +2,7 @@
 //  PryntTrimmerView.swift
 //  PryntTrimmerView
 //
-//  Created by Henry on 27/03/2017.
+//  Created by HHK on 27/03/2017.
 //  Copyright © 2017 Prynt. All rights reserved.
 //
 
@@ -69,8 +69,12 @@ public protocol TrimmerViewDelegate: class {
     private var positionConstraint: NSLayoutConstraint?
 
     private let handleWidth: CGFloat = 15
-    private let maxDuration: Double = 15
-    private let minDuration: Double = 3
+    public var maxDuration: Double = 15 {
+        didSet {
+            assetPreview.maxDuration = maxDuration
+        }
+    }
+    public var minDuration: Double = 3
     
     //MARK: - Initializers
 
@@ -308,7 +312,6 @@ public protocol TrimmerViewDelegate: class {
             return
         }
         if stoppedMoving {
-            let duration = (endTime! - startTime!).seconds
             delegate?.positionBarStoppedMoving(playerTime)
         } else {
             delegate?.didChangePositionBar(playerTime)

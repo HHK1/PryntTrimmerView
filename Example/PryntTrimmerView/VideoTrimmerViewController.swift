@@ -22,15 +22,18 @@ class VideoTrimmerViewController: UIViewController {
     var player: AVPlayer?
     var playbackTimeCheckerTimer: Timer?
     var trimmerPositionChangedTimer: Timer?
-
+    var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: .video, options: nil)
+    
     @IBAction func selectAsset(_ sender: Any) {
-        
-        let pickerController = UIImagePickerController()
-        pickerController.sourceType = .photoLibrary
-        pickerController.mediaTypes = [kUTTypeMovie as String]
-        pickerController.delegate = self
-        pickerController.allowsEditing = false
-        present(pickerController, animated: true, completion: nil)
+        let randomAssetIndex = Int(arc4random_uniform(UInt32(fetchResult.count - 1)))
+        let asset = fetchResult.object(at: randomAssetIndex)
+        PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
+            DispatchQueue.main.async {
+                if let avAsset = avAsset {
+                    self.loadAsset(avAsset)
+                }
+            }
+        }
     }
     
     @IBAction func play(_ sender: Any) {
@@ -46,9 +49,8 @@ class VideoTrimmerViewController: UIViewController {
         }
     }
     
-    func loadAsset(at url: URL) {
+    func loadAsset(_ asset: AVAsset) {
         
-        let asset = AVAsset(url: url)
         trimmerView.asset = asset
         trimmerView.delegate = self
         addVideoPlayer(with: asset, playerView: playerView)
@@ -104,22 +106,6 @@ class VideoTrimmerViewController: UIViewController {
     }
 }
 
-extension VideoTrimmerViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-
-        picker.dismiss(animated: true, completion: nil)
-        guard let url = info[UIImagePickerControllerMediaURL] as? URL else {
-            return
-        }
-        loadAsset(at: url)
-    }
-}
-
 extension VideoTrimmerViewController: TrimmerViewDelegate {
     func positionBarStoppedMoving(_ playerTime: CMTime) {
         player?.seek(to: playerTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
@@ -132,5 +118,7 @@ extension VideoTrimmerViewController: TrimmerViewDelegate {
         stopPlaybackTimeChecker()
         player?.pause()
         player?.seek(to: playerTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        let duration = (trimmerView.endTime! - trimmerView.startTime!).seconds
+        print(duration)
     }
 }

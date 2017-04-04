@@ -2,7 +2,7 @@
 //  AssetVideoScrollView.swift
 //  PryntTrimmerView
 //
-//  Created by Henry on 28/03/2017.
+//  Created by HHK on 28/03/2017.
 //  Copyright © 2017 Prynt. All rights reserved.
 //
 
@@ -42,7 +42,7 @@ class AssetVideoScrollView: UIScrollView {
         contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        widthConstraint = contentView.widthAnchor.constraint(equalToConstant: frame.width)
+        widthConstraint = contentView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1.0)
         widthConstraint?.isActive = true
     }
     
@@ -84,7 +84,7 @@ class AssetVideoScrollView: UIScrollView {
         
         let contentWidthFactor = CGFloat(max(1, asset.duration.seconds / maxDuration))
         widthConstraint?.isActive = false
-        widthConstraint = contentView.widthAnchor.constraint(equalToConstant: frame.width * contentWidthFactor)
+        widthConstraint = contentView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: contentWidthFactor)
         widthConstraint?.isActive = true
         layoutIfNeeded()
         return contentView.bounds.size

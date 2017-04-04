@@ -2,7 +2,7 @@
 //  HandlerView.swift
 //  PryntTrimmerView
 //
-//  Created by Henry on 27/03/2017.
+//  Created by HHK on 27/03/2017.
 //  Copyright © 2017 Prynt. All rights reserved.
 //
 
