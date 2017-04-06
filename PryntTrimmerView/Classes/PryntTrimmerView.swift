@@ -14,7 +14,7 @@ public protocol TrimmerViewDelegate: class {
     func positionBarStoppedMoving(_ playerTime: CMTime)
 }
 
-@IBDesignable public class TrimmerView: UIView, UIScrollViewDelegate {
+@IBDesignable public class TrimmerView: AVAssetTimeSelector {
     
     //MARK: - Properties
     
@@ -39,14 +39,6 @@ public protocol TrimmerViewDelegate: class {
     //MARK: Interface
 
     public weak var delegate: TrimmerViewDelegate?
-    public var asset: AVAsset? {
-        didSet {
-            if let asset = asset {
-                assetPreview.regenerateThumbnails(for: asset)
-                resetHandleViewPosition()
-            }
-        }
-    }
     
     //MARK: Subviews
     
@@ -58,7 +50,6 @@ public protocol TrimmerViewDelegate: class {
     private let rightHandleKnob = UIView()
     private let leftMaskView = UIView()
     private let rightMaskView = UIView()
-    private let assetPreview = AssetVideoScrollView()
     
     //MARK: Constraints
 
@@ -75,26 +66,14 @@ public protocol TrimmerViewDelegate: class {
         }
     }
     public var minDuration: Double = 3
-    
-    //MARK: - Initializers
 
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        setupSubviews()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupSubviews()
-    }
-    
     //MARK: - View & constraints configurations
 
-    private func setupSubviews() {
+    override func setupSubviews() {
         
+        super.setupSubviews()
         backgroundColor = UIColor.clear
         layer.zPosition = 1
-        setupAssetPreview()
         setupTrimmerView()
         setupHandleView()
         setupMaskView()
@@ -104,11 +83,7 @@ public protocol TrimmerViewDelegate: class {
         updateHandleColor()
     }
     
-    private func setupAssetPreview() {
-     
-        assetPreview.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(assetPreview)
-        assetPreview.delegate = self
+    override func constrainAssetPreview() {
         assetPreview.leftAnchor.constraint(equalTo: leftAnchor, constant: handleWidth).isActive = true
         assetPreview.rightAnchor.constraint(equalTo: rightAnchor, constant: -handleWidth).isActive = true
         assetPreview.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -278,6 +253,13 @@ public protocol TrimmerViewDelegate: class {
         rightConstraint?.constant = newConstraint
     }
     
+    //MARK: - Asset loading
+    
+    override func assetDidChange(newAsset: AVAsset?) {
+        super.assetDidChange(newAsset: newAsset)
+        resetHandleViewPosition()
+    }
+    
     private func resetHandleViewPosition() {
         leftConstraint?.constant = 0
         rightConstraint?.constant = 0
@@ -321,27 +303,6 @@ public protocol TrimmerViewDelegate: class {
     private var positionBarTime: CMTime? {
         let barPosition = positionBar.frame.origin.x + assetPreview.contentOffset.x - handleWidth
         return getTime(from: barPosition)
-    }
-
-    private func getTime(from position: CGFloat) -> CMTime? {
-        guard let asset = asset else {
-            return nil
-        }
-        let durationSize = assetPreview.contentView.frame.width
-        let normalizedRatio = max(min(1, position / durationSize), 0)
-        let positionTimeValue = Double(normalizedRatio) * Double(asset.duration.value)
-        return CMTime(value: Int64(positionTimeValue), timescale: asset.duration.timescale)
-    }
-    
-    private func getPosition(from time: CMTime) -> CGFloat? {
-        guard let asset = asset else {
-            return nil
-        }
-        
-        let durationSize = assetPreview.contentView.frame.width
-        let timeRatio = CGFloat(time.value) * CGFloat(asset.duration.timescale) /
-                        (CGFloat(time.timescale) * CGFloat(asset.duration.value))
-        return timeRatio * durationSize
     }
     
     private var minimumDistanceBetweenHandle: CGFloat {
