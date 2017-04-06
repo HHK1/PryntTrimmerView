@@ -15,6 +15,12 @@ public protocol ThumbSelectorViewDelegate: class {
 
 public class ThumbSelectorView: AVAssetTimeSelector {
     
+    public var thumbBorderColor: UIColor = .white {
+        didSet {
+            thumbView.layer.borderColor = thumbBorderColor.cgColor
+        }
+    }
+    
     private let thumbView = UIImageView()
     private let dimmingView = UIView()
     
@@ -49,7 +55,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         
         thumbView.translatesAutoresizingMaskIntoConstraints = false
         thumbView.layer.borderWidth = 2.0
-        thumbView.layer.borderColor = UIColor.white.cgColor
+        thumbView.layer.borderColor = thumbBorderColor.cgColor
         thumbView.isUserInteractionEnabled = true
         thumbView.contentMode = .scaleAspectFill
         thumbView.clipsToBounds = true
