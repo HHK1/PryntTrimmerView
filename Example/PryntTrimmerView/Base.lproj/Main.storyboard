@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="S11-TT-8A3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -99,6 +100,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="92.203898050974516"/>
+        </scene>
+        <!--Video Thumbnail Selector View Controller-->
+        <scene sceneID="DV2-fz-lGH">
+            <objects>
+                <viewController id="S11-TT-8A3" customClass="VideoThumbnailSelectorViewController" customModule="PryntTrimmerView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZQ9-80-rxi"/>
+                        <viewControllerLayoutGuide type="bottom" id="o4B-JN-swb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i2q-dU-91x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-hO-WLc">
+                                <rect key="frame" x="0.0" y="52" width="375" height="375"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hiW-hO-WLc" secondAttribute="height" multiplier="1:1" id="HRH-gq-Gxy"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6Q-PX-RZD">
+                                <rect key="frame" x="0.0" y="427" width="375" height="240"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DhY-lH-ufy" customClass="ThumbSelectorView" customModule="PryntTrimmerView">
+                                        <rect key="frame" x="32" y="89" width="311" height="62"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="DhY-lH-ufy" secondAttribute="height" multiplier="5:1" id="szd-xB-Kbk"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGQ-Qr-vw6">
+                                        <rect key="frame" x="164" y="196" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="selectAsset:" destination="S11-TT-8A3" eventType="touchUpInside" id="jxq-Lr-ubL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="DhY-lH-ufy" firstAttribute="leading" secondItem="C6Q-PX-RZD" secondAttribute="leading" constant="32" id="FDj-eH-1id"/>
+                                    <constraint firstItem="DhY-lH-ufy" firstAttribute="centerX" secondItem="C6Q-PX-RZD" secondAttribute="centerX" id="VCb-iV-hn7"/>
+                                    <constraint firstItem="DhY-lH-ufy" firstAttribute="centerY" secondItem="C6Q-PX-RZD" secondAttribute="centerY" id="i3f-Yh-aWR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C6Q-PX-RZD" firstAttribute="top" secondItem="hiW-hO-WLc" secondAttribute="bottom" id="66D-Ty-Rg7"/>
+                            <constraint firstItem="hiW-hO-WLc" firstAttribute="width" secondItem="i2q-dU-91x" secondAttribute="width" id="DGS-Op-G9C"/>
+                            <constraint firstItem="hiW-hO-WLc" firstAttribute="top" secondItem="i2q-dU-91x" secondAttribute="topMargin" constant="52" id="Gdc-l6-Sd6"/>
+                            <constraint firstItem="o4B-JN-swb" firstAttribute="top" secondItem="C6Q-PX-RZD" secondAttribute="bottom" id="LLs-Zc-XJb"/>
+                            <constraint firstItem="C6Q-PX-RZD" firstAttribute="leading" secondItem="i2q-dU-91x" secondAttribute="leading" id="hWV-Cm-acZ"/>
+                            <constraint firstAttribute="trailing" secondItem="C6Q-PX-RZD" secondAttribute="trailing" id="i8T-7o-olc"/>
+                            <constraint firstItem="hiW-hO-WLc" firstAttribute="centerX" secondItem="i2q-dU-91x" secondAttribute="centerX" id="pCN-fJ-zYW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playerView" destination="hiW-hO-WLc" id="uqL-gA-GLE"/>
+                        <outlet property="selectThumbView" destination="DhY-lH-ufy" id="dhx-Hb-fMh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="crm-Pu-7LE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33" y="833"/>
         </scene>
     </scenes>
 </document>
