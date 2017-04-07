@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		BA7923C31E9681C000DA9BDD /* VideoThumbnailSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7923C21E9681C000DA9BDD /* VideoThumbnailSelectorViewController.swift */; };
+		BA7923CA1E97953D00DA9BDD /* VideoCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7923C91E97953D00DA9BDD /* VideoCropView.swift */; };
 		BAAF985C1E8C12DA007683C8 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF985A1E8C12DA007683C8 /* AVPlayer+isPlaying.swift */; };
 		BAAF985D1E8C12DA007683C8 /* VideoTrimmerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF985B1E8C12DA007683C8 /* VideoTrimmerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		A2AF731B842FEC297C5E9A38 /* Pods_PryntTrimmerView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4456BDD210B024D264D0888 /* Pods-PryntTrimmerView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BA7923C21E9681C000DA9BDD /* VideoThumbnailSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoThumbnailSelectorViewController.swift; sourceTree = "<group>"; };
+		BA7923C91E97953D00DA9BDD /* VideoCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCropView.swift; sourceTree = "<group>"; };
 		BAAF985A1E8C12DA007683C8 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
 		BAAF985B1E8C12DA007683C8 /* VideoTrimmerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTrimmerViewController.swift; sourceTree = "<group>"; };
 		FB4D8D4A51CFFBB151546C59 /* Pods-PryntTrimmerView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				BAAF985B1E8C12DA007683C8 /* VideoTrimmerViewController.swift */,
 				BA7923C21E9681C000DA9BDD /* VideoThumbnailSelectorViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				BA7923C91E97953D00DA9BDD /* VideoCropView.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -370,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA7923C31E9681C000DA9BDD /* VideoThumbnailSelectorViewController.swift in Sources */,
+				BA7923CA1E97953D00DA9BDD /* VideoCropView.swift in Sources */,
 				BAAF985D1E8C12DA007683C8 /* VideoTrimmerViewController.swift in Sources */,
 				BAAF985C1E8C12DA007683C8 /* AVPlayer+isPlaying.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
