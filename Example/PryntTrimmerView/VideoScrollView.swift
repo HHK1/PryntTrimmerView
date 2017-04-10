@@ -13,15 +13,6 @@ class VideoScrollView: UIView {
     
     let scrollView = UIScrollView()
     var contentView = UIView()
-    
-    var asset: AVAsset? {
-        didSet {
-            if let asset = asset {
-                setupVideo(with: asset)
-            }
-        }
-    }
-    
     var assetSize = CGSize.zero
     
     var playerItem: AVPlayerItem?
@@ -43,7 +34,6 @@ class VideoScrollView: UIView {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .red
         scrollView.addSubview(contentView)
         scrollView.delegate = self
         addSubview(scrollView)
@@ -54,18 +44,25 @@ class VideoScrollView: UIView {
         scrollView.topAnchor.constraint(equalTo: topAnchor).isActive = true
     }
     
-    private func setupVideo(with asset: AVAsset) {
+    func setupVideo(with asset: AVAsset) {
         
         guard let track = asset.tracks(withMediaType: AVMediaTypeVideo).first else { return }
         let trackSize = track.naturalSize.applying(track.preferredTransform)
         assetSize = CGSize(width: fabs(trackSize.width), height: fabs(trackSize.height))
         
-        playerLayer?.removeFromSuperlayer()
+        scrollView.zoomScale = 1.0 // Reset zoom scale before changing the frame of the content view.
         playerItem = AVPlayerItem(asset: asset)
-        player = AVPlayer(playerItem: playerItem)
-        scrollView.zoomScale = 1.0
-        
         let playerFrame = CGRect(x: 0, y: 0, width: assetSize.width, height: assetSize.height)
+        addVideoLayer(with: playerFrame)
+        
+        scrollView.contentSize = assetSize
+        setZoomScale()
+    }
+    
+    private func addVideoLayer(with playerFrame: CGRect) {
+        
+        playerLayer?.removeFromSuperlayer()
+        player = AVPlayer(playerItem: playerItem)
         playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
         playerLayer?.frame = playerFrame
@@ -73,20 +70,13 @@ class VideoScrollView: UIView {
         
         contentView.frame = playerFrame
         contentView.layer.addSublayer(playerLayer!)
-        
-        scrollView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        scrollView.contentSize = assetSize
-        setZoomScale()
-        print("content view bounds \(contentView.bounds)")
-        print("player size \(playerLayer!.frame)")
-        print("content size \(scrollView.contentSize)")
-        print("scroll view size \(scrollView.bounds)")
-        print("content view layer size \(contentView.layer.bounds)")
     }
     
     func setZoomScale() {
         
-        let scale = min(bounds.width / assetSize.width, bounds.height / assetSize.height)
+        let scrollWidth = scrollView.bounds.width - scrollView.contentInset.left - scrollView.contentInset.right
+        let scrollHeight = scrollView.bounds.height - scrollView.contentInset.top - scrollView.contentInset.bottom
+        let scale = max( scrollWidth / assetSize.width, scrollHeight / assetSize.height)
         scrollView.minimumZoomScale = scale
         scrollView.maximumZoomScale = 3.0
         scrollView.zoomScale = scale
@@ -100,7 +90,6 @@ extension VideoScrollView: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        
         let scaledAssetSize = CGSize(width: assetSize.width * scale, height: assetSize.height * scale)
         scrollView.contentSize = scaledAssetSize
     }

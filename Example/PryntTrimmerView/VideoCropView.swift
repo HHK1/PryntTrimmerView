@@ -16,7 +16,9 @@ class VideoCropView: UIView {
     
     var asset: AVAsset? {
         didSet {
-           videoScrollView.asset = asset
+            if let asset = asset {
+                videoScrollView.setupVideo(with: asset)
+            }
         }
     }
     

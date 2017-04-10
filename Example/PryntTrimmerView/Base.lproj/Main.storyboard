@@ -115,7 +115,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-hO-WLc" customClass="VideoCropView" customModule="PryntTrimmerView_Example" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="52" width="375" height="375"/>
-                                <color key="backgroundColor" red="0.30588235289999999" green="0.69803921570000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hiW-hO-WLc" secondAttribute="height" multiplier="1:1" id="HRH-gq-Gxy"/>
                                 </constraints>
@@ -138,7 +137,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.30980392159999998" green="0.83137254900000002" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="DhY-lH-ufy" firstAttribute="leading" secondItem="C6Q-PX-RZD" secondAttribute="leading" constant="32" id="FDj-eH-1id"/>
                                     <constraint firstItem="DhY-lH-ufy" firstAttribute="centerX" secondItem="C6Q-PX-RZD" secondAttribute="centerX" id="VCb-iV-hn7"/>
@@ -146,7 +144,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="C6Q-PX-RZD" firstAttribute="top" secondItem="hiW-hO-WLc" secondAttribute="bottom" id="66D-Ty-Rg7"/>
                             <constraint firstItem="hiW-hO-WLc" firstAttribute="width" secondItem="i2q-dU-91x" secondAttribute="width" id="DGS-Op-G9C"/>
