@@ -13,7 +13,7 @@
         <!--Video Trimmer View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="VideoTrimmerViewController" customModule="PryntTrimmerView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="trimmerViewController" id="BYZ-38-t0r" customClass="VideoTrimmerViewController" customModule="PryntTrimmerView_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -31,17 +31,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="e9q-qu-Rg9"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
-                                        <color key="value" red="1" green="0.64705882349999999" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="handleColor">
-                                        <color key="value" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="positionBarColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YaM-S0-qXi" userLabel="Bottom View">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
@@ -104,7 +93,7 @@
         <!--Video Thumbnail Selector View Controller-->
         <scene sceneID="DV2-fz-lGH">
             <objects>
-                <viewController id="S11-TT-8A3" customClass="VideoThumbnailSelectorViewController" customModule="PryntTrimmerView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="videoCropViewController" id="S11-TT-8A3" customClass="VideoThumbnailSelectorViewController" customModule="PryntTrimmerView_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZQ9-80-rxi"/>
                         <viewControllerLayoutGuide type="bottom" id="o4B-JN-swb"/>
