@@ -36,7 +36,7 @@ class VideoThumbnailSelectorViewController: UIViewController {
         playerView.asset = asset
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { 
-            self.playerView.updateCropView()
+            
         }
     }
 }
