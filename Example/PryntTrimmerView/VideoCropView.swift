@@ -20,6 +20,14 @@ class VideoCropView: UIView {
         }
     }
     
+    var cropFrame = CGRect.zero
+    
+    var aspectRatio = CGSize(width: 1, height: 1) {
+        didSet {
+            updateCropFrame()
+        }
+    }
+    
     var player: AVPlayer? {
         return videoScrollView.player
     }
@@ -55,4 +63,20 @@ class VideoCropView: UIView {
         
         cropMaskView.cropFrame = CGRect(x: 10, y: 10, width: 140, height: 250)
     }
+    
+    func updateCropFrame() {
+        
+        let ratio = aspectRatio.width / aspectRatio.height
+        let margin: CGFloat = 16
+        let cropBoxWidth = ratio > 1 ? (bounds.width - 2 * margin) : (bounds.height - 2 * margin)  * ratio
+        let cropBoxHeight = cropBoxWidth / ratio
+        let origin = CGPoint(x: (bounds.width - cropBoxWidth) / 2, y: (bounds.height - cropBoxHeight) / 2)
+        cropFrame = CGRect(origin: origin, size: CGSize(width: cropBoxWidth, height: cropBoxHeight))
+        
+        cropMaskView.cropFrame = cropFrame
+        let edgeInsets = UIEdgeInsets(top: origin.y, left: origin.x, bottom: origin.y, right: origin.x)
+        videoScrollView.scrollView.contentInset = edgeInsets
+    }
+
 }
+

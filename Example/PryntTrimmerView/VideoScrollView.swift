@@ -74,9 +74,9 @@ class VideoScrollView: UIView {
         contentView.frame = playerFrame
         contentView.layer.addSublayer(playerLayer!)
         
+        scrollView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         scrollView.contentSize = assetSize
         setZoomScale()
-        centerContent(for: scrollView.zoomScale)
         print("content view bounds \(contentView.bounds)")
         print("player size \(playerLayer!.frame)")
         print("content size \(scrollView.contentSize)")
@@ -88,21 +88,12 @@ class VideoScrollView: UIView {
         
         let scale = min(bounds.width / assetSize.width, bounds.height / assetSize.height)
         scrollView.minimumZoomScale = scale
-        scrollView.maximumZoomScale = 4.0
+        scrollView.maximumZoomScale = 3.0
         scrollView.zoomScale = scale
-    }
-    
-    func centerContent(for scale: CGFloat) {
-        
-        
     }
 }
 
 extension VideoScrollView: UIScrollViewDelegate {
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-    }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return contentView
