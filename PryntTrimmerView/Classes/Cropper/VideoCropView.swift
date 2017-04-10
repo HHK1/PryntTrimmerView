@@ -9,12 +9,14 @@
 import UIKit
 import AVFoundation
 
-class VideoCropView: UIView {
+private let margin: CGFloat = 16
+
+public class VideoCropView: UIView {
     
     let videoScrollView = VideoScrollView()
     let cropMaskView = CropMaskView()
     
-    var asset: AVAsset? {
+    public var asset: AVAsset? {
         didSet {
             if let asset = asset {
                 videoScrollView.setupVideo(with: asset)
@@ -24,21 +26,22 @@ class VideoCropView: UIView {
     
     var cropFrame = CGRect.zero
     
-    var aspectRatio = CGSize(width: 1, height: 1) {
+    public var aspectRatio = CGSize(width: 1, height: 1) {
         didSet {
             updateCropFrame()
         }
     }
     
-    var player: AVPlayer? {
+    public var player: AVPlayer? {
         return videoScrollView.player
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupSubviews()
     }
@@ -63,13 +66,12 @@ class VideoCropView: UIView {
         cropMaskView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         cropMaskView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         
-        cropMaskView.cropFrame = CGRect(x: 10, y: 10, width: 140, height: 250)
+        updateCropFrame()
     }
     
     func updateCropFrame() {
         
         let ratio = aspectRatio.width / aspectRatio.height
-        let margin: CGFloat = 16
         let cropBoxWidth = ratio > 1 ? (bounds.width - 2 * margin) : (bounds.height - 2 * margin)  * ratio
         let cropBoxHeight = cropBoxWidth / ratio
         let origin = CGPoint(x: (bounds.width - cropBoxWidth) / 2, y: (bounds.height - cropBoxHeight) / 2)
@@ -78,7 +80,31 @@ class VideoCropView: UIView {
         cropMaskView.cropFrame = cropFrame
         let edgeInsets = UIEdgeInsets(top: origin.y, left: origin.x, bottom: origin.y, right: origin.x)
         videoScrollView.scrollView.contentInset = edgeInsets
+        videoScrollView.setZoomScale()
     }
-
+    
+    public func getImageCropFrame() -> CGRect {
+  
+        let imageSize = videoScrollView.assetSize
+        let contentSize = videoScrollView.scrollView.contentSize
+        let cropBoxFrame = cropFrame
+        let contentOffset = videoScrollView.scrollView.contentOffset
+        let edgeInsets = videoScrollView.scrollView.contentInset
+        
+        var frame = CGRect.zero
+        frame.origin.x = floor((contentOffset.x + edgeInsets.left) * (imageSize.width / contentSize.width))
+        frame.origin.x = max(0, frame.origin.x)
+        
+        frame.origin.y = floor((contentOffset.y + edgeInsets.top) * (imageSize.height / contentSize.height))
+        frame.origin.y = max(0, frame.origin.y)
+        
+        frame.size.width = ceil(cropBoxFrame.size.width * (imageSize.width / contentSize.width))
+        frame.size.width = min(imageSize.width, frame.size.width)
+        
+        frame.size.height = ceil(cropBoxFrame.size.height * (imageSize.height / contentSize.height))
+        frame.size.height = min(imageSize.height, frame.size.height)
+        print("frame \(frame)")
+        return frame
+    }
 }
 

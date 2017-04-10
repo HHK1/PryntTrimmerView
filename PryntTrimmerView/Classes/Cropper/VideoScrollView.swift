@@ -63,7 +63,6 @@ class VideoScrollView: UIView {
         
         playerLayer?.removeFromSuperlayer()
         player = AVPlayer(playerItem: playerItem)
-        playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
         playerLayer?.frame = playerFrame
         playerLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
@@ -74,12 +73,25 @@ class VideoScrollView: UIView {
     
     func setZoomScale() {
         
+        guard assetSize != CGSize.zero else { return }
+        
         let scrollWidth = scrollView.bounds.width - scrollView.contentInset.left - scrollView.contentInset.right
         let scrollHeight = scrollView.bounds.height - scrollView.contentInset.top - scrollView.contentInset.bottom
-        let scale = max( scrollWidth / assetSize.width, scrollHeight / assetSize.height)
+        let scale = max(scrollWidth / assetSize.width, scrollHeight / assetSize.height)
         scrollView.minimumZoomScale = scale
         scrollView.maximumZoomScale = 3.0
         scrollView.zoomScale = scale
+        
+        print("old offset \(scrollView.contentOffset)")
+        print("inset \(scrollView.contentInset)")
+        
+        if assetSize.width > assetSize.height {
+            scrollView.contentOffset.x = 0
+        } else {
+            scrollView.contentOffset.y = 0
+        }
+        
+        print("new offset \(scrollView.contentOffset)")
     }
 }
 

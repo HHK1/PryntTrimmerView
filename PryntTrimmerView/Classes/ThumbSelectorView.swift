@@ -103,11 +103,12 @@ public class ThumbSelectorView: AVAssetTimeSelector {
     //MARK: - Thumbnail Generation
     
     override func assetDidChange(newAsset: AVAsset?) {
-        super.assetDidChange(newAsset: newAsset)
         if let asset = newAsset {
             setupThumbnailGenerator(with: asset)
+            leftThumbConstraint?.constant = 0
             updateSelectedTime()
         }
+        super.assetDidChange(newAsset: newAsset)
     }
     
     private func setupThumbnailGenerator(with asset: AVAsset) {

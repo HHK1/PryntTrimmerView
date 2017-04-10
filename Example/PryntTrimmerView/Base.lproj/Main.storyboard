@@ -113,7 +113,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-hO-WLc" customClass="VideoCropView" customModule="PryntTrimmerView_Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-hO-WLc" customClass="VideoCropView" customModule="PryntTrimmerView">
                                 <rect key="frame" x="0.0" y="52" width="375" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hiW-hO-WLc" secondAttribute="height" multiplier="1:1" id="HRH-gq-Gxy"/>
@@ -129,11 +129,19 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGQ-Qr-vw6">
-                                        <rect key="frame" x="164" y="196" width="46" height="30"/>
+                                        <rect key="frame" x="170" y="196" width="34" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Load"/>
+                                        <connections>
+                                            <action selector="selectAsset:" destination="S11-TT-8A3" eventType="touchUpInside" id="jxq-Lr-ubL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tf-hJ-oj2">
+                                        <rect key="frame" x="297" y="196" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="selectAsset:" destination="S11-TT-8A3" eventType="touchUpInside" id="jxq-Lr-ubL"/>
+                                            <action selector="crop:" destination="S11-TT-8A3" eventType="touchUpInside" id="Jeq-rj-sPq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -156,8 +164,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="playerView" destination="hiW-hO-WLc" id="uqL-gA-GLE"/>
                         <outlet property="selectThumbView" destination="DhY-lH-ufy" id="dhx-Hb-fMh"/>
+                        <outlet property="videoCropView" destination="hiW-hO-WLc" id="yC5-tA-DY1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crm-Pu-7LE" userLabel="First Responder" sceneMemberID="firstResponder"/>
