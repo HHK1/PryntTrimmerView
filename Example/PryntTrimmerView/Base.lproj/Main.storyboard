@@ -104,6 +104,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiW-hO-WLc" customClass="VideoCropView" customModule="PryntTrimmerView">
                                 <rect key="frame" x="0.0" y="52" width="375" height="375"/>
+                                <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hiW-hO-WLc" secondAttribute="height" multiplier="1:1" id="HRH-gq-Gxy"/>
                                 </constraints>

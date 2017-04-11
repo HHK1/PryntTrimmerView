@@ -10,7 +10,7 @@ import UIKit
 
 class CropMaskView: UIView {
     
-    var lineWidth: CGFloat = 3.0 {
+    var lineWidth: CGFloat = 4.0 {
         didSet {
             setNeedsLayout()
         }

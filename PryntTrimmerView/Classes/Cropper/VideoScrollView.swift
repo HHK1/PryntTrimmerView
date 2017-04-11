@@ -85,14 +85,16 @@ class VideoScrollView: UIView {
         print("old offset \(scrollView.contentOffset)")
         print("inset \(scrollView.contentInset)")
         
-        if assetSize.width > assetSize.height {
-            scrollView.contentOffset.x = 0
-        } else {
-            scrollView.contentOffset.y = 0
-        }
         
+        var offset = scrollView.contentOffset
+        
+        offset.x = -scrollView.contentInset.left - (scrollWidth - assetSize.width * scale) / 2
+        offset.y = -scrollView.contentInset.top - (scrollHeight - assetSize.height * scale) / 2
+        scrollView.contentOffset = offset
         print("new offset \(scrollView.contentOffset)")
     }
+    
+    
 }
 
 extension VideoScrollView: UIScrollViewDelegate {

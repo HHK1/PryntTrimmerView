@@ -19,7 +19,7 @@ class VideoThumbnailSelectorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.videoCropView.aspectRatio = CGSize(width: 3, height: 2)
+        self.videoCropView.aspectRatio = CGSize(width: 2, height: 3)
     }
     
     func loadAsset(_ asset: AVAsset) {
