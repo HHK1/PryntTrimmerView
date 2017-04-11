@@ -26,12 +26,8 @@ public class VideoCropView: UIView {
     
     var cropFrame = CGRect.zero
     
-    public var aspectRatio = CGSize(width: 1, height: 1) {
-        didSet {
-            updateCropFrame()
-        }
-    }
-    
+    public private(set) var aspectRatio = CGSize(width: 1, height: 1)
+
     public var player: AVPlayer? {
         return videoScrollView.player
     }
@@ -66,21 +62,26 @@ public class VideoCropView: UIView {
         cropMaskView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         cropMaskView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         
-        updateCropFrame()
+        setAspectRatio(aspectRatio, animated: false)
     }
     
-    func updateCropFrame() {
+    public func setAspectRatio(_ aspectRatio: CGSize, animated: Bool) {
         
+        self.aspectRatio = aspectRatio
         let ratio = aspectRatio.width / aspectRatio.height
         let cropBoxWidth = ratio > 1 ? (bounds.width - 2 * margin) : (bounds.height - 2 * margin)  * ratio
         let cropBoxHeight = cropBoxWidth / ratio
         let origin = CGPoint(x: (bounds.width - cropBoxWidth) / 2, y: (bounds.height - cropBoxHeight) / 2)
         cropFrame = CGRect(origin: origin, size: CGSize(width: cropBoxWidth, height: cropBoxHeight))
         
-        cropMaskView.cropFrame = cropFrame
         let edgeInsets = UIEdgeInsets(top: origin.y, left: origin.x, bottom: origin.y, right: origin.x)
-        videoScrollView.scrollView.contentInset = edgeInsets
-        videoScrollView.setZoomScale()
+        let duration: TimeInterval = animated ? 0.15 : 0.0
+        
+        cropMaskView.setCropFrame(cropFrame, animated: animated)
+        UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState, .curveEaseInOut], animations: {
+            self.videoScrollView.scrollView.contentInset = edgeInsets
+        }, completion: nil)
+        videoScrollView.setZoomScaleAndCenter(animated: animated)
     }
     
     public func getImageCropFrame() -> CGRect {
@@ -103,7 +104,6 @@ public class VideoCropView: UIView {
         
         frame.size.height = ceil(cropBoxFrame.size.height * (imageSize.height / contentSize.height))
         frame.size.height = min(imageSize.height, frame.size.height)
-        print("frame \(frame)")
         return frame
     }
 }

@@ -19,7 +19,7 @@ class VideoThumbnailSelectorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.videoCropView.aspectRatio = CGSize(width: 2, height: 3)
+        self.videoCropView.setAspectRatio(CGSize(width: 2, height: 3), animated: false)
     }
     
     func loadAsset(_ asset: AVAsset) {
@@ -27,7 +27,6 @@ class VideoThumbnailSelectorViewController: UIViewController {
         selectThumbView.asset = asset
         selectThumbView.delegate = self
         videoCropView.asset = asset
-        
     }
     
     @IBAction func selectAsset(_ sender: Any) {
@@ -40,6 +39,12 @@ class VideoThumbnailSelectorViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func rotate(_ sender: Any) {
+        
+        let newRatio = videoCropView.aspectRatio.width < videoCropView.aspectRatio.height ? CGSize(width: 3, height: 2) : CGSize(width: 2, height: 3)
+        videoCropView.setAspectRatio(newRatio, animated: true)
     }
     
     @IBAction func crop(_ sender: Any) {

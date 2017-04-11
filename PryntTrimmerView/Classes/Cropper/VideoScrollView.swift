@@ -56,7 +56,7 @@ class VideoScrollView: UIView {
         addVideoLayer(with: playerFrame)
         
         scrollView.contentSize = assetSize
-        setZoomScale()
+        setZoomScaleAndCenter(animated: false)
     }
     
     private func addVideoLayer(with playerFrame: CGRect) {
@@ -71,7 +71,7 @@ class VideoScrollView: UIView {
         contentView.layer.addSublayer(playerLayer!)
     }
     
-    func setZoomScale() {
+    func setZoomScaleAndCenter(animated: Bool) {
         
         guard assetSize != CGSize.zero else { return }
         
@@ -80,21 +80,14 @@ class VideoScrollView: UIView {
         let scale = max(scrollWidth / assetSize.width, scrollHeight / assetSize.height)
         scrollView.minimumZoomScale = scale
         scrollView.maximumZoomScale = 3.0
-        scrollView.zoomScale = scale
-        
-        print("old offset \(scrollView.contentOffset)")
-        print("inset \(scrollView.contentInset)")
-        
         
         var offset = scrollView.contentOffset
-        
         offset.x = -scrollView.contentInset.left - (scrollWidth - assetSize.width * scale) / 2
         offset.y = -scrollView.contentInset.top - (scrollHeight - assetSize.height * scale) / 2
-        scrollView.contentOffset = offset
-        print("new offset \(scrollView.contentOffset)")
+        
+        scrollView.setZoomScale(scale, animated: animated)
+        scrollView.setContentOffset(offset, animated: animated)
     }
-    
-    
 }
 
 extension VideoScrollView: UIScrollViewDelegate {

@@ -9,23 +9,14 @@
 import UIKit
 
 class CropMaskView: UIView {
-    
-    var lineWidth: CGFloat = 4.0 {
-        didSet {
-            setNeedsLayout()
-        }
-    }
 
     let cropBoxView = UIView()
     let frameView = UIView()
     let maskLayer = CAShapeLayer()
     let frameLayer = CAShapeLayer()
     
-    var cropFrame: CGRect = CGRect.zero {
-        didSet {
-            setNeedsLayout()
-        }
-    }
+    private let lineWidth: CGFloat = 4.0
+    private var cropFrame: CGRect = CGRect.zero
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,28 +64,51 @@ class CropMaskView: UIView {
         frameLayer.path = framePath.cgPath
     }
     
-    func updateCropView() {
+    func setCropFrame(_ frame: CGRect, animated: Bool) {
         
-        if let shapeLayer = cropBoxView.layer.mask as? CAShapeLayer {
-            
-            let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: bounds.size.width, height: bounds.size.height), cornerRadius: 0)
-            let circlePath = UIBezierPath(roundedRect: CGRect(x: 50, y: 16, width: 200, height: 100), cornerRadius: 0)
-            path.append(circlePath)
-            path.usesEvenOddFillRule = true
-            
-            let animation = CABasicAnimation(keyPath: "path")
-            animation.toValue = path.cgPath
-            animation.duration = 1
-            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-            animation.fillMode = kCAFillModeBoth
-            animation.isRemovedOnCompletion = false
-            
-            shapeLayer.add(animation, forKey: "path animation")
-            animation.toValue = circlePath.cgPath
-            
-            if let frameLayer = frameView.layer.sublayers?.first as? CAShapeLayer {
-                frameLayer.add(animation, forKey: "frame animation")
-            }
+        cropFrame = frame
+        guard animated else {
+            setNeedsLayout()
+            return
         }
+        
+        let (path, framePath) = getPaths(with: cropFrame)
+        
+        CATransaction.begin()
+        
+        let animation = getPathAnimation(with: path)
+        maskLayer.path = maskLayer.presentation()?.path
+        frameLayer.path = frameLayer.presentation()?.path
+        
+        maskLayer.removeAnimation(forKey: "maskPath")
+        maskLayer.add(animation, forKey: "maskPath")
+        
+        animation.toValue = framePath
+        frameLayer.removeAnimation(forKey: "framePath")
+        frameLayer.add(animation, forKey: "framePath")
+        CATransaction.commit()
+    }
+    
+    private func getPaths(with cropFrame: CGRect) -> (path: CGPath, framePath: CGPath) {
+        
+        let path = UIBezierPath(rect: bounds)
+        let framePath = UIBezierPath(rect: cropFrame)
+        framePath.lineWidth = lineWidth
+        path.append(framePath)
+        path.usesEvenOddFillRule = true
+        
+        return (path.cgPath, framePath.cgPath)
+    }
+    
+    private func getPathAnimation(with path: CGPath) -> CABasicAnimation {
+        
+        let animation = CABasicAnimation(keyPath: "path")
+        animation.toValue = path
+        animation.duration = 0.3
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        animation.fillMode = kCAFillModeBoth
+        animation.isRemovedOnCompletion = false
+        
+        return animation
     }
 }
