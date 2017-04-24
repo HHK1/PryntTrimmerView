@@ -13,7 +13,6 @@ import PryntTrimmerView
 
 class VideoTrimmerViewController: UIViewController {
     
-    @IBOutlet weak var trimmerLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var selectAssetButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playerView: UIView!
@@ -24,7 +23,19 @@ class VideoTrimmerViewController: UIViewController {
     var trimmerPositionChangedTimer: Timer?
     var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: .video, options: nil)
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        trimmerView.handleColor = UIColor.white
+        trimmerView.mainColor = UIColor.darkGray
+    }
+    
     @IBAction func selectAsset(_ sender: Any) {
+        
+        guard fetchResult.count > 0 else {
+            print("No videos in your library.")
+            return
+        }
+        
         let randomAssetIndex = Int(arc4random_uniform(UInt32(fetchResult.count - 1)))
         let asset = fetchResult.object(at: randomAssetIndex)
         PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
@@ -56,7 +67,7 @@ class VideoTrimmerViewController: UIViewController {
         addVideoPlayer(with: asset, playerView: playerView)
     }
 
-    func addVideoPlayer(with asset: AVAsset, playerView: UIView) {
+    private func addVideoPlayer(with asset: AVAsset, playerView: UIView) {
         let playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
 

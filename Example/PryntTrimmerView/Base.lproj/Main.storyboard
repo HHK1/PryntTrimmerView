@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="S11-TT-8A3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -82,7 +82,6 @@
                         <outlet property="playButton" destination="lKA-lv-1M3" id="7qW-uM-ron"/>
                         <outlet property="playerView" destination="cRa-1R-GZG" id="J0A-Gq-Ta8"/>
                         <outlet property="selectAssetButton" destination="9Q0-Fn-7gy" id="cGV-dY-QEL"/>
-                        <outlet property="trimmerLeadingConstraint" destination="7PE-Wt-fxy" id="DeO-9m-OIo"/>
                         <outlet property="trimmerView" destination="qFP-ui-lpU" id="qcw-aO-Cce"/>
                     </connections>
                 </viewController>
