@@ -7,6 +7,10 @@ A set of tools written in swift to crop and trim videos.
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+### Trimming 
+
+![](https://media.giphy.com/media/GwZGkLiKxZcTm/giphy.gif)
+
 ## Requirements
 
 ## Installation
