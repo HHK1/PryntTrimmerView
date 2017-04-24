@@ -1,9 +1,7 @@
 # PryntTrimmerView
 
-[![CI Status](http://img.shields.io/travis/henryhuck@hotmail.fr/PryntTrimmerView.svg?style=flat)](https://travis-ci.org/henryhuck@hotmail.fr/PryntTrimmerView)
-[![Version](https://img.shields.io/cocoapods/v/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
-[![License](https://img.shields.io/cocoapods/l/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
-[![Platform](https://img.shields.io/cocoapods/p/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
+A set of tools written in swift to crop and trim videos.
+
 
 ## Example
 
@@ -20,9 +18,19 @@ it, simply add the following line to your Podfile:
 pod "PryntTrimmerView"
 ```
 
-## Author
+## Usage
 
-henry@prynt.co
+### Trimming 
+
+Create a `TrimmerView` instance (in interface builder or through code), and add it to your view hierarchy.
+
+```
+trimmerView.asset = asset
+trimmerView.delegate = self
+```
+
+Access the `startTime` and `endTime` property to know where to trim your asset. You can use the `TrimmerViewDelegate` to link the trimmer with an `AVPlayer` and provide the end user with a preview. See the project to see an example.
+
 
 ## License
 
