@@ -89,10 +89,10 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="92.203898050974516"/>
         </scene>
-        <!--Video Thumbnail Selector View Controller-->
+        <!--Video Cropper View Controller-->
         <scene sceneID="DV2-fz-lGH">
             <objects>
-                <viewController storyboardIdentifier="videoCropViewController" id="S11-TT-8A3" customClass="VideoThumbnailSelectorViewController" customModule="PryntTrimmerView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="videoCropViewController" id="S11-TT-8A3" customClass="VideoCropperViewController" customModule="PryntTrimmerView_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZQ9-80-rxi"/>
                         <viewControllerLayoutGuide type="bottom" id="o4B-JN-swb"/>

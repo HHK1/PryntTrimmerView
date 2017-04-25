@@ -14,23 +14,23 @@ public protocol ThumbSelectorViewDelegate: class {
 }
 
 public class ThumbSelectorView: AVAssetTimeSelector {
-    
+
     public var thumbBorderColor: UIColor = .white {
         didSet {
             thumbView.layer.borderColor = thumbBorderColor.cgColor
         }
     }
-    
+
     private let thumbView = UIImageView()
     private let dimmingView = UIView()
-    
+
     private var leftThumbConstraint: NSLayoutConstraint?
     private var currentThumbConstraint: CGFloat = 0
-    
+
     private var generator: AVAssetImageGenerator?
-    
+
     public weak var delegate: ThumbSelectorViewDelegate?
-    
+
     //MARK: - View & constraints configurations
 
     override func setupSubviews() {
@@ -38,9 +38,9 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         setupDimmingView()
         setupThumbView()
     }
-    
+
     private func setupDimmingView() {
-        
+
         dimmingView.translatesAutoresizingMaskIntoConstraints = false
         dimmingView.isUserInteractionEnabled = false
         dimmingView.backgroundColor = UIColor.white.withAlphaComponent(0.7)
@@ -50,9 +50,9 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         dimmingView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         dimmingView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
-    
+
     private func setupThumbView() {
-        
+
         thumbView.translatesAutoresizingMaskIntoConstraints = false
         thumbView.layer.borderWidth = 2.0
         thumbView.layer.borderColor = thumbBorderColor.cgColor
@@ -60,48 +60,48 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         thumbView.contentMode = .scaleAspectFill
         thumbView.clipsToBounds = true
         addSubview(thumbView)
-                
+
         leftThumbConstraint = thumbView.leftAnchor.constraint(equalTo: leftAnchor)
         leftThumbConstraint?.isActive = true
         thumbView.widthAnchor.constraint(equalTo: thumbView.heightAnchor).isActive = true
         thumbView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         thumbView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        let thumbPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ThumbSelectorView.handlePanGesture(_:)))
-        thumbView.addGestureRecognizer(thumbPanGestureRecognizer)
+
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ThumbSelectorView.handlePanGesture(_:)))
+        thumbView.addGestureRecognizer(panGestureRecognizer)
     }
-    
+
     //MARK: - Gesture handling
-    
+
     func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let superView = gestureRecognizer.view?.superview else { return }
-        
+
         switch gestureRecognizer.state {
-            
+
         case .began:
             currentThumbConstraint = leftThumbConstraint!.constant
             updateSelectedTime()
         case .changed:
-            
+
             let translation = gestureRecognizer.translation(in: superView)
             updateThumbConstraint(with: translation)
             layoutIfNeeded()
             updateSelectedTime()
-            
+
         case .cancelled, .ended, .failed:
             updateSelectedTime()
         default: break
         }
     }
-    
+
     private func updateThumbConstraint(with translation: CGPoint) {
         let maxConstraint = frame.width - thumbView.frame.width
         let newConstraint = min(max(0, currentThumbConstraint + translation.x), maxConstraint)
         leftThumbConstraint?.constant = newConstraint
     }
-    
+
     //MARK: - Thumbnail Generation
-    
+
     override func assetDidChange(newAsset: AVAsset?) {
         if let asset = newAsset {
             setupThumbnailGenerator(with: asset)
@@ -110,7 +110,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         }
         super.assetDidChange(newAsset: newAsset)
     }
-    
+
     private func setupThumbnailGenerator(with asset: AVAsset) {
         generator = AVAssetImageGenerator(asset: asset)
         generator?.appliesPreferredTrackTransform = true
@@ -118,22 +118,23 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         generator?.requestedTimeToleranceBefore = kCMTimeZero
         generator?.maximumSize = getThumbnailFrameSize(from: asset) ?? CGSize.zero
     }
-    
+
     private func getThumbnailFrameSize(from asset: AVAsset) -> CGSize? {
         guard let track = asset.tracks(withMediaType: AVMediaTypeVideo).first else { return nil}
-        
+
         let assetSize = track.naturalSize.applying(track.preferredTransform)
-        
+
         let maxDimension = max(assetSize.width, assetSize.height)
         let minDimension = min(assetSize.width, assetSize.height)
         let ratio = maxDimension / minDimension
         let side = thumbView.frame.height * ratio * UIScreen.main.scale
         return CGSize(width: side, height: side)
     }
-    
+
     private func generateThumbnailImage(for time: CMTime) {
-        
-        generator?.generateCGImagesAsynchronously(forTimes: [time as NSValue], completionHandler: { (time, image, actualTime, result, error) in
+
+        generator?.generateCGImagesAsynchronously(forTimes: [time as NSValue],
+                                                  completionHandler: { (time, image, actualTime, result, error) in
             guard let image = image else {
                 return
             }
@@ -144,27 +145,27 @@ public class ThumbSelectorView: AVAssetTimeSelector {
             }
         })
     }
-    
+
     //MARK: - Time & Position Equivalence
-    
+
     override var durationSize: CGFloat {
         return assetPreview.contentSize.width - thumbView.frame.width
     }
-    
+
     public var selectedTime: CMTime? {
         let thumbPosition = thumbView.center.x + assetPreview.contentOffset.x - (thumbView.frame.width / 2)
         return getTime(from: thumbPosition)
     }
-    
+
     private func updateSelectedTime() {
         if let selectedTime = selectedTime {
             delegate?.didChangeThumbPosition(selectedTime)
             generateThumbnailImage(for: selectedTime)
         }
     }
-    
+
     //MARK: - UIScrollViewDelegate
-    
+
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateSelectedTime()
     }

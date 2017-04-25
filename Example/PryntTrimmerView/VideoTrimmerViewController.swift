@@ -11,31 +11,33 @@ import Photos
 import MobileCoreServices
 import PryntTrimmerView
 
+/// A view controller to demonstrate the trimming of a video. Make sure the scene is selected as the initial
+// view controller in the storyboard
 class VideoTrimmerViewController: UIViewController {
-    
+
     @IBOutlet weak var selectAssetButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playerView: UIView!
     @IBOutlet weak var trimmerView: TrimmerView!
-    
+
     var player: AVPlayer?
     var playbackTimeCheckerTimer: Timer?
     var trimmerPositionChangedTimer: Timer?
     var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: .video, options: nil)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         trimmerView.handleColor = UIColor.white
         trimmerView.mainColor = UIColor.darkGray
     }
-    
+
     @IBAction func selectAsset(_ sender: Any) {
-        
+
         guard fetchResult.count > 0 else {
             print("No videos in your library.")
             return
         }
-        
+
         let randomAssetIndex = Int(arc4random_uniform(UInt32(fetchResult.count - 1)))
         let asset = fetchResult.object(at: randomAssetIndex)
         PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
@@ -46,11 +48,11 @@ class VideoTrimmerViewController: UIViewController {
             }
         }
     }
-    
+
     @IBAction func play(_ sender: Any) {
-        
+
         guard let player = player else { return }
-        
+
         if !player.isPlaying {
             player.play()
             startPlaybackTimeChecker()
@@ -59,9 +61,9 @@ class VideoTrimmerViewController: UIViewController {
             stopPlaybackTimeChecker()
         }
     }
-    
+
     func loadAsset(_ asset: AVAsset) {
-        
+
         trimmerView.asset = asset
         trimmerView.delegate = self
         addVideoPlayer(with: asset, playerView: playerView)
@@ -71,8 +73,9 @@ class VideoTrimmerViewController: UIViewController {
         let playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(VideoTrimmerViewController.itemDidFinishPlaying(_:)) , name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(VideoTrimmerViewController.itemDidFinishPlaying(_:)),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+
         let layer: AVPlayerLayer = AVPlayerLayer(player: player)
         layer.backgroundColor = UIColor.white.cgColor
         layer.frame = CGRect(x: 0, y: 0, width: playerView.frame.width, height: playerView.frame.height)
@@ -80,36 +83,36 @@ class VideoTrimmerViewController: UIViewController {
         playerView.layer.sublayers?.forEach({$0.removeFromSuperlayer()})
         playerView.layer.addSublayer(layer)
     }
-    
+
     func itemDidFinishPlaying(_ notification: Notification) {
         if let startTime = trimmerView.startTime {
             player?.seek(to: startTime)
         }
     }
-    
+
     func startPlaybackTimeChecker() {
-        
+
         stopPlaybackTimeChecker()
         playbackTimeCheckerTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self,
                                                         selector:
             #selector(VideoTrimmerViewController.onPlaybackTimeChecker), userInfo: nil, repeats: true)
     }
-    
+
     func stopPlaybackTimeChecker() {
-        
+
         playbackTimeCheckerTimer?.invalidate()
         playbackTimeCheckerTimer = nil
     }
-    
+
     func onPlaybackTimeChecker() {
-        
+
         guard let startTime = trimmerView.startTime, let endTime = trimmerView.endTime, let player = player else {
             return
         }
-        
+
         let playBackTime = player.currentTime()
         trimmerView.seek(to: playBackTime)
-        
+
         if playBackTime >= endTime {
             player.seek(to: startTime, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
             trimmerView.seek(to: startTime)
@@ -123,7 +126,6 @@ extension VideoTrimmerViewController: TrimmerViewDelegate {
         player?.play()
         startPlaybackTimeChecker()
     }
-
 
     func didChangePositionBar(_ playerTime: CMTime) {
         stopPlaybackTimeChecker()

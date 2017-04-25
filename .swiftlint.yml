@@ -1,0 +1,7 @@
+included:
+  - Example
+  - PryntTrimmerView
+excluded:
+  - Example/Pods
+
+line_length: 130
