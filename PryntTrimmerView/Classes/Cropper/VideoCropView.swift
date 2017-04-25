@@ -19,6 +19,7 @@ public class VideoCropView: UIView {
     let videoScrollView = VideoScrollView()
     let cropMaskView = CropMaskView()
 
+    /// The asset being cropped. Setting the property will load the asset in the `AVPlayer` contained in the scroll view.
     public var asset: AVAsset? {
         didSet {
             if let asset = asset {
@@ -29,8 +30,10 @@ public class VideoCropView: UIView {
 
     var cropFrame = CGRect.zero
 
+    /// The current aspect ratio of the crop view.
     public private(set) var aspectRatio = CGSize(width: 1, height: 1)
 
+    /// The player used in the scroll view. Use it if you want to seek a specific time of your video.
     public var player: AVPlayer? {
         return videoScrollView.player
     }
@@ -68,6 +71,12 @@ public class VideoCropView: UIView {
         setAspectRatio(aspectRatio, animated: false)
     }
 
+    /// Set the aspect ratio for the cropping box.
+    ///
+    /// [Issue #3]: https://github.com/prynt/PryntTrimmerView/issues/3
+    /// - Parameters:
+    ///   - aspectRatio: The desired aspect ratio.
+    ///   - animated: true if you want to animate the change. TODO: the animation glitches sometimes. See [Issue #3]
     public func setAspectRatio(_ aspectRatio: CGSize, animated: Bool) {
 
         self.aspectRatio = aspectRatio
@@ -87,6 +96,8 @@ public class VideoCropView: UIView {
         videoScrollView.setZoomScaleAndCenter(animated: animated)
     }
 
+    /// Get the currently selected frame of the asset. You can then use it to perform the actual cropping of the video or of an
+    /// isolated image
     public func getImageCropFrame() -> CGRect {
 
         let imageSize = videoScrollView.assetSize

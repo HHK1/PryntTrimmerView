@@ -11,6 +11,8 @@ import Photos
 import PryntTrimmerView
 import AVFoundation
 
+/// A view controller to demonstrate the cropping of a video. Make sure the scene is selected as the initial
+// view controller in the storyboard
 class VideoCropperViewController: UIViewController {
 
     @IBOutlet weak var videoCropView: VideoCropView!
@@ -44,7 +46,8 @@ class VideoCropperViewController: UIViewController {
 
     @IBAction func rotate(_ sender: Any) {
 
-        let newRatio = videoCropView.aspectRatio.width < videoCropView.aspectRatio.height ? CGSize(width: 3, height: 2) : CGSize(width: 2, height: 3)
+        let newRatio = videoCropView.aspectRatio.width < videoCropView.aspectRatio.height ? CGSize(width: 3, height: 2) :
+                                                                                            CGSize(width: 2, height: 3)
         videoCropView.setAspectRatio(newRatio, animated: true)
     }
 
@@ -66,10 +69,6 @@ class VideoCropperViewController: UIViewController {
 
             try? prepareAssetComposition()
         }
-    }
-
-    func cropVideo() {
-
     }
 
     func prepareAssetComposition() throws {

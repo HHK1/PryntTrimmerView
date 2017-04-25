@@ -283,8 +283,6 @@ public protocol TrimmerViewDelegate: class {
     //MARK: - Time Equivalence
 
     /// Move the position bar to the given time.
-    ///
-    /// - Parameter time: <#time description#>
     public func seek(to time: CMTime) {
         if let newPosition = getPosition(from: time) {
 
@@ -297,11 +295,14 @@ public protocol TrimmerViewDelegate: class {
         }
     }
 
+    
+    /// The selected start time for the current asset.
     public var startTime: CMTime? {
         let startPosition = leftHandleView.frame.origin.x + assetPreview.contentOffset.x
         return getTime(from: startPosition)
     }
-
+    
+    /// The selected end time for the current asset.
     public var endTime: CMTime? {
         let endPosition = rightHandleView.frame.origin.x + assetPreview.contentOffset.x - handleWidth
         return getTime(from: endPosition)
