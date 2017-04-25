@@ -33,8 +33,7 @@ class VideoCropperViewController: UIViewController {
 
     @IBAction func selectAsset(_ sender: Any) {
         let randomAssetIndex = Int(arc4random_uniform(UInt32(fetchResult.count - 1)))
-        print(randomAssetIndex)
-        let asset = fetchResult.object(at: 4)
+        let asset = fetchResult.object(at: randomAssetIndex)
         PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
             DispatchQueue.main.async {
                 if let avAsset = avAsset {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="S11-TT-8A3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -117,35 +117,56 @@
                                             <constraint firstAttribute="width" secondItem="DhY-lH-ufy" secondAttribute="height" multiplier="5:1" id="szd-xB-Kbk"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGQ-Qr-vw6">
-                                        <rect key="frame" x="170" y="196" width="34" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Load"/>
-                                        <connections>
-                                            <action selector="selectAsset:" destination="S11-TT-8A3" eventType="touchUpInside" id="jxq-Lr-ubL"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tf-hJ-oj2">
-                                        <rect key="frame" x="303" y="196" width="34" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Crop"/>
-                                        <connections>
-                                            <action selector="crop:" destination="S11-TT-8A3" eventType="touchUpInside" id="Jeq-rj-sPq"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yS8-Kv-A5S">
-                                        <rect key="frame" x="33" y="196" width="45" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Rotate"/>
-                                        <connections>
-                                            <action selector="rotate:" destination="S11-TT-8A3" eventType="touchUpInside" id="JCq-H4-zf0"/>
-                                        </connections>
-                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-Pq-Gqp">
+                                        <rect key="frame" x="0.0" y="196" width="375" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGQ-Qr-vw6">
+                                                <rect key="frame" x="76" y="7" width="34" height="30"/>
+                                                <state key="normal" title="Load">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="selectAsset:" destination="S11-TT-8A3" eventType="touchUpInside" id="jxq-Lr-ubL"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tf-hJ-oj2">
+                                                <rect key="frame" x="170" y="7" width="34" height="30"/>
+                                                <state key="normal" title="Crop">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="crop:" destination="S11-TT-8A3" eventType="touchUpInside" id="Jeq-rj-sPq"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yS8-Kv-A5S">
+                                                <rect key="frame" x="264" y="7" width="45" height="30"/>
+                                                <state key="normal" title="Rotate">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="rotate:" destination="S11-TT-8A3" eventType="touchUpInside" id="JCq-H4-zf0"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="2Tf-hJ-oj2" firstAttribute="leading" secondItem="KGQ-Qr-vw6" secondAttribute="trailing" constant="60" id="3JY-QT-kMl"/>
+                                            <constraint firstAttribute="height" constant="44" id="Mfp-Gu-Xo6"/>
+                                            <constraint firstItem="yS8-Kv-A5S" firstAttribute="centerY" secondItem="P1n-Pq-Gqp" secondAttribute="centerY" id="Oae-wy-fJ1"/>
+                                            <constraint firstItem="KGQ-Qr-vw6" firstAttribute="centerY" secondItem="P1n-Pq-Gqp" secondAttribute="centerY" id="SmB-Er-ZcH"/>
+                                            <constraint firstItem="2Tf-hJ-oj2" firstAttribute="centerY" secondItem="P1n-Pq-Gqp" secondAttribute="centerY" id="TNo-MH-GeK"/>
+                                            <constraint firstItem="2Tf-hJ-oj2" firstAttribute="centerX" secondItem="P1n-Pq-Gqp" secondAttribute="centerX" id="dfM-PW-ddU"/>
+                                            <constraint firstItem="yS8-Kv-A5S" firstAttribute="leading" secondItem="2Tf-hJ-oj2" secondAttribute="trailing" constant="60" id="phs-CC-wGg"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="DhY-lH-ufy" firstAttribute="leading" secondItem="C6Q-PX-RZD" secondAttribute="leading" constant="32" id="FDj-eH-1id"/>
+                                    <constraint firstAttribute="trailing" secondItem="P1n-Pq-Gqp" secondAttribute="trailing" id="K3N-dH-hTX"/>
                                     <constraint firstItem="DhY-lH-ufy" firstAttribute="centerX" secondItem="C6Q-PX-RZD" secondAttribute="centerX" id="VCb-iV-hn7"/>
                                     <constraint firstItem="DhY-lH-ufy" firstAttribute="centerY" secondItem="C6Q-PX-RZD" secondAttribute="centerY" id="i3f-Yh-aWR"/>
+                                    <constraint firstAttribute="bottom" secondItem="P1n-Pq-Gqp" secondAttribute="bottom" id="mvc-Uh-MHt"/>
+                                    <constraint firstItem="P1n-Pq-Gqp" firstAttribute="leading" secondItem="C6Q-PX-RZD" secondAttribute="leading" id="uQ2-CZ-zq8"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -167,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crm-Pu-7LE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33" y="833"/>
+            <point key="canvasLocation" x="32.799999999999997" y="832.53373313343332"/>
         </scene>
     </scenes>
 </document>

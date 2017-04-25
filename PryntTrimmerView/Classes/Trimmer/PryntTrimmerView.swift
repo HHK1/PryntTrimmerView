@@ -295,13 +295,12 @@ public protocol TrimmerViewDelegate: class {
         }
     }
 
-    
     /// The selected start time for the current asset.
     public var startTime: CMTime? {
         let startPosition = leftHandleView.frame.origin.x + assetPreview.contentOffset.x
         return getTime(from: startPosition)
     }
-    
+
     /// The selected end time for the current asset.
     public var endTime: CMTime? {
         let endPosition = rightHandleView.frame.origin.x + assetPreview.contentOffset.x - handleWidth
