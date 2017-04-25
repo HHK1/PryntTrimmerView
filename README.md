@@ -11,7 +11,13 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ![](https://media.giphy.com/media/GwZGkLiKxZcTm/giphy.gif)
 
+### Cropping
+
+![](https://media.giphy.com/media/10FsDfHS7616XC/giphy.gif)
+
 ## Requirements
+
+PryntTrimmerView requires iOS9: It uses Layout Anchors to define the constraints.
 
 ## Installation
 
@@ -33,8 +39,20 @@ trimmerView.asset = asset
 trimmerView.delegate = self
 ```
 
-Access the `startTime` and `endTime` property to know where to trim your asset. You can use the `TrimmerViewDelegate` to link the trimmer with an `AVPlayer` and provide the end user with a preview. See the project to see an example.
+Access the `startTime` and `endTime` property to know where to trim your asset. You can use the `TrimmerViewDelegate` to link the trimmer with an `AVPlayer` and provide the end user with a preview. See the `VideoTrimmerViewController` inside the project to see an example.
 
+You can also customize the trimmer view by changing its colors: 
+```
+trimmerView.handleColor = UIColor.white
+trimmerView.mainColor = UIColor.orange
+trimmerView.positionBarColor = UIColor.white
+```
+
+### Cropping
+
+Create an instance of the `VideoCropView` and add it to your view hierarchy, then load your video into the crop view: `videoCropView.asset = asset`. 
+
+You can set the aspect ratio you want using the `setAspectRatio` method. Once you are satisfied with the portion of the asset you want to crop, call `getImageCropFrame` to retrieve the select frame. See the `VideoCropperViewController` in the example app for an actual example of how to crop the video for export.
 
 ## License
 
