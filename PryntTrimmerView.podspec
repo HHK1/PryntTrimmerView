@@ -8,11 +8,13 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PryntTrimmerView'
-  s.version          = '0.2.0'
-  s.summary          = 'A trimmer view to help you select a portion of an AVAsset.'
+  s.version          = '1.0.0'
+  s.summary          = 'A set of tools written in swift to help you trim and crop a video.'
 
   s.description      = <<-DESC
-A trimmer view to help you select a portion of an AVAsset. It provides you with a customizable component that indicates the portion of the video selected, thanks to image thumbnails of the asset.
+First tool is a trimmer view to help you select a portion of an AVAsset. It provides you with a customizable
+component that indicates the portion of the video selected, thanks to image thumbnails of the asset.
+Second tool is a crop view, to preview a video and select the part of the video you want to crop.
                        DESC
 
   s.homepage         = 'https://github.com/prynt/PryntTrimmerView'
