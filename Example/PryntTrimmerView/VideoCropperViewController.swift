@@ -17,21 +17,28 @@ class VideoCropperViewController: UIViewController {
 
     @IBOutlet weak var videoCropView: VideoCropView!
     @IBOutlet weak var selectThumbView: ThumbSelectorView!
-    var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: .video, options: nil)
+    var fetchResult: PHFetchResult<PHAsset>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.videoCropView.setAspectRatio(CGSize(width: 3, height: 2), animated: false)
+        loadLibrary()
+        videoCropView.setAspectRatio(CGSize(width: 3, height: 2), animated: false)
     }
 
-    func loadAsset(_ asset: AVAsset) {
-
-        selectThumbView.asset = asset
-        selectThumbView.delegate = self
-        videoCropView.asset = asset
+    func loadLibrary() {
+        PHPhotoLibrary.requestAuthorization { (status) in
+            if status == .authorized {
+                self.fetchResult = PHAsset.fetchAssets(with: .video, options: nil)
+            }
+        }
     }
 
     @IBAction func selectAsset(_ sender: Any) {
+        guard let fetchResult = fetchResult, fetchResult.count > 0 else {
+            print("Error loading assets.")
+            return
+        }
+
         let randomAssetIndex = Int(arc4random_uniform(UInt32(fetchResult.count - 1)))
         let asset = fetchResult.object(at: randomAssetIndex)
         PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
@@ -41,6 +48,13 @@ class VideoCropperViewController: UIViewController {
                 }
             }
         }
+    }
+
+    private func loadAsset(_ asset: AVAsset) {
+
+        selectThumbView.asset = asset
+        selectThumbView.delegate = self
+        videoCropView.asset = asset
     }
 
     @IBAction func rotate(_ sender: Any) {
