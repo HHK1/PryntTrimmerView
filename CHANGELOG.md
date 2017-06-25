@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## [1.0.1] - 2017-06-25
+
 ### Added
 
 - preload the first image in the asset thumbnails.
@@ -15,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - refactor the two use case examples and load assets after receiving library access
+
 
 ## [1.0.0] - 2017-04-25
 ### Added
@@ -43,6 +47,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add a first version of the trimmer view
 
-[Unreleased]: https://github.com/prynt/PryntTrimmerView/compare/1.0.0...master
+[Unreleased]: https://github.com/prynt/PryntTrimmerView/compare/1.0.1...master
+[1.0.1]: https://github.com/prynt/PryntTrimmerView/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/prynt/PryntTrimmerView/compare/0.2.0...1.0.0
 [0.2.0]: https://github.com/prynt/PryntTrimmerView/compare/0.1.0...0.2.0
