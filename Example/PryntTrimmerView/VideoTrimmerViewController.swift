@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import Photos
+import AVFoundation
 import MobileCoreServices
 import PryntTrimmerView
 
 /// A view controller to demonstrate the trimming of a video. Make sure the scene is selected as the initial
 // view controller in the storyboard
-class VideoTrimmerViewController: UIViewController {
+class VideoTrimmerViewController: AssetSelectionViewController {
 
     @IBOutlet weak var selectAssetButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -23,7 +23,6 @@ class VideoTrimmerViewController: UIViewController {
     var player: AVPlayer?
     var playbackTimeCheckerTimer: Timer?
     var trimmerPositionChangedTimer: Timer?
-    var fetchResult: PHFetchResult<PHAsset> = PHAsset.fetchAssets(with: .video, options: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,21 +31,7 @@ class VideoTrimmerViewController: UIViewController {
     }
 
     @IBAction func selectAsset(_ sender: Any) {
-
-        guard fetchResult.count > 0 else {
-            print("No videos in your library.")
-            return
-        }
-
-        let randomAssetIndex = Int(arc4random_uniform(UInt32(fetchResult.count - 1)))
-        let asset = fetchResult.object(at: randomAssetIndex)
-        PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
-            DispatchQueue.main.async {
-                if let avAsset = avAsset {
-                    self.loadAsset(avAsset)
-                }
-            }
-        }
+        loadAssetRandomly()
     }
 
     @IBAction func play(_ sender: Any) {
@@ -62,7 +47,7 @@ class VideoTrimmerViewController: UIViewController {
         }
     }
 
-    func loadAsset(_ asset: AVAsset) {
+    override func loadAsset(_ asset: AVAsset) {
 
         trimmerView.asset = asset
         trimmerView.delegate = self

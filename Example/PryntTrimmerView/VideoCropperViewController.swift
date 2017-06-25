@@ -13,11 +13,10 @@ import AVFoundation
 
 /// A view controller to demonstrate the cropping of a video. Make sure the scene is selected as the initial
 // view controller in the storyboard
-class VideoCropperViewController: UIViewController {
+class VideoCropperViewController: AssetSelectionViewController {
 
     @IBOutlet weak var videoCropView: VideoCropView!
     @IBOutlet weak var selectThumbView: ThumbSelectorView!
-    var fetchResult: PHFetchResult<PHAsset>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,33 +24,11 @@ class VideoCropperViewController: UIViewController {
         videoCropView.setAspectRatio(CGSize(width: 3, height: 2), animated: false)
     }
 
-    func loadLibrary() {
-        PHPhotoLibrary.requestAuthorization { (status) in
-            if status == .authorized {
-                self.fetchResult = PHAsset.fetchAssets(with: .video, options: nil)
-            }
-        }
-    }
-
     @IBAction func selectAsset(_ sender: Any) {
-        guard let fetchResult = fetchResult, fetchResult.count > 0 else {
-            print("Error loading assets.")
-            return
-        }
-
-        let randomAssetIndex = Int(arc4random_uniform(UInt32(fetchResult.count - 1)))
-        let asset = fetchResult.object(at: randomAssetIndex)
-        PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
-            DispatchQueue.main.async {
-                if let avAsset = avAsset {
-                    self.loadAsset(avAsset)
-                }
-            }
-        }
+        loadAssetRandomly()
     }
 
-    private func loadAsset(_ asset: AVAsset) {
-
+    override func loadAsset(_ asset: AVAsset) {
         selectThumbView.asset = asset
         selectThumbView.delegate = self
         videoCropView.asset = asset
