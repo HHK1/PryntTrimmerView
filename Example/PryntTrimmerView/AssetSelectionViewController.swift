@@ -10,14 +10,14 @@ import UIKit
 import Photos
 
 class AssetSelectionViewController: UIViewController {
-    
+
     var fetchResult: PHFetchResult<PHAsset>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadLibrary()
     }
-    
+
     func loadLibrary() {
         PHPhotoLibrary.requestAuthorization { (status) in
             if status == .authorized {
@@ -25,13 +25,13 @@ class AssetSelectionViewController: UIViewController {
             }
         }
     }
-    
+
     func loadAssetRandomly() {
         guard let fetchResult = fetchResult, fetchResult.count > 0 else {
             print("Error loading assets.")
             return
         }
-        
+
         let randomAssetIndex = Int(arc4random_uniform(UInt32(fetchResult.count - 1)))
         let asset = fetchResult.object(at: randomAssetIndex)
         PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (avAsset, audioMix, info) in
@@ -42,7 +42,7 @@ class AssetSelectionViewController: UIViewController {
             }
         }
     }
-    
+
     func loadAsset(_ asset: AVAsset) {
         // override in subclass
     }
