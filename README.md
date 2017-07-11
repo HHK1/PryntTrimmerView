@@ -1,5 +1,8 @@
 # PryntTrimmerView
 
+[![codebeat badge](https://codebeat.co/badges/ac008534-7f30-4b04-8434-0c6d69251e4b)](https://codebeat.co/projects/github-com-prynt-prynttrimmerview-master)
+
+
 A set of tools written in swift to crop and trim videos.
 
 
