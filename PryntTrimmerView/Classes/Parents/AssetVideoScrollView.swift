@@ -67,7 +67,7 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     private func getThumbnailFrameSize(from asset: AVAsset) -> CGSize? {
-        guard let track = asset.tracks(withMediaType: AVMediaTypeVideo).first else { return nil}
+        guard let track = asset.tracks(withMediaType: AVMediaType.video).first else { return nil}
 
         let assetSize = track.naturalSize.applying(track.preferredTransform)
 

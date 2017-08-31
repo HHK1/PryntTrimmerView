@@ -64,12 +64,12 @@ class VideoTrimmerViewController: AssetSelectionViewController {
         let layer: AVPlayerLayer = AVPlayerLayer(player: player)
         layer.backgroundColor = UIColor.white.cgColor
         layer.frame = CGRect(x: 0, y: 0, width: playerView.frame.width, height: playerView.frame.height)
-        layer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        layer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         playerView.layer.sublayers?.forEach({$0.removeFromSuperlayer()})
         playerView.layer.addSublayer(layer)
     }
 
-    func itemDidFinishPlaying(_ notification: Notification) {
+    @objc func itemDidFinishPlaying(_ notification: Notification) {
         if let startTime = trimmerView.startTime {
             player?.seek(to: startTime)
         }
@@ -89,7 +89,7 @@ class VideoTrimmerViewController: AssetSelectionViewController {
         playbackTimeCheckerTimer = nil
     }
 
-    func onPlaybackTimeChecker() {
+    @objc func onPlaybackTimeChecker() {
 
         guard let startTime = trimmerView.startTime, let endTime = trimmerView.endTime, let player = player else {
             return

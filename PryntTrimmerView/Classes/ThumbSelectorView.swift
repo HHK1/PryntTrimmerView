@@ -36,7 +36,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
 
     public weak var delegate: ThumbSelectorViewDelegate?
 
-    //MARK: - View & constraints configurations
+    // MARK: - View & constraints configurations
 
     override func setupSubviews() {
         super.setupSubviews()
@@ -76,9 +76,9 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         thumbView.addGestureRecognizer(panGestureRecognizer)
     }
 
-    //MARK: - Gesture handling
+    // MARK: - Gesture handling
 
-    func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let superView = gestureRecognizer.view?.superview else { return }
 
         switch gestureRecognizer.state {
@@ -105,7 +105,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         leftThumbConstraint?.constant = newConstraint
     }
 
-    //MARK: - Thumbnail Generation
+    // MARK: - Thumbnail Generation
 
     override func assetDidChange(newAsset: AVAsset?) {
         if let asset = newAsset {
@@ -125,7 +125,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
     }
 
     private func getThumbnailFrameSize(from asset: AVAsset) -> CGSize? {
-        guard let track = asset.tracks(withMediaType: AVMediaTypeVideo).first else { return nil}
+        guard let track = asset.tracks(withMediaType: AVMediaType.video).first else { return nil}
 
         let assetSize = track.naturalSize.applying(track.preferredTransform)
 
@@ -139,7 +139,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
     private func generateThumbnailImage(for time: CMTime) {
 
         generator?.generateCGImagesAsynchronously(forTimes: [time as NSValue],
-                                                  completionHandler: { (time, image, actualTime, result, error) in
+                                                  completionHandler: { (_, image, _, _, _) in
             guard let image = image else {
                 return
             }
@@ -151,7 +151,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         })
     }
 
-    //MARK: - Time & Position Equivalence
+    // MARK: - Time & Position Equivalence
 
     override var durationSize: CGFloat {
         return assetPreview.contentSize.width - thumbView.frame.width
@@ -170,7 +170,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         }
     }
 
-    //MARK: - UIScrollViewDelegate
+    // MARK: - UIScrollViewDelegate
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateSelectedTime()

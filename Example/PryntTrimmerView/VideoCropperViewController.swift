@@ -63,7 +63,7 @@ class VideoCropperViewController: AssetSelectionViewController {
 
     func prepareAssetComposition() throws {
 
-        guard let asset = videoCropView.asset, let videoTrack = asset.tracks(withMediaType: AVMediaTypeVideo).first else {
+        guard let asset = videoCropView.asset, let videoTrack = asset.tracks(withMediaType: AVMediaType.video).first else {
             return
         }
 
@@ -71,14 +71,17 @@ class VideoCropperViewController: AssetSelectionViewController {
         let frame1Time = CMTime(seconds: 0.2, preferredTimescale: asset.duration.timescale)
         let trackTimeRange = CMTimeRangeMake(kCMTimeZero, frame1Time)
 
-        let videoCompositionTrack = assetComposition.addMutableTrack(withMediaType: AVMediaTypeVideo,
-                                                                      preferredTrackID: kCMPersistentTrackID_Invalid)
+        guard let videoCompositionTrack = assetComposition.addMutableTrack(withMediaType: .video,
+                                                                           preferredTrackID: kCMPersistentTrackID_Invalid) else {
+            return
+        }
+
         try videoCompositionTrack.insertTimeRange(trackTimeRange, of: videoTrack, at: kCMTimeZero)
 
-        if let audioTrack = asset.tracks(withMediaType: AVMediaTypeAudio).first {
-            let audioCompositionTrack = assetComposition.addMutableTrack(withMediaType: AVMediaTypeAudio,
+        if let audioTrack = asset.tracks(withMediaType: AVMediaType.audio).first {
+            let audioCompositionTrack = assetComposition.addMutableTrack(withMediaType: AVMediaType.audio,
                                                                       preferredTrackID: kCMPersistentTrackID_Invalid)
-            try audioCompositionTrack.insertTimeRange(trackTimeRange, of: audioTrack, at: kCMTimeZero)
+            try audioCompositionTrack?.insertTimeRange(trackTimeRange, of: audioTrack, at: kCMTimeZero)
         }
 
         //1. Create the instructions
@@ -107,7 +110,7 @@ class VideoCropperViewController: AssetSelectionViewController {
         try? FileManager.default.removeItem(at: url)
 
         let exportSession = AVAssetExportSession(asset: assetComposition, presetName: AVAssetExportPresetHighestQuality)
-        exportSession?.outputFileType = AVFileTypeMPEG4
+        exportSession?.outputFileType = AVFileType.mp4
         exportSession?.shouldOptimizeForNetworkUse = true
         exportSession?.videoComposition = videoComposition
         exportSession?.outputURL = url
