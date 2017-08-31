@@ -13,7 +13,6 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		BA7923C31E9681C000DA9BDD /* VideoCropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7923C21E9681C000DA9BDD /* VideoCropperViewController.swift */; };
 		BAAF985C1E8C12DA007683C8 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF985A1E8C12DA007683C8 /* AVPlayer+isPlaying.swift */; };
 		BAAF985D1E8C12DA007683C8 /* VideoTrimmerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF985B1E8C12DA007683C8 /* VideoTrimmerViewController.swift */; };
@@ -42,7 +41,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* PryntTrimmerView_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PryntTrimmerView_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		8203D0A3EDBAFEE03EE17BB1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A0E0C53092E03EC07C952C01 /* Pods-PryntTrimmerView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Tests/Pods-PryntTrimmerView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2AF731B842FEC297C5E9A38 /* Pods_PryntTrimmerView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,7 +122,6 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -408,7 +405,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
