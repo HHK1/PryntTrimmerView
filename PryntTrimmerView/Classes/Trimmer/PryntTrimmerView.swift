@@ -81,7 +81,7 @@ public protocol TrimmerViewDelegate: class {
     /// The minimum duration allowed for the trimming. The handles won't pan further if the minimum duration is attained.
     public var minDuration: Double = 3
 
-    //MARK: - View & constraints configurations
+    // MARK: - View & constraints configurations
 
     override func setupSubviews() {
 
@@ -220,9 +220,9 @@ public protocol TrimmerViewDelegate: class {
         rightHandleKnob.backgroundColor = handleColor
     }
 
-    //MARK: - Trim Gestures
+    // MARK: - Trim Gestures
 
-    func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let view = gestureRecognizer.view, let superView = gestureRecognizer.view?.superview else { return }
         let isLeftGesture = view == leftHandleView
         switch gestureRecognizer.state {
@@ -267,7 +267,7 @@ public protocol TrimmerViewDelegate: class {
         rightConstraint?.constant = newConstraint
     }
 
-    //MARK: - Asset loading
+    // MARK: - Asset loading
 
     override func assetDidChange(newAsset: AVAsset?) {
         super.assetDidChange(newAsset: newAsset)
@@ -280,7 +280,7 @@ public protocol TrimmerViewDelegate: class {
         layoutIfNeeded()
     }
 
-    //MARK: - Time Equivalence
+    // MARK: - Time Equivalence
 
     /// Move the position bar to the given time.
     public func seek(to time: CMTime) {
@@ -328,7 +328,7 @@ public protocol TrimmerViewDelegate: class {
         return CGFloat(minDuration) * assetPreview.contentView.frame.width / CGFloat(asset.duration.seconds)
     }
 
-    //MARK: - Scroll View Delegate
+    // MARK: - Scroll View Delegate
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         updateSelectedTime(stoppedMoving: true)

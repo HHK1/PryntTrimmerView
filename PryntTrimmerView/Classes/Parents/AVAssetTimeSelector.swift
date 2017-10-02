@@ -37,7 +37,7 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
         constrainAssetPreview()
     }
 
-    //MARK: - Asset Preview
+    // MARK: - Asset Preview
 
     func setupAssetPreview() {
 
@@ -59,7 +59,7 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
         }
     }
 
-    //MARK: - Time & Position Equivalence
+    // MARK: - Time & Position Equivalence
 
     var durationSize: CGFloat {
         return assetPreview.contentSize.width
