@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
+### Changed
+
+## [2.0.0]
+
+### Added
 
 - Support for swift 4
 
@@ -49,8 +54,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1.0] - 2017-03-29
 ### Added
 - Add a first version of the trimmer view
-
+- 
 [Unreleased]: https://github.com/prynt/PryntTrimmerView/compare/1.0.1...master
+[2.0.0]: https://github.com/prynt/PryntTrimmerView/compare/1.0.1...2.0.0
 [1.0.1]: https://github.com/prynt/PryntTrimmerView/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/prynt/PryntTrimmerView/compare/0.2.0...1.0.0
 [0.2.0]: https://github.com/prynt/PryntTrimmerView/compare/0.1.0...0.2.0
