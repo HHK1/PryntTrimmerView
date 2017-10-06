@@ -1,7 +1,9 @@
 # PryntTrimmerView
 
 [![codebeat badge](https://codebeat.co/badges/ac008534-7f30-4b04-8434-0c6d69251e4b)](https://codebeat.co/projects/github-com-prynt-prynttrimmerview-master)
-
+[![Platform](https://img.shields.io/cocoapods/p/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
+[![License](https://img.shields.io/cocoapods/l/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
+[![Version](https://img.shields.io/cocoapods/v/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
 
 A set of tools written in swift to crop and trim videos.
 
