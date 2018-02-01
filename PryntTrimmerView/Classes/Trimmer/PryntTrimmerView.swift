@@ -45,6 +45,10 @@ public protocol TrimmerViewDelegate: class {
             positionBar.backgroundColor = positionBarColor
         }
     }
+    
+    // labels for the handlers
+    public var rightHandleLabel = UILabel()
+    public var leftHandleLabel  = UILabel()
 
     // MARK: Interface
 
@@ -121,7 +125,7 @@ public protocol TrimmerViewDelegate: class {
     }
 
     private func setupHandleView() {
-
+        
         leftHandleView.isUserInteractionEnabled = true
         leftHandleView.layer.cornerRadius = 2.0
         leftHandleView.translatesAutoresizingMaskIntoConstraints = false
@@ -134,6 +138,14 @@ public protocol TrimmerViewDelegate: class {
 
         leftHandleKnob.translatesAutoresizingMaskIntoConstraints = false
         leftHandleView.addSubview(leftHandleKnob)
+        
+        leftHandleLabel.layer.backgroundColor = UIColor.darkGray.withAlphaComponent(0.8).cgColor
+        leftHandleLabel.textColor = UIColor.white
+        leftHandleLabel.textAlignment = .center
+        leftHandleLabel.text = "00:00:00 AM"
+        leftHandleLabel.frame = CGRect(x: -60, y: -40, width: 120.0, height: 30.0)
+        leftHandleLabel.layer.cornerRadius = 5.0
+        leftHandleView.addSubview(leftHandleLabel)
 
         leftHandleKnob.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         leftHandleKnob.widthAnchor.constraint(equalToConstant: 2).isActive = true
@@ -152,6 +164,14 @@ public protocol TrimmerViewDelegate: class {
 
         rightHandleKnob.translatesAutoresizingMaskIntoConstraints = false
         rightHandleView.addSubview(rightHandleKnob)
+        
+        rightHandleLabel.layer.backgroundColor = UIColor.darkGray.withAlphaComponent(0.8).cgColor
+        rightHandleLabel.textColor = UIColor.white
+        rightHandleLabel.textAlignment = .center
+        rightHandleLabel.text = "00:00:00 AM"
+        rightHandleLabel.frame = CGRect(x: -60, y: -40, width: 120.0, height: 30.0)
+        rightHandleLabel.layer.cornerRadius = 5.0
+        rightHandleView.addSubview(rightHandleLabel)
 
         rightHandleKnob.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         rightHandleKnob.widthAnchor.constraint(equalToConstant: 2).isActive = true
