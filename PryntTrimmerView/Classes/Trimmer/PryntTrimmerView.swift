@@ -10,8 +10,8 @@ import AVFoundation
 import UIKit
 
 public protocol TrimmerViewDelegate: class {
-    func didChangePositionBar(_ playerTime: CMTime)
-    func positionBarStoppedMoving(_ playerTime: CMTime)
+    func didChangePositionBar(_ playerTime: CMTime, triggeredHandle: TrimmerView.TriggeredHandle)
+    func positionBarStoppedMoving(_ playerTime: CMTime, triggeredHandle: TrimmerView.TriggeredHandle)
 }
 
 /// A view to select a specific time range of a video. It consists of an asset preview with thumbnails inside a scroll view, two
@@ -21,6 +21,12 @@ public protocol TrimmerViewDelegate: class {
 // range
 @IBDesignable public class TrimmerView: AVAssetTimeSelector {
 
+    public enum TriggeredHandle {
+        case left
+        case right
+        case unknown
+    }
+    
     // MARK: - Properties
 
     // MARK: Color Customization
@@ -84,7 +90,7 @@ public protocol TrimmerViewDelegate: class {
 
     /// The minimum duration allowed for the trimming. The handles won't pan further if the minimum duration is attained.
     public var minDuration: Double = 3
-
+    
     // MARK: - View & constraints configurations
 
     override func setupSubviews() {
@@ -245,15 +251,18 @@ public protocol TrimmerViewDelegate: class {
     @objc func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let view = gestureRecognizer.view, let superView = gestureRecognizer.view?.superview else { return }
         let isLeftGesture = view == leftHandleView
+        let triggeredHandle: TriggeredHandle = isLeftGesture ? .left : .right
         switch gestureRecognizer.state {
 
         case .began:
             if isLeftGesture {
                 currentLeftConstraint = leftConstraint!.constant
+                self.bringSubview(toFront: leftHandleView)
             } else {
                 currentRightConstraint = rightConstraint!.constant
+                self.bringSubview(toFront: rightHandleView)
             }
-            updateSelectedTime(stoppedMoving: false)
+            updateSelectedTime(stoppedMoving: false, triggeredHandle: triggeredHandle)
         case .changed:
             let translation = gestureRecognizer.translation(in: superView)
             if isLeftGesture {
@@ -267,10 +276,10 @@ public protocol TrimmerViewDelegate: class {
             } else if let endTime = endTime {
                 seek(to: endTime)
             }
-            updateSelectedTime(stoppedMoving: false)
+            updateSelectedTime(stoppedMoving: false, triggeredHandle: triggeredHandle)
 
         case .cancelled, .ended, .failed:
-            updateSelectedTime(stoppedMoving: true)
+            updateSelectedTime(stoppedMoving: true, triggeredHandle: triggeredHandle)
         default: break
         }
     }
@@ -327,14 +336,14 @@ public protocol TrimmerViewDelegate: class {
         return getTime(from: endPosition)
     }
 
-    private func updateSelectedTime(stoppedMoving: Bool) {
+    private func updateSelectedTime(stoppedMoving: Bool, triggeredHandle: TriggeredHandle) {
         guard let playerTime = positionBarTime else {
             return
         }
         if stoppedMoving {
-            delegate?.positionBarStoppedMoving(playerTime)
+            delegate?.positionBarStoppedMoving(playerTime, triggeredHandle: triggeredHandle)
         } else {
-            delegate?.didChangePositionBar(playerTime)
+            delegate?.didChangePositionBar(playerTime, triggeredHandle: triggeredHandle)
         }
     }
 
@@ -351,15 +360,15 @@ public protocol TrimmerViewDelegate: class {
     // MARK: - Scroll View Delegate
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        updateSelectedTime(stoppedMoving: true)
+        updateSelectedTime(stoppedMoving: true, triggeredHandle: .unknown)
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            updateSelectedTime(stoppedMoving: true)
+            updateSelectedTime(stoppedMoving: true, triggeredHandle: .unknown)
         }
     }
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updateSelectedTime(stoppedMoving: false)
+        updateSelectedTime(stoppedMoving: false, triggeredHandle: .unknown)
     }
 }
