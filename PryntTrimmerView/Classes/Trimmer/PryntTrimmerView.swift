@@ -97,6 +97,12 @@ public protocol TrimmerViewDelegate: class {
         updateMainColor()
         updateHandleColor()
     }
+    
+    open func initializeHandles() {
+        leftConstraint?.constant = 0.0
+        rightConstraint?.constant = -frame.width
+        updateRightConstraint(with: CGPoint(x: 0, y: 0))
+    }
 
     override func constrainAssetPreview() {
         assetPreview.leftAnchor.constraint(equalTo: leftAnchor, constant: handleWidth).isActive = true
@@ -249,6 +255,7 @@ public protocol TrimmerViewDelegate: class {
                 updateLeftConstraint(with: translation)
                 updateRightConstraint(with: translation)
             }
+            fixHandlesLabelsPositionIfNeeded()
             if let startTime = startTime, view == leftHandleView {
                 seek(to: startTime)
             } else if let endTime = endTime {
@@ -280,6 +287,16 @@ public protocol TrimmerViewDelegate: class {
             newConstraint = minConstraint
         }
         rightConstraint?.constant = newConstraint
+    }
+    
+    private func fixHandlesLabelsPositionIfNeeded() {
+        let distBetweenHandles = rightHandleView.center.x - leftHandleView.center.x
+        let overlap = distBetweenHandles - rightHandleLabel.frame.width
+        if overlap < 6 {
+            let offset = abs(overlap / 2) + 3
+            rightHandleLabel.frame = CGRect(x: -60 + offset, y: -40, width: 120.0, height: 30.0)
+            leftHandleLabel.frame = CGRect(x: -60 - offset, y: -40, width: 120.0, height: 30.0)
+        }
     }
 
     // MARK: - Asset loading
