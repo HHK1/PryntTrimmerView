@@ -16,6 +16,7 @@ class AssetVideoScrollView: UIScrollView {
     let contentView = UIView()
     var maxDuration: Double = 15
     private var generator: AVAssetImageGenerator?
+    private var asset: AVAsset?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,18 +50,22 @@ class AssetVideoScrollView: UIScrollView {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentSize = contentView.bounds.size
+        if asset != nil {
+          regenerateThumbnails(for: asset!)
+        }
     }
 
     internal func regenerateThumbnails(for asset: AVAsset) {
         guard let thumbnailSize = getThumbnailFrameSize(from: asset) else {
             return
         }
+        self.asset = asset
 
         generator?.cancelAllCGImageGeneration()
         removeFormerThumbnails()
-        let newContentSize = setContentSize(for: asset)
+        let newContentSize = frame.size  // setContentSize(for: asset)
         let visibleThumbnailsCount = Int(ceil(frame.width / thumbnailSize.width))
-        let thumbnailCount = thumbnailSize.width > 0 ? Int(ceil(newContentSize.width / thumbnailSize.width)) : 0
+        let thumbnailCount =  thumbnailSize.width > 0 ? Int(ceil(newContentSize.width / thumbnailSize.width)) : 0
         addThumbnailViews(thumbnailCount, size: thumbnailSize)
         let timesForThumbnail = getThumbnailTimes(for: asset, numberOfThumbnails: thumbnailCount)
         generateImages(for: asset, at: timesForThumbnail, with: thumbnailSize, visibleThumnails: visibleThumbnailsCount)
