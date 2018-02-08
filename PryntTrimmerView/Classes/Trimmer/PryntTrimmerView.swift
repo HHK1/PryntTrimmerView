@@ -102,6 +102,8 @@ public protocol TrimmerViewDelegate: class {
         leftConstraint?.constant = 0.0
         rightConstraint?.constant = -frame.width
         updateRightConstraint(with: CGPoint(x: 0, y: 0))
+        fixHandlesLabelsPositionIfNeeded()
+        layoutSubviews()
     }
 
     override func constrainAssetPreview() {
