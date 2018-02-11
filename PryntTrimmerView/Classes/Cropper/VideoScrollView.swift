@@ -46,7 +46,7 @@ class VideoScrollView: UIView {
 
     func setupVideo(with asset: AVAsset) {
 
-        guard let track = asset.tracks(withMediaType: AVMediaType.video).first else { return }
+        guard let track = asset.tracks.first else { return }
         let trackSize = track.naturalSize.applying(track.preferredTransform)
         assetSize = CGSize(width: fabs(trackSize.width), height: fabs(trackSize.height))
 
@@ -65,7 +65,7 @@ class VideoScrollView: UIView {
         player = AVPlayer(playerItem: playerItem)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer?.frame = playerFrame
-        playerLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        playerLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
 
         contentView.frame = playerFrame
         contentView.layer.addSublayer(playerLayer!)
