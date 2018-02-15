@@ -100,8 +100,7 @@ public protocol TrimmerViewDelegate: class {
     
     open func initializeHandles() {
         leftConstraint?.constant = 0.0
-        rightConstraint?.constant = -frame.width
-        updateRightConstraint(with: CGPoint(x: 0, y: 0))
+        rightConstraint?.constant = min(2 * handleWidth - frame.width + leftHandleView.frame.origin.x + minimumDistanceBetweenHandle, 0)
         fixHandlesLabelsPositionIfNeeded()
         layoutSubviews()
     }
