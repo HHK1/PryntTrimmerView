@@ -101,6 +101,7 @@ public protocol TrimmerViewDelegate: class {
     open func initializeHandles() {
         leftConstraint?.constant = 0.0
         rightConstraint?.constant = min(2 * handleWidth - frame.width + leftHandleView.frame.origin.x + minimumDistanceBetweenHandle, 0)
+        layoutSubviews()
         fixHandlesLabelsPositionIfNeeded()
         layoutSubviews()
     }
@@ -291,12 +292,34 @@ public protocol TrimmerViewDelegate: class {
     }
     
     private func fixHandlesLabelsPositionIfNeeded() {
-        let distBetweenHandles = rightHandleView.center.x - leftHandleView.center.x
-        let overlap = distBetweenHandles - rightHandleLabel.frame.width
+        let leftOffset = leftHandleView.frame.minX - leftHandleLabel.frame.width / 2
+        var leftMove = CGFloat(0.0), rightMove = CGFloat(0.0)
+        if leftOffset < 0 {
+            leftHandleLabel.frame = CGRect(x: -60 - leftOffset, y: -40, width: 120.0, height: 30.0)
+            leftMove = leftOffset
+        } else {
+            leftHandleLabel.frame = CGRect(x: -60, y: -40, width: 120.0, height: 30.0)
+        }
+        let rightOffset = frame.width + handleWidth - rightHandleView.frame.maxX - rightHandleLabel.frame.width / 2
+        if rightOffset < 0 {
+            rightHandleLabel.frame = CGRect(x: -60 + rightOffset, y: -40, width: 120.0, height: 30.0)
+            rightMove = rightOffset
+        } else {
+            rightHandleLabel.frame = CGRect(x: -60, y: -40, width: 120.0, height: 30.0)
+        }
+        let overlap = rightHandleView.center.x - leftHandleView.center.x - leftHandleLabel.frame.width + rightMove + leftMove
         if overlap < 6 {
-            let offset = abs(overlap / 2) + 3
-            rightHandleLabel.frame = CGRect(x: -60 + offset, y: -40, width: 120.0, height: 30.0)
-            leftHandleLabel.frame = CGRect(x: -60 - offset, y: -40, width: 120.0, height: 30.0)
+            if leftMove < 0 {
+                rightHandleLabel.frame = CGRect(x: -60 + 6 - overlap, y: -40, width: 120.0, height: 30.0)
+            }
+            if rightMove < 0 {
+                leftHandleLabel.frame = CGRect(x: -60 - 6 + overlap, y: -40, width: 120.0, height: 30.0)
+            }
+            if leftMove == 0 && rightMove == 0 {
+                let overlapOffset = abs(overlap / 2) + 3
+                rightHandleLabel.frame = CGRect(x: -60 + overlapOffset, y: -40, width: 120.0, height: 30.0)
+                leftHandleLabel.frame = CGRect(x: -60 - overlapOffset, y: -40, width: 120.0, height: 30.0)
+            }
         }
     }
 
