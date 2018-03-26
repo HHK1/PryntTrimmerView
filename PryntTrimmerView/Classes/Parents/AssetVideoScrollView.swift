@@ -56,7 +56,9 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     internal func regenerateThumbnails(for asset: AVAsset) {
-        guard let thumbnailSize = getThumbnailFrameSize(from: asset) else {
+        guard let thumbnailSize = getThumbnailFrameSize(from: asset),
+            thumbnailSize.height.isNormal,
+            thumbnailSize.width.isNormal else {
             return
         }
         self.asset = asset
