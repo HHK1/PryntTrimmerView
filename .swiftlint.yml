@@ -5,3 +5,9 @@ excluded:
   - Example/Pods
 
 line_length: 130
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  excluded: [id, i, t, k, v, x, y]
