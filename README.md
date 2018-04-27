@@ -27,12 +27,28 @@ PryntTrimmerView requires iOS9: It uses Layout Anchors to define the constraints
 
 ## Installation
 
+#### CocoaPods
+
 PryntTrimmerView is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod "PryntTrimmerView"
 ```
+
+Then, run `pod install` to download the source and add it to your workspace. 
+
+#### Carthage
+
+PryntTrimmmerView is available through Carthage. To install
+it, simply add the following line to your Cartfile:
+
+```
+github "Prynt/PryntTrimmerView"
+```
+
+Run `carthage update` to build the framework and drag the built PryntTrimmerView.framework into your Xcode project.
+
 
 For swift 3 compatibility, you can use version 1.0.1 or below.
 
