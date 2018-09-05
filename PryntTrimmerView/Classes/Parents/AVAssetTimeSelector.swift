@@ -21,6 +21,8 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
             assetDidChange(newAsset: asset)
         }
     }
+    
+    public var rideDuration: Double?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,11 +68,11 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
     }
 
     func getTime(from position: CGFloat) -> CMTime? {
-        guard let asset = asset else {
+        guard let asset = asset, let rideDuration = rideDuration else {
             return nil
         }
         let normalizedRatio = max(min(1, position / durationSize), 0)
-        let positionTimeValue = Double(normalizedRatio) * Double(asset.duration.value)
+        let positionTimeValue = Double(normalizedRatio) * Double(rideDuration * Double(asset.duration.timescale))
         return CMTime(value: Int64(positionTimeValue), timescale: asset.duration.timescale)
     }
 

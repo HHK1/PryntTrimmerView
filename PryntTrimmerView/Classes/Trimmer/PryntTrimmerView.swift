@@ -371,13 +371,13 @@ public protocol TrimmerViewDelegate: class {
     }
 
     private var minimumDistanceBetweenHandle: CGFloat {
-        guard let asset = asset else { return 0 }
-        return CGFloat(minDuration) * assetPreview.contentView.frame.width / CGFloat(asset.duration.seconds)
+        guard let rideDuration = rideDuration else { return 0 }
+        return CGFloat(minDuration) * assetPreview.contentView.frame.width / CGFloat(rideDuration)
     }
 
     private var maximumDistanceBetweenHandle: CGFloat {
-        guard let asset = asset else { return 0 }
-        return CGFloat(maxDuration) * assetPreview.contentView.frame.width / CGFloat(asset.duration.seconds)
+        guard let rideDuration = rideDuration else { return 0 }
+        return CGFloat(maxDuration) * assetPreview.contentView.frame.width / CGFloat(rideDuration)
     }
     
     // MARK: - Scroll View Delegate
