@@ -34,7 +34,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
 
     private var generator: AVAssetImageGenerator?
 
-    public weak var delegate: ThumbSelectorViewDelegate?
+    //public weak var delegate: ThumbSelectorViewDelegate?
 
     // MARK: - View & constraints configurations
 
@@ -45,7 +45,6 @@ public class ThumbSelectorView: AVAssetTimeSelector {
     }
 
     private func setupDimmingView() {
-
         dimmingView.translatesAutoresizingMaskIntoConstraints = false
         dimmingView.isUserInteractionEnabled = false
         dimmingView.backgroundColor = UIColor.white.withAlphaComponent(0.7)
@@ -57,7 +56,6 @@ public class ThumbSelectorView: AVAssetTimeSelector {
     }
 
     private func setupThumbView() {
-
         thumbView.translatesAutoresizingMaskIntoConstraints = false
         thumbView.layer.borderWidth = 2.0
         thumbView.layer.borderColor = thumbBorderColor.cgColor
@@ -107,13 +105,10 @@ public class ThumbSelectorView: AVAssetTimeSelector {
 
     // MARK: - Thumbnail Generation
 
-    override func assetDidChange(newAsset: AVAsset?) {
-        if let asset = newAsset {
-            setupThumbnailGenerator(with: asset)
-            leftThumbConstraint?.constant = 0
-            updateSelectedTime()
-        }
-        super.assetDidChange(newAsset: newAsset)
+    override func propertiesDidChange() {
+        leftThumbConstraint?.constant = 0
+        updateSelectedTime()
+        super.propertiesDidChange()
     }
 
     private func setupThumbnailGenerator(with asset: AVAsset) {
@@ -125,7 +120,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
     }
 
     private func getThumbnailFrameSize(from asset: AVAsset) -> CGSize? {
-        guard let track = asset.tracks(withMediaType: AVMediaType.video).first else { return nil}
+        guard let track = asset.tracks.first else { return nil}
 
         let assetSize = track.naturalSize.applying(track.preferredTransform)
 
@@ -137,7 +132,6 @@ public class ThumbSelectorView: AVAssetTimeSelector {
     }
 
     private func generateThumbnailImage(for time: CMTime) {
-
         generator?.generateCGImagesAsynchronously(forTimes: [time as NSValue],
                                                   completionHandler: { (_, image, _, _, _) in
             guard let image = image else {
@@ -165,7 +159,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
 
     private func updateSelectedTime() {
         if let selectedTime = selectedTime {
-            delegate?.didChangeThumbPosition(selectedTime)
+            //delegate?.didChangeThumbPosition(selectedTime)
             generateThumbnailImage(for: selectedTime)
         }
     }

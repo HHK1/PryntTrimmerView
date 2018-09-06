@@ -9,16 +9,27 @@
 import UIKit
 import AVFoundation
 
+public protocol AVAssetTimeSelectorDelegate: class {
+    func thumbnailFor(_ imageTime: CMTime, completion: @escaping (UIImage?)->())
+}
+
 /// A generic class to display an asset into a scroll view with thumbnail images, and make the equivalence between a time in
 // the asset and a position in the scroll view
 public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
 
-    let assetPreview = AssetVideoScrollView()
+    public weak var delegate: AVAssetTimeSelectorDelegate?
 
-    /// The asset to be displayed in the underlying scroll view. Setting a new asset will automatically refresh the thumbnails.
-    public var asset: AVAsset? {
+    let assetPreview = AssetVideoScrollView()
+    
+    public var rideDuration: Double? {
         didSet {
-            assetDidChange(newAsset: asset)
+            propertiesDidChange()
+        }
+    }
+    
+    public var thumbnailFrameAspectRatio: CGFloat? {
+        didSet {
+            propertiesDidChange()
         }
     }
 
@@ -40,9 +51,9 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
     // MARK: - Asset Preview
 
     func setupAssetPreview() {
-
         assetPreview.translatesAutoresizingMaskIntoConstraints = false
         assetPreview.delegate = self
+        assetPreview.framesDelegate = self
         addSubview(assetPreview)
     }
 
@@ -53,10 +64,12 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
         assetPreview.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
-    func assetDidChange(newAsset: AVAsset?) {
-        if let asset = newAsset {
-            assetPreview.regenerateThumbnails(for: asset)
+    func propertiesDidChange() {
+        guard let rideDuration = rideDuration, let thumbnailFrameAspectRatio = thumbnailFrameAspectRatio else {
+            return
         }
+        
+        assetPreview.recalculateThumbnailTimes(for: rideDuration, thumbnailFrameAspectRatio: thumbnailFrameAspectRatio)
     }
 
     // MARK: - Time & Position Equivalence
@@ -66,20 +79,26 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
     }
 
     func getTime(from position: CGFloat) -> CMTime? {
-        guard let asset = asset else {
+        guard let rideDuration = rideDuration else {
             return nil
         }
         let normalizedRatio = max(min(1, position / durationSize), 0)
-        let positionTimeValue = Double(normalizedRatio) * Double(asset.duration.value)
-        return CMTime(value: Int64(positionTimeValue), timescale: asset.duration.timescale)
+        let positionTimeValue = Double(normalizedRatio) * Double(rideDuration)
+        return CMTime(value: Int64(positionTimeValue), timescale: 1)
     }
 
     func getPosition(from time: CMTime) -> CGFloat? {
-        guard let asset = asset else {
+        guard let duration = rideDuration else {
             return nil
         }
-        let timeRatio = CGFloat(time.value) * CGFloat(asset.duration.timescale) /
-            (CGFloat(time.timescale) * CGFloat(asset.duration.value))
+        let timeRatio = CGFloat(time.value) / CGFloat(duration)
         return timeRatio * durationSize
+    }
+}
+
+extension AVAssetTimeSelector: AssetVideoScrollViewDelegate {
+    
+    func thumbnailFor(_ imageTime: CMTime, completion: @escaping (UIImage?)->()) {
+        delegate?.thumbnailFor(imageTime, completion: completion)
     }
 }
