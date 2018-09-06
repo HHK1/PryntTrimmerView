@@ -11,8 +11,7 @@ import UIKit
 
 /// A delegate to be notified of when the thumb position has changed. Useful to link an instance of the ThumbSelectorView to a
 /// video preview like an `AVPlayer`.
-public protocol TrimmerViewDelegate: class {
-    func thumbnailFor(_ imageTime: CMTime, completion: @escaping (UIImage?)->())
+public protocol TrimmerViewDelegate: AVAssetTimeSelectorDelegate {
     func didChangePositionBar(triggeredHandle: TrimmerView.TriggeredHandle)
     func positionBarStoppedMoving(triggeredHandle: TrimmerView.TriggeredHandle)
 }
@@ -31,6 +30,10 @@ public protocol TrimmerViewDelegate: class {
     }
     
     // MARK: - Properties
+    
+    private var trimmerDelegate: TrimmerViewDelegate? {
+        return delegate as? TrimmerViewDelegate
+    }
 
     // MARK: Color Customization
 
@@ -81,11 +84,7 @@ public protocol TrimmerViewDelegate: class {
 
     /// The minimum duration allowed for the trimming. The handles won't pan further if the minimum duration is attained.
     public var minDuration: Double = 3
-    
-    public var thumbnailTimes: [TimeInterval] {
-        return []
-    }
-    
+        
     // MARK: - View & constraints configurations
 
     override func setupSubviews() {
@@ -367,9 +366,9 @@ public protocol TrimmerViewDelegate: class {
 
     private func updateSelectedTime(stoppedMoving: Bool, triggeredHandle: TriggeredHandle) {
         if stoppedMoving {
-            delegate?.positionBarStoppedMoving(triggeredHandle: triggeredHandle)
+            trimmerDelegate?.positionBarStoppedMoving(triggeredHandle: triggeredHandle)
         } else {
-            delegate?.didChangePositionBar(triggeredHandle: triggeredHandle)
+            trimmerDelegate?.didChangePositionBar(triggeredHandle: triggeredHandle)
         }
     }
 

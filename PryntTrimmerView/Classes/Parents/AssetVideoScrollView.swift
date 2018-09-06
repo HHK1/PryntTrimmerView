@@ -21,7 +21,6 @@ class AssetVideoScrollView: UIScrollView {
 
     let contentView = UIView()
     var maxDuration: Double = 15
-    private var generator: AVAssetImageGenerator?
     private var thumbnailFrameAspectRatio: CGFloat?
     private var duration: TimeInterval?
     
@@ -135,8 +134,8 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     private func generateImages(at times: [NSValue], with maximumSize: CGSize, visibleThumnails: Int) {
-        let scaledSize = CGSize(width: maximumSize.width * UIScreen.main.scale, height: maximumSize.height *  UIScreen.main.scale)
-        generator?.maximumSize = scaledSize
+        let scaledSize = CGSize(width: maximumSize.width * UIScreen.main.scale,
+                                height: maximumSize.height *  UIScreen.main.scale)
         var count = 0
 
         for time in times {

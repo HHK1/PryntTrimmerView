@@ -132,7 +132,6 @@ public class ThumbSelectorView: AVAssetTimeSelector {
     }
 
     private func generateThumbnailImage(for time: CMTime) {
-        /*
         generator?.generateCGImagesAsynchronously(forTimes: [time as NSValue],
                                                   completionHandler: { (_, image, _, _, _) in
             guard let image = image else {
@@ -144,15 +143,6 @@ public class ThumbSelectorView: AVAssetTimeSelector {
                 self.thumbView.image = uiimage
             }
         })
-        */
-        
-        /*
-        delegate?.thumbnailFor(time) { image in
-            DispatchQueue.main.async {
-                self.thumbView.image = image
-            }
-        }
-        */
     }
 
     // MARK: - Time & Position Equivalence

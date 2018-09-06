@@ -9,11 +9,15 @@
 import UIKit
 import AVFoundation
 
+public protocol AVAssetTimeSelectorDelegate: class {
+    func thumbnailFor(_ imageTime: CMTime, completion: @escaping (UIImage?)->())
+}
+
 /// A generic class to display an asset into a scroll view with thumbnail images, and make the equivalence between a time in
 // the asset and a position in the scroll view
 public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
 
-    public weak var delegate: TrimmerViewDelegate?
+    public weak var delegate: AVAssetTimeSelectorDelegate?
 
     let assetPreview = AssetVideoScrollView()
     
