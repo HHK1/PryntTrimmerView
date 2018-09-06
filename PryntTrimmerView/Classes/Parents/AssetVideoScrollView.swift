@@ -22,7 +22,7 @@ class AssetVideoScrollView: UIScrollView {
     let contentView = UIView()
     var maxDuration: Double = 15
     private var generator: AVAssetImageGenerator?
-    private var thumbnailSize: CGSize?
+    private var thumbnailFrameAspectRatio: CGFloat?
     private var duration: TimeInterval?
     
     override init(frame: CGRect) {
@@ -56,20 +56,21 @@ class AssetVideoScrollView: UIScrollView {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentSize = contentView.bounds.size
-        guard let duration = duration, let thumbnailSize = thumbnailSize else {
+        guard let duration = duration, let thumbnailFrameAspectRatio = thumbnailFrameAspectRatio else {
             return
         }
-        recalculateThumbnailTimes(for: duration, thumbnailSize: thumbnailSize)
+        recalculateThumbnailTimes(for: duration, thumbnailFrameAspectRatio: thumbnailFrameAspectRatio)
     }
 
-    internal func recalculateThumbnailTimes(for duration: TimeInterval, thumbnailSize: CGSize) {
+    internal func recalculateThumbnailTimes(for duration: TimeInterval, thumbnailFrameAspectRatio: CGFloat) {
         guard
+            let thumbnailSize = getThumbnailFrameSize(for: thumbnailFrameAspectRatio),
             thumbnailSize.height.isNormal,
             thumbnailSize.width.isNormal else {
             return
         }
         
-        self.thumbnailSize = thumbnailSize
+        self.thumbnailFrameAspectRatio = thumbnailFrameAspectRatio
         self.duration = duration
         
         removeFormerThumbnails()
@@ -81,14 +82,9 @@ class AssetVideoScrollView: UIScrollView {
         generateImages(at: thumbnailTimes, with: thumbnailSize, visibleThumnails: thumbnailCount)
     }
 
-    private func getThumbnailFrameSize(from asset: AVAsset) -> CGSize? {
-        guard let track = asset.tracks.first else { return nil}
-
-        let assetSize = track.naturalSize.applying(track.preferredTransform)
-
+    private func getThumbnailFrameSize(for aspectRatio: CGFloat) -> CGSize? {
         let height = frame.height
-        let ratio = assetSize.width / assetSize.height
-        let width = height * ratio
+        let width = height * aspectRatio
         return CGSize(width: fabs(width), height: fabs(height))
     }
 

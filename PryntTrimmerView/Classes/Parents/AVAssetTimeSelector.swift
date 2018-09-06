@@ -23,7 +23,7 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
         }
     }
     
-    public var thumbnailSize: CGSize? {
+    public var thumbnailFrameAspectRatio: CGFloat? {
         didSet {
             propertiesDidChange()
         }
@@ -61,11 +61,11 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
     }
 
     func propertiesDidChange() {
-        guard let rideDuration = rideDuration, let thumbnailSize = thumbnailSize else {
+        guard let rideDuration = rideDuration, let thumbnailFrameAspectRatio = thumbnailFrameAspectRatio else {
             return
         }
         
-        assetPreview.recalculateThumbnailTimes(for: rideDuration, thumbnailSize: thumbnailSize)
+        assetPreview.recalculateThumbnailTimes(for: rideDuration, thumbnailFrameAspectRatio: thumbnailFrameAspectRatio)
     }
 
     // MARK: - Time & Position Equivalence
