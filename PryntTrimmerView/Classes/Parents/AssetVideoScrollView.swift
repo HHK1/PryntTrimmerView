@@ -9,15 +9,22 @@
 import AVFoundation
 import UIKit
 
+protocol AssetVideoScrollViewDelegate: class {
+    func thumbnailFor(_ imageTime: CMTime, completion: @escaping (UIImage?)->())
+}
+
 class AssetVideoScrollView: UIScrollView {
 
+    public weak var framesDelegate: AssetVideoScrollViewDelegate?
+    
     private var widthConstraint: NSLayoutConstraint?
 
     let contentView = UIView()
     var maxDuration: Double = 15
     private var generator: AVAssetImageGenerator?
-    private var asset: AVAsset?
-
+    private var thumbnailSize: CGSize?
+    private var duration: TimeInterval?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
@@ -29,7 +36,6 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     private func setupSubviews() {
-
         backgroundColor = .clear
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
@@ -50,27 +56,29 @@ class AssetVideoScrollView: UIScrollView {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentSize = contentView.bounds.size
-        if asset != nil {
-          regenerateThumbnails(for: asset!)
+        guard let duration = duration, let thumbnailSize = thumbnailSize else {
+            return
         }
+        recalculateThumbnailTimes(for: duration, thumbnailSize: thumbnailSize)
     }
 
-    internal func regenerateThumbnails(for asset: AVAsset) {
-        guard let thumbnailSize = getThumbnailFrameSize(from: asset),
+    internal func recalculateThumbnailTimes(for duration: TimeInterval, thumbnailSize: CGSize) {
+        guard
             thumbnailSize.height.isNormal,
             thumbnailSize.width.isNormal else {
             return
         }
-        self.asset = asset
-
-        generator?.cancelAllCGImageGeneration()
+        
+        self.thumbnailSize = thumbnailSize
+        self.duration = duration
+        
         removeFormerThumbnails()
         let newContentSize = frame.size  // setContentSize(for: asset)
         let visibleThumbnailsCount = Int(ceil(frame.width / thumbnailSize.width))
         let thumbnailCount =  thumbnailSize.width > 0 ? Int(ceil(newContentSize.width / thumbnailSize.width)) : 0
         addThumbnailViews(thumbnailCount, size: thumbnailSize)
-        let timesForThumbnail = getThumbnailTimes(for: asset, numberOfThumbnails: thumbnailCount)
-        generateImages(for: asset, at: timesForThumbnail, with: thumbnailSize, visibleThumnails: visibleThumbnailsCount)
+        let thumbnailTimes = getThumbnailTimes(for: duration, numberOfThumbnails: thumbnailCount)
+        generateImages(at: thumbnailTimes, with: thumbnailSize, visibleThumnails: thumbnailCount)
     }
 
     private func getThumbnailFrameSize(from asset: AVAsset) -> CGSize? {
@@ -89,7 +97,6 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     private func setContentSize(for asset: AVAsset) -> CGSize {
-
         let contentWidthFactor = CGFloat(max(1, asset.duration.seconds / maxDuration))
         widthConstraint?.isActive = false
         widthConstraint = contentView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: contentWidthFactor)
@@ -99,7 +106,6 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     private func addThumbnailViews(_ count: Int, size: CGSize) {
-
         for index in 0..<count {
 
             let thumbnailView = UIImageView(frame: CGRect.zero)
@@ -121,9 +127,8 @@ class AssetVideoScrollView: UIScrollView {
         }
     }
 
-    private func getThumbnailTimes(for asset: AVAsset, numberOfThumbnails: Int) -> [NSValue] {
-
-        let timeIncrement = (asset.duration.seconds * 1000) / Double(numberOfThumbnails)
+    private func getThumbnailTimes(for duration: TimeInterval, numberOfThumbnails: Int) -> [NSValue] {
+        let timeIncrement = (duration * 1000) / Double(numberOfThumbnails)
         var timesForThumbnails = [NSValue]()
         for index in 0..<numberOfThumbnails {
             let cmTime = CMTime(value: Int64(timeIncrement * Float64(index)), timescale: 1000)
@@ -133,40 +138,36 @@ class AssetVideoScrollView: UIScrollView {
         return timesForThumbnails
     }
 
-    private func generateImages(for asset: AVAsset, at times: [NSValue], with maximumSize: CGSize, visibleThumnails: Int) {
-
-        generator = AVAssetImageGenerator(asset: asset)
-        generator?.appliesPreferredTrackTransform = true
+    private func generateImages(at times: [NSValue], with maximumSize: CGSize, visibleThumnails: Int) {
         let scaledSize = CGSize(width: maximumSize.width * UIScreen.main.scale, height: maximumSize.height *  UIScreen.main.scale)
         generator?.maximumSize = scaledSize
         var count = 0
 
-        let handler: AVAssetImageGeneratorCompletionHandler = { [weak self] (_, cgimage, _, result, error) in
-            if let cgimage = cgimage, error == nil && result == AVAssetImageGeneratorResult.succeeded {
-                DispatchQueue.main.async(execute: { [weak self] () -> Void in
-
-                    if count == 0 {
-                        self?.displayFirstImage(cgimage, visibleThumbnails: visibleThumnails)
+        for time in times {
+            framesDelegate?.thumbnailFor(time.timeValue) { image in
+                DispatchQueue.main.async { [weak self] () -> Void in
+                    guard let image = image else {
+                        return
                     }
-                    self?.displayImage(cgimage, at: count)
+                    if count == 0 {
+                        self?.displayFirstImage(image, visibleThumbnails: visibleThumnails)
+                    }
+                    self?.displayImage(image, at: count)
                     count += 1
-                })
+                }
             }
         }
-
-        generator?.generateCGImagesAsynchronously(forTimes: times, completionHandler: handler)
     }
 
-    private func displayFirstImage(_ cgImage: CGImage, visibleThumbnails: Int) {
+    private func displayFirstImage(_ image: UIImage, visibleThumbnails: Int) {
         for i in 0...visibleThumbnails {
-            displayImage(cgImage, at: i)
+            displayImage(image, at: i)
         }
     }
 
-    private func displayImage(_ cgImage: CGImage, at index: Int) {
+    private func displayImage(_ image: UIImage, at index: Int) {
         if let imageView = contentView.viewWithTag(index) as? UIImageView {
-            let uiimage = UIImage(cgImage: cgImage, scale: 1.0, orientation: UIImageOrientation.up)
-            imageView.image = uiimage
+            imageView.image = image
         }
     }
 }
