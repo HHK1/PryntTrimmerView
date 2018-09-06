@@ -13,6 +13,16 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		BA05863A208FE16C004E868E /* PryntTrimmerView.h in Headers */ = {isa = PBXBuildFile; fileRef = BA05862C208FE161004E868E /* PryntTrimmerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA05863C208FE1ED004E868E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA05863B208FE1ED004E868E /* Info.plist */; };
+		BA05863D208FE232004E868E /* AssetVideoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05862F208FE161004E868E /* AssetVideoScrollView.swift */; };
+		BA05863E208FE232004E868E /* AVAssetTimeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA058630208FE161004E868E /* AVAssetTimeSelector.swift */; };
+		BA05863F208FE232004E868E /* ThumbSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA058631208FE161004E868E /* ThumbSelectorView.swift */; };
+		BA058640208FE232004E868E /* VideoCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA058634208FE161004E868E /* VideoCropView.swift */; };
+		BA058641208FE232004E868E /* VideoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA058635208FE161004E868E /* VideoScrollView.swift */; };
+		BA058642208FE232004E868E /* CropMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA058636208FE161004E868E /* CropMaskView.swift */; };
+		BA058643208FE232004E868E /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA058638208FE161004E868E /* HandlerView.swift */; };
+		BA058644208FE232004E868E /* PryntTrimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA058639208FE161004E868E /* PryntTrimmerView.swift */; };
 		BA7923C31E9681C000DA9BDD /* VideoCropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7923C21E9681C000DA9BDD /* VideoCropperViewController.swift */; };
 		BAAF985C1E8C12DA007683C8 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF985A1E8C12DA007683C8 /* AVPlayer+isPlaying.swift */; };
 		BAAF985D1E8C12DA007683C8 /* VideoTrimmerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF985B1E8C12DA007683C8 /* VideoTrimmerViewController.swift */; };
@@ -32,7 +42,7 @@
 /* Begin PBXFileReference section */
 		0B2546D375231F430332EE5C /* Pods_PryntTrimmerView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27BE3317225C67028EF5D0BE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		2EE2636FA3F2BB610680D644 /* PryntTrimmerView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PryntTrimmerView.podspec; path = ../PryntTrimmerView.podspec; sourceTree = "<group>"; };
+		2EE2636FA3F2BB610680D644 /* PryntTrimmerView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PryntTrimmerView.podspec; path = ../PryntTrimmerView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* PryntTrimmerView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PryntTrimmerView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +55,18 @@
 		A0E0C53092E03EC07C952C01 /* Pods-PryntTrimmerView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Tests/Pods-PryntTrimmerView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2AF731B842FEC297C5E9A38 /* Pods_PryntTrimmerView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4456BDD210B024D264D0888 /* Pods-PryntTrimmerView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		BA058623208FE042004E868E /* PryntTrimmerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PryntTrimmerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA05862C208FE161004E868E /* PryntTrimmerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PryntTrimmerView.h; sourceTree = "<group>"; };
+		BA05862F208FE161004E868E /* AssetVideoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetVideoScrollView.swift; sourceTree = "<group>"; };
+		BA058630208FE161004E868E /* AVAssetTimeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAssetTimeSelector.swift; sourceTree = "<group>"; };
+		BA058631208FE161004E868E /* ThumbSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbSelectorView.swift; sourceTree = "<group>"; };
+		BA058632208FE161004E868E /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		BA058634208FE161004E868E /* VideoCropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCropView.swift; sourceTree = "<group>"; };
+		BA058635208FE161004E868E /* VideoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoScrollView.swift; sourceTree = "<group>"; };
+		BA058636208FE161004E868E /* CropMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropMaskView.swift; sourceTree = "<group>"; };
+		BA058638208FE161004E868E /* HandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
+		BA058639208FE161004E868E /* PryntTrimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PryntTrimmerView.swift; sourceTree = "<group>"; };
+		BA05863B208FE1ED004E868E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA7923C21E9681C000DA9BDD /* VideoCropperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCropperViewController.swift; sourceTree = "<group>"; };
 		BAAF985A1E8C12DA007683C8 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
 		BAAF985B1E8C12DA007683C8 /* VideoTrimmerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTrimmerViewController.swift; sourceTree = "<group>"; };
@@ -70,12 +92,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA05861F208FE042004E868E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				BA05862B208FE161004E868E /* PryntTrimmerView */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for PryntTrimmerView */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -90,6 +120,7 @@
 			children = (
 				607FACD01AFB9204008FA782 /* PryntTrimmerView_Example.app */,
 				607FACE51AFB9204008FA782 /* PryntTrimmerView_Tests.xctest */,
+				BA058623208FE042004E868E /* PryntTrimmerView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,7 +196,69 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BA05862B208FE161004E868E /* PryntTrimmerView */ = {
+			isa = PBXGroup;
+			children = (
+				BA05863B208FE1ED004E868E /* Info.plist */,
+				BA05862C208FE161004E868E /* PryntTrimmerView.h */,
+				BA05862D208FE161004E868E /* Classes */,
+			);
+			name = PryntTrimmerView;
+			path = ../PryntTrimmerView;
+			sourceTree = "<group>";
+		};
+		BA05862D208FE161004E868E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BA05862E208FE161004E868E /* Parents */,
+				BA058631208FE161004E868E /* ThumbSelectorView.swift */,
+				BA058632208FE161004E868E /* .gitkeep */,
+				BA058633208FE161004E868E /* Cropper */,
+				BA058637208FE161004E868E /* Trimmer */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		BA05862E208FE161004E868E /* Parents */ = {
+			isa = PBXGroup;
+			children = (
+				BA05862F208FE161004E868E /* AssetVideoScrollView.swift */,
+				BA058630208FE161004E868E /* AVAssetTimeSelector.swift */,
+			);
+			path = Parents;
+			sourceTree = "<group>";
+		};
+		BA058633208FE161004E868E /* Cropper */ = {
+			isa = PBXGroup;
+			children = (
+				BA058634208FE161004E868E /* VideoCropView.swift */,
+				BA058635208FE161004E868E /* VideoScrollView.swift */,
+				BA058636208FE161004E868E /* CropMaskView.swift */,
+			);
+			path = Cropper;
+			sourceTree = "<group>";
+		};
+		BA058637208FE161004E868E /* Trimmer */ = {
+			isa = PBXGroup;
+			children = (
+				BA058638208FE161004E868E /* HandlerView.swift */,
+				BA058639208FE161004E868E /* PryntTrimmerView.swift */,
+			);
+			path = Trimmer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BA058620208FE042004E868E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA05863A208FE16C004E868E /* PryntTrimmerView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		607FACCF1AFB9204008FA782 /* PryntTrimmerView_Example */ = {
@@ -210,6 +303,24 @@
 			productReference = 607FACE51AFB9204008FA782 /* PryntTrimmerView_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BA058622208FE042004E868E /* PryntTrimmerView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA05862A208FE042004E868E /* Build configuration list for PBXNativeTarget "PryntTrimmerView" */;
+			buildPhases = (
+				BA05861E208FE042004E868E /* Sources */,
+				BA05861F208FE042004E868E /* Frameworks */,
+				BA058620208FE042004E868E /* Headers */,
+				BA058621208FE042004E868E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PryntTrimmerView;
+			productName = PryntTrimmerView;
+			productReference = BA058623208FE042004E868E /* PryntTrimmerView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -217,7 +328,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -230,6 +341,11 @@
 						DevelopmentTeam = K59DXKG68T;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
+					};
+					BA058622208FE042004E868E = {
+						CreatedOnToolsVersion = 9.3;
+						DevelopmentTeam = 9M5LJ68Y64;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -248,6 +364,7 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* PryntTrimmerView_Example */,
 				607FACE41AFB9204008FA782 /* PryntTrimmerView_Tests */,
+				BA058622208FE042004E868E /* PryntTrimmerView */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA05863C208FE1ED004E868E /* Info.plist in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -264,6 +382,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		607FACE31AFB9204008FA782 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA058621208FE042004E868E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -408,6 +533,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA05861E208FE042004E868E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA05863D208FE232004E868E /* AssetVideoScrollView.swift in Sources */,
+				BA05863E208FE232004E868E /* AVAssetTimeSelector.swift in Sources */,
+				BA05863F208FE232004E868E /* ThumbSelectorView.swift in Sources */,
+				BA058640208FE232004E868E /* VideoCropView.swift in Sources */,
+				BA058641208FE232004E868E /* VideoScrollView.swift in Sources */,
+				BA058642208FE232004E868E /* CropMaskView.swift in Sources */,
+				BA058643208FE232004E868E /* HandlerView.swift in Sources */,
+				BA058644208FE232004E868E /* PryntTrimmerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -450,12 +590,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -504,12 +646,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -549,7 +693,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.prynt.trimmerView.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prynt.trimmerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -566,7 +710,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.prynt.trimmerView.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prynt.trimmerView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -613,6 +757,72 @@
 			};
 			name = Release;
 		};
+		BA058628208FE042004E868E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9M5LJ68Y64;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../PryntTrimmerView/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prynt.PryntTrimmerView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BA058629208FE042004E868E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9M5LJ68Y64;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ../PryntTrimmerView/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prynt.PryntTrimmerView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -639,6 +849,15 @@
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA05862A208FE042004E868E /* Build configuration list for PBXNativeTarget "PryntTrimmerView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA058628208FE042004E868E /* Debug */,
+				BA058629208FE042004E868E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

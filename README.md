@@ -4,6 +4,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
 [![License](https://img.shields.io/cocoapods/l/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
 [![Version](https://img.shields.io/cocoapods/v/PryntTrimmerView.svg?style=flat)](http://cocoapods.org/pods/PryntTrimmerView)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 A set of tools written in swift to crop and trim videos.
 
@@ -26,12 +27,28 @@ PryntTrimmerView requires iOS9: It uses Layout Anchors to define the constraints
 
 ## Installation
 
+#### CocoaPods
+
 PryntTrimmerView is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod "PryntTrimmerView"
 ```
+
+Then, run `pod install` to download the source and add it to your workspace. 
+
+#### Carthage
+
+PryntTrimmmerView is available through Carthage. To install
+it, simply add the following line to your Cartfile:
+
+```
+github "Prynt/PryntTrimmerView"
+```
+
+Run `carthage update` to build the framework and drag the built PryntTrimmerView.framework into your Xcode project.
+
 
 For swift 3 compatibility, you can use version 1.0.1 or below.
 
