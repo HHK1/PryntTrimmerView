@@ -30,7 +30,7 @@ class CropMaskView: UIView {
 
     private func setupSubviews() {
 
-        maskLayer.fillRule = kCAFillRuleEvenOdd
+        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         maskLayer.fillColor = UIColor.black.cgColor
         maskLayer.opacity = 1.0
 
@@ -105,8 +105,8 @@ class CropMaskView: UIView {
         let animation = CABasicAnimation(keyPath: "path")
         animation.toValue = path
         animation.duration = 0.3
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        animation.fillMode = kCAFillModeBoth
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.fillMode = CAMediaTimingFillMode.both
         animation.isRemovedOnCompletion = false
 
         return animation
