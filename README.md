@@ -49,10 +49,15 @@ github "Prynt/PryntTrimmerView"
 
 Run `carthage update` to build the framework and drag the built PryntTrimmerView.framework into your Xcode project.
 
+#### Swift Version
 
-For swift 3 compatibility, you can use version 1.0.1 or below.
+Swift 3 compatibility:, use version 1.0.1 or below.
+Swift 4 compatibility: use version 2.*.*.
+Swift 4.2 compatibility: use version 3.*.*
 
 ## Usage
+
+:warning: _This library does not contain an API to crop or trim your video asset. You can find a possible implementation for this in the example pod, but the library only provides the UI._ 
 
 ### Trimming
 
