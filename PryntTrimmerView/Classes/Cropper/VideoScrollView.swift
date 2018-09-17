@@ -48,7 +48,7 @@ class VideoScrollView: UIView {
 
         guard let track = asset.tracks(withMediaType: AVMediaType.video).first else { return }
         let trackSize = track.naturalSize.applying(track.preferredTransform)
-        assetSize = CGSize(width: fabs(trackSize.width), height: fabs(trackSize.height))
+        assetSize = CGSize(width: abs(trackSize.width), height: abs(trackSize.height))
 
         scrollView.zoomScale = 1.0 // Reset zoom scale before changing the frame of the content view.
         playerItem = AVPlayerItem(asset: asset)

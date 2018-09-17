@@ -75,7 +75,7 @@ class AssetVideoScrollView: UIScrollView {
         let height = frame.height
         let ratio = assetSize.width / assetSize.height
         let width = height * ratio
-        return CGSize(width: fabs(width), height: fabs(height))
+        return CGSize(width: abs(width), height: abs(height))
     }
 
     private func removeFormerThumbnails() {
@@ -136,7 +136,7 @@ class AssetVideoScrollView: UIScrollView {
         var count = 0
 
         let handler: AVAssetImageGeneratorCompletionHandler = { [weak self] (_, cgimage, _, result, error) in
-            if let cgimage = cgimage, error == nil && result == AVAssetImageGeneratorResult.succeeded {
+            if let cgimage = cgimage, error == nil && result == AVAssetImageGenerator.Result.succeeded {
                 DispatchQueue.main.async(execute: { [weak self] () -> Void in
 
                     if count == 0 {
@@ -159,7 +159,7 @@ class AssetVideoScrollView: UIScrollView {
 
     private func displayImage(_ cgImage: CGImage, at index: Int) {
         if let imageView = contentView.viewWithTag(index) as? UIImageView {
-            let uiimage = UIImage(cgImage: cgImage, scale: 1.0, orientation: UIImageOrientation.up)
+            let uiimage = UIImage(cgImage: cgImage, scale: 1.0, orientation: UIImage.Orientation.up)
             imageView.image = uiimage
         }
     }

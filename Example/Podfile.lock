@@ -1,16 +1,16 @@
 PODS:
-  - PryntTrimmerView (2.0.0)
+  - PryntTrimmerView (3.0.0)
 
 DEPENDENCIES:
   - PryntTrimmerView (from `../`)
 
 EXTERNAL SOURCES:
   PryntTrimmerView:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  PryntTrimmerView: 0fba0311264c9bec80c7adc6b7dab9623eb90a17
+  PryntTrimmerView: ca0f9fb8627ef407543d4db52686a38f50a47a5b
 
 PODFILE CHECKSUM: 9a57d3190d5a70bb58c3d64123970e379115ef99
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
