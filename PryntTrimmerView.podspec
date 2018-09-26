@@ -17,10 +17,10 @@ component that indicates the portion of the video selected, thanks to image thum
 Second tool is a crop view, to preview a video and select the part of the video you want to crop.
                        DESC
 
-  s.homepage         = 'https://github.com/prynt/PryntTrimmerView'
+  s.homepage         = 'https://github.com/HHK1/PryntTrimmerView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'henryhuck@hotmail.fr' => 'henryhuck@hotmail.fr' }
-  s.source           = { :git => 'https://github.com/prynt/PryntTrimmerView.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/HHK1/PryntTrimmerView.git', :tag => s.version.to_s }
   s.ios.deployment_target = '9.0'
   s.source_files = 'PryntTrimmerView/Classes/**/*'
   s.swift_version = '4.2'

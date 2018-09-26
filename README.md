@@ -44,7 +44,7 @@ PryntTrimmmerView is available through Carthage. To install
 it, simply add the following line to your Cartfile:
 
 ```
-github "Prynt/PryntTrimmerView"
+github "HHK1/PryntTrimmerView"
 ```
 
 Run `carthage update` to build the framework and drag the built PryntTrimmerView.framework into your Xcode project.

@@ -73,7 +73,7 @@ public class VideoCropView: UIView {
 
     /// Set the aspect ratio for the cropping box.
     ///
-    /// [Issue #3]: https://github.com/prynt/PryntTrimmerView/issues/3
+    /// [Issue #3]: https://github.com/HHK1/PryntTrimmerView/issues/3
     /// - Parameters:
     ///   - aspectRatio: The desired aspect ratio.
     ///   - animated: true if you want to animate the change. TODO: the animation glitches sometimes. See [Issue #3]
