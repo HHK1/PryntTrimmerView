@@ -6,8 +6,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.0]
+
 ### Added
+
+Add swift 4.2 compatibility
+
+## [2.0.1]
+
+### Added
+
+Add Carthage compatibility
+Add prebuilt framework for Carthage
+
 ### Changed
+
+Fix a crash when calculating the thumbnail preview if the frame has not been set yet. (Thanks @NikKovIos)
 
 ## [2.0.0]
 
@@ -54,8 +68,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1.0] - 2017-03-29
 ### Added
 - Add a first version of the trimmer view
-- 
-[Unreleased]: https://github.com/prynt/PryntTrimmerView/compare/1.0.1...master
+
+[Unreleased]: https://github.com/prynt/PryntTrimmerView/compare/3.0.0...master
+[3.0.0]: https://github.com/prynt/PryntTrimmerView/compare/2.0.1...3.0.0
+[2.0.1]: https://github.com/prynt/PryntTrimmerView/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/prynt/PryntTrimmerView/compare/1.0.1...2.0.0
 [1.0.1]: https://github.com/prynt/PryntTrimmerView/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/prynt/PryntTrimmerView/compare/0.2.0...1.0.0
