@@ -237,9 +237,9 @@ public protocol TrimmerViewDelegate: class {
         case .changed:
             let translation = gestureRecognizer.translation(in: superView)
             if isLeftGesture {
-                updateLeftConstraint(with: translation)
+                updateLeftConstraint(with: translation.x)
             } else {
-                updateRightConstraint(with: translation)
+                updateRightConstraint(with: translation.x)
             }
             layoutIfNeeded()
             if let startTime = startTime, isLeftGesture {
@@ -255,15 +255,15 @@ public protocol TrimmerViewDelegate: class {
         }
     }
 
-    private func updateLeftConstraint(with translation: CGPoint) {
+    private func updateLeftConstraint(with translation: CGFloat) {
         let maxConstraint = max(rightHandleView.frame.origin.x - handleWidth - minimumDistanceBetweenHandle, 0)
-        let newConstraint = min(max(0, currentLeftConstraint + translation.x), maxConstraint)
+        let newConstraint = min(max(0, currentLeftConstraint + translation), maxConstraint)
         leftConstraint?.constant = newConstraint
     }
 
-    private func updateRightConstraint(with translation: CGPoint) {
+    private func updateRightConstraint(with translation: CGFloat) {
         let maxConstraint = min(2 * handleWidth - frame.width + leftHandleView.frame.origin.x + minimumDistanceBetweenHandle, 0)
-        let newConstraint = max(min(0, currentRightConstraint + translation.x), maxConstraint)
+        let newConstraint = max(min(0, currentRightConstraint + translation), maxConstraint)
         rightConstraint?.constant = newConstraint
     }
 
@@ -291,6 +291,24 @@ public protocol TrimmerViewDelegate: class {
                               - positionBar.frame.width
             let normalizedPosition = min(max(0, offsetPosition), maxPosition)
             positionConstraint?.constant = normalizedPosition
+            layoutIfNeeded()
+        }
+    }
+    
+    /// Move the left handle to the given time.
+    public func setStart(to time: CMTime) {
+        currentLeftConstraint = leftConstraint!.constant
+        if let newPosition = getPosition(from: time) {
+            updateLeftConstraint(with: newPosition - currentLeftConstraint)
+            layoutIfNeeded()
+        }
+    }
+    
+    /// Move the right handle to the given time.
+    public func setEnd(to time: CMTime) {
+        currentRightConstraint = rightConstraint!.constant
+        if let newPosition = getPosition(from: time) {
+            updateRightConstraint(with: newPosition - currentRightConstraint - durationSize)
             layoutIfNeeded()
         }
     }
