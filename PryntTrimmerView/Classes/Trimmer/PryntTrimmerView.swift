@@ -295,6 +295,22 @@ public protocol TrimmerViewDelegate: class {
         }
     }
 
+    /// Move the left trimmer handle to the given time.
+    public func moveLeftHandle(to time: CMTime) {
+        if let newPosition = getPosition(from: time) {
+            updateLeftConstraint(with: CGPoint(x: newPosition - currentLeftConstraint, y: 0))
+            updateSelectedTime(stoppedMoving: false)
+        }
+    }
+
+    /// Move the right trimmer handle to the given time.
+    public func moveRightHandle(to time: CMTime) {
+        if let newPosition = getPosition(from: time) {
+            updateRightConstraint(with: CGPoint(x: newPosition - frame.width - currentRightConstraint + 2 * handleWidth, y: 0))
+            updateSelectedTime(stoppedMoving: false)
+        }
+    }
+
     /// The selected start time for the current asset.
     public var startTime: CMTime? {
         let startPosition = leftHandleView.frame.origin.x + assetPreview.contentOffset.x
