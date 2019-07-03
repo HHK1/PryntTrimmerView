@@ -71,13 +71,6 @@ public protocol TrimmerViewDelegate: class {
 
     private let handleWidth: CGFloat = 15
 
-    /// The maximum duration allowed for the trimming. Change it before setting the asset, as the asset preview
-    public var maxDuration: Double = 15 {
-        didSet {
-            assetPreview.maxDuration = maxDuration
-        }
-    }
-
     /// The minimum duration allowed for the trimming. The handles won't pan further if the minimum duration is attained.
     public var minDuration: Double = 3
 

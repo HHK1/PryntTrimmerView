@@ -14,7 +14,7 @@ class AssetVideoScrollView: UIScrollView {
     private var widthConstraint: NSLayoutConstraint?
 
     let contentView = UIView()
-    var maxDuration: Double = 15
+    public var maxDuration: Double = 15
     private var generator: AVAssetImageGenerator?
 
     override init(frame: CGRect) {
@@ -116,7 +116,6 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     private func getThumbnailTimes(for asset: AVAsset, numberOfThumbnails: Int) -> [NSValue] {
-
         let timeIncrement = (asset.duration.seconds * 1000) / Double(numberOfThumbnails)
         var timesForThumbnails = [NSValue]()
         for index in 0..<numberOfThumbnails {
@@ -128,11 +127,19 @@ class AssetVideoScrollView: UIScrollView {
     }
 
     private func generateImages(for asset: AVAsset, at times: [NSValue], with maximumSize: CGSize, visibleThumnails: Int) {
-
         generator = AVAssetImageGenerator(asset: asset)
-        generator?.appliesPreferredTrackTransform = true
-        let scaledSize = CGSize(width: maximumSize.width * UIScreen.main.scale, height: maximumSize.height *  UIScreen.main.scale)
+        let scaledSize = CGSize(width: maximumSize.width * UIScreen.main.scale, height: maximumSize.height * UIScreen.main.scale)
+        let composition = AVMutableVideoComposition(propertiesOf: asset)
+        var renderSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+        for track in asset.tracks where track.mediaType == .video {
+            let size = track.naturalSize
+            if size.width <= renderSize.width && size.height <= renderSize.height {
+                renderSize = size
+            }
+        }
+        composition.renderSize = renderSize
         generator?.maximumSize = scaledSize
+        generator?.videoComposition = composition
         var count = 0
 
         let handler: AVAssetImageGeneratorCompletionHandler = { [weak self] (_, cgimage, _, result, error) in
