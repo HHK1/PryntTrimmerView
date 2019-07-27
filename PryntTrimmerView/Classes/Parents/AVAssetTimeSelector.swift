@@ -34,23 +34,15 @@ public class AVAssetTimeSelector: UIView, UIScrollViewDelegate {
 
     func setupSubviews() {
         setupAssetPreview()
-        constrainAssetPreview()
     }
 
     // MARK: - Asset Preview
 
     func setupAssetPreview() {
-
+        self.translatesAutoresizingMaskIntoConstraints = false
         assetPreview.translatesAutoresizingMaskIntoConstraints = false
         assetPreview.delegate = self
         addSubview(assetPreview)
-    }
-
-    func constrainAssetPreview() {
-        assetPreview.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        assetPreview.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        assetPreview.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        assetPreview.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
     func assetDidChange(newAsset: AVAsset?) {
