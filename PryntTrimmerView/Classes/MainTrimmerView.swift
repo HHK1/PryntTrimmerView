@@ -51,12 +51,14 @@ public class MainTrimmerView: UIView {
     override public func awakeFromNib() {
         super.awakeFromNib()
         translatesAutoresizingMaskIntoConstraints = false
+
+        setup()
         setupConstraints()
     }
 
     // MARK: - Setup
     public func setup() {
-
+        clipsToBounds = true
     }
 
     public func setupConstraints() {

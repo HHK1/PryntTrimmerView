@@ -156,6 +156,7 @@ public class TimestampScrollView: UIScrollView {
     public func addDotsWithLabelsFor(_ duration: CGFloat, withContentsSize cSize: CGSize) {
         // Remove everything and add again
         subviews.forEach { $0.removeFromSuperview() }
+        setup()
 
         contentSize = cSize
 
@@ -163,14 +164,11 @@ public class TimestampScrollView: UIScrollView {
         var lastDot: UIView?
         let numberOfDots = Int(duration)
         var dotSize: CGFloat = 3
-        var bigDot = false
         for i in 0...numberOfDots {
 
             if i % 5 == 0 {
-                bigDot = true
                 dotSize = 5
             } else {
-                bigDot = false
                 dotSize = 2
             }
 
@@ -183,7 +181,7 @@ public class TimestampScrollView: UIScrollView {
             circle.widthAnchor.constraint(equalToConstant: dotSize).isActive = true
             circle.heightAnchor.constraint(equalToConstant: dotSize).isActive = true
             circle.layer.cornerRadius = dotSize / 2
-            circle.setNeedsLayout()
+//            circle.setNeedsLayout()
 
             if let lView = lastDot {
                 let leading = spaceBetween - circle.frame.width / 2 - lView.frame.width / 2
@@ -194,23 +192,26 @@ public class TimestampScrollView: UIScrollView {
 
             lastDot = circle
 
-            if bigDot {
+            if i % 5 == 0 {
                 // Add label
-                
+
                 let textString = i < 10 ? ":0\(i)" : ":\(i)"
-                
+
                 let label = UILabel()
                 label.text = textString
                 label.translatesAutoresizingMaskIntoConstraints = false
                 addSubview(label)
-                label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-                label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-                
+//                label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+                label.topAnchor.constraint(equalTo: circle.bottomAnchor, constant: 8).isActive = true
+                label.centerXAnchor.constraint(equalTo: circle.centerXAnchor).isActive = true
+                label.widthAnchor.constraint(equalToConstant: 30).isActive = true
+                label.textAlignment = .center
+//                label.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
                 label.font = label.font.withSize(13)
-                
-//                widthAnchor.constraint(equalToConstant: 20).isActive = true
+
             }
-            
+
 //            let dotView = TimestampScrollViewCell()
 //            addSubview(timestampCell)
 //            let number = i * 5
@@ -285,6 +286,6 @@ public class TimestampScrollView: UIScrollView {
     private func setup() {
         isUserInteractionEnabled = false
         showsHorizontalScrollIndicator = false
-        clipsToBounds = true
+        clipsToBounds = false
     }
 }
