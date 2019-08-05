@@ -14,6 +14,10 @@ public protocol TrimmerViewDelegate: class {
     func positionBarStoppedMoving(_ playerTime: CMTime)
 }
 
+public protocol TrimmerScrollDelegate: class {
+    func scrollDidMove(_ contentOffset: CGPoint)
+}
+
 /// A view to select a specific time range of a video. It consists of an asset preview with thumbnails inside a scroll view, two
 /// handles on the side to select the beginning and the end of the range, and a position bar to synchronize the control with a
 /// video preview, typically with an `AVPlayer`.
@@ -49,6 +53,7 @@ public protocol TrimmerViewDelegate: class {
     // MARK: Interface
 
     public weak var delegate: TrimmerViewDelegate?
+    public weak var scrollDelegate: TrimmerScrollDelegate?
 
     // MARK: Subviews
 
@@ -75,7 +80,7 @@ public protocol TrimmerViewDelegate: class {
     public let handleWidth: CGFloat = 15
 
     /// The maximum duration allowed for the trimming. Change it before setting the asset, as the asset preview
-    public var maxDuration: Double = 15 {
+    public var maxDuration: Double = 25 {
         didSet {
             assetPreview.maxDuration = maxDuration
         }
@@ -417,5 +422,6 @@ public protocol TrimmerViewDelegate: class {
     }
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateSelectedTime(stoppedMoving: false)
+        scrollDelegate?.scrollDidMove(scrollView.contentOffset)
     }
 }

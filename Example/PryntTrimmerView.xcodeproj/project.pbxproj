@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F189F446B41A22CFCFA1EE0 /* Pods_PryntTrimmerView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2546D375231F430332EE5C /* Pods_PryntTrimmerView_Tests.framework */; };
-		24B4518A813C76B09F2F4A4B /* Pods_PryntTrimmerView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AF731B842FEC297C5E9A38 /* Pods_PryntTrimmerView_Example.framework */; };
 		26004BB722F80E8D00AF3B21 /* TimestampScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26004BB522F80E8D00AF3B21 /* TimestampScrollView.swift */; };
 		26004BB922F80F3A00AF3B21 /* MainTrimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26004BB822F80F3A00AF3B21 /* MainTrimmerView.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		B6EA0D60E782589123A7DF7E /* Pods_PryntTrimmerView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3859856343338BAB97DC8DCC /* Pods_PryntTrimmerView_Example.framework */; };
 		BA05863A208FE16C004E868E /* PryntTrimmerView.h in Headers */ = {isa = PBXBuildFile; fileRef = BA05862C208FE161004E868E /* PryntTrimmerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA05863D208FE232004E868E /* AssetVideoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05862F208FE161004E868E /* AssetVideoScrollView.swift */; };
 		BA05863E208FE232004E868E /* AVAssetTimeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA058630208FE161004E868E /* AVAssetTimeSelector.swift */; };
@@ -28,6 +27,7 @@
 		BAAF985C1E8C12DA007683C8 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF985A1E8C12DA007683C8 /* AVPlayer+isPlaying.swift */; };
 		BAAF985D1E8C12DA007683C8 /* VideoTrimmerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAF985B1E8C12DA007683C8 /* VideoTrimmerViewController.swift */; };
 		BAF3857A1EFFF25300061314 /* AssetSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF385791EFFF25300061314 /* AssetSelectionViewController.swift */; };
+		D722A708AC97F8E8CF0B10BC /* Pods_PryntTrimmerView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B9ABDD2FD0FF8B1D19FAEB /* Pods_PryntTrimmerView_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B2546D375231F430332EE5C /* Pods_PryntTrimmerView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E32695D482731F4783E1045 /* Pods-PryntTrimmerView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Example.release.xcconfig"; path = "Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		26004BB522F80E8D00AF3B21 /* TimestampScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampScrollView.swift; sourceTree = "<group>"; };
 		26004BB822F80F3A00AF3B21 /* MainTrimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTrimmerView.swift; sourceTree = "<group>"; };
 		27BE3317225C67028EF5D0BE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2EE2636FA3F2BB610680D644 /* PryntTrimmerView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PryntTrimmerView.podspec; path = ../PryntTrimmerView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3859856343338BAB97DC8DCC /* Pods_PryntTrimmerView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45B9ABDD2FD0FF8B1D19FAEB /* Pods_PryntTrimmerView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* PryntTrimmerView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PryntTrimmerView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,9 +57,6 @@
 		607FACE51AFB9204008FA782 /* PryntTrimmerView_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PryntTrimmerView_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8203D0A3EDBAFEE03EE17BB1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		A0E0C53092E03EC07C952C01 /* Pods-PryntTrimmerView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Tests/Pods-PryntTrimmerView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		A2AF731B842FEC297C5E9A38 /* Pods_PryntTrimmerView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4456BDD210B024D264D0888 /* Pods-PryntTrimmerView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BA058623208FE042004E868E /* PryntTrimmerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PryntTrimmerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA05862C208FE161004E868E /* PryntTrimmerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PryntTrimmerView.h; sourceTree = "<group>"; };
 		BA05862F208FE161004E868E /* AssetVideoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetVideoScrollView.swift; sourceTree = "<group>"; };
@@ -74,8 +73,9 @@
 		BAAF985A1E8C12DA007683C8 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
 		BAAF985B1E8C12DA007683C8 /* VideoTrimmerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTrimmerViewController.swift; sourceTree = "<group>"; };
 		BAF385791EFFF25300061314 /* AssetSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetSelectionViewController.swift; sourceTree = "<group>"; };
-		FB4D8D4A51CFFBB151546C59 /* Pods-PryntTrimmerView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example.release.xcconfig"; sourceTree = "<group>"; };
-		FECE6EE3130FF8A1D6795BD8 /* Pods-PryntTrimmerView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PryntTrimmerView_Tests/Pods-PryntTrimmerView_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BB0863B385776CA3C12CF568 /* Pods-PryntTrimmerView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Example.debug.xcconfig"; path = "Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		C92734387EBBB572453D98BA /* Pods-PryntTrimmerView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Tests.debug.xcconfig"; path = "Target Support Files/Pods-PryntTrimmerView_Tests/Pods-PryntTrimmerView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED54DF4E84FA0BA6E7FA068A /* Pods-PryntTrimmerView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PryntTrimmerView_Tests.release.xcconfig"; path = "Target Support Files/Pods-PryntTrimmerView_Tests/Pods-PryntTrimmerView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24B4518A813C76B09F2F4A4B /* Pods_PryntTrimmerView_Example.framework in Frameworks */,
+				B6EA0D60E782589123A7DF7E /* Pods_PryntTrimmerView_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F189F446B41A22CFCFA1EE0 /* Pods_PryntTrimmerView_Tests.framework in Frameworks */,
+				D722A708AC97F8E8CF0B10BC /* Pods_PryntTrimmerView_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,8 +113,8 @@
 				607FACD21AFB9204008FA782 /* Example for PryntTrimmerView */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				8FE8083802099A1EDEB1FFCC /* Pods */,
-				6177EEB34725C096049C2B97 /* Frameworks */,
+				C6293E1CB17355A68CCAC1C9 /* Pods */,
+				9BF309A2356216E6A3E98D8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,24 +179,13 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		6177EEB34725C096049C2B97 /* Frameworks */ = {
+		9BF309A2356216E6A3E98D8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A2AF731B842FEC297C5E9A38 /* Pods_PryntTrimmerView_Example.framework */,
-				0B2546D375231F430332EE5C /* Pods_PryntTrimmerView_Tests.framework */,
+				3859856343338BAB97DC8DCC /* Pods_PryntTrimmerView_Example.framework */,
+				45B9ABDD2FD0FF8B1D19FAEB /* Pods_PryntTrimmerView_Tests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8FE8083802099A1EDEB1FFCC /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A4456BDD210B024D264D0888 /* Pods-PryntTrimmerView_Example.debug.xcconfig */,
-				FB4D8D4A51CFFBB151546C59 /* Pods-PryntTrimmerView_Example.release.xcconfig */,
-				A0E0C53092E03EC07C952C01 /* Pods-PryntTrimmerView_Tests.debug.xcconfig */,
-				FECE6EE3130FF8A1D6795BD8 /* Pods-PryntTrimmerView_Tests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		BA05862B208FE161004E868E /* PryntTrimmerView */ = {
@@ -252,6 +241,18 @@
 			path = Trimmer;
 			sourceTree = "<group>";
 		};
+		C6293E1CB17355A68CCAC1C9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB0863B385776CA3C12CF568 /* Pods-PryntTrimmerView_Example.debug.xcconfig */,
+				1E32695D482731F4783E1045 /* Pods-PryntTrimmerView_Example.release.xcconfig */,
+				C92734387EBBB572453D98BA /* Pods-PryntTrimmerView_Tests.debug.xcconfig */,
+				ED54DF4E84FA0BA6E7FA068A /* Pods-PryntTrimmerView_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -270,12 +271,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "PryntTrimmerView_Example" */;
 			buildPhases = (
-				E44E7905BE82308B08CA452C /* [CP] Check Pods Manifest.lock */,
+				A9EEC3397D005F80D4ACB486 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				541B9BF6A654ABF95652F64D /* [CP] Embed Pods Frameworks */,
 				BAD399561EAFB72F007A8FB7 /* Swiftlint */,
+				F5E77A9213EA3F4AC23A25E9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -290,7 +291,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "PryntTrimmerView_Tests" */;
 			buildPhases = (
-				A8367BFE47826B5DFE1DB321 /* [CP] Check Pods Manifest.lock */,
+				1E5073348BF2C5FC371AD196 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -401,36 +402,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		541B9BF6A654ABF95652F64D /* [CP] Embed Pods Frameworks */ = {
+		1E5073348BF2C5FC371AD196 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A8367BFE47826B5DFE1DB321 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-PryntTrimmerView_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9EEC3397D005F80D4ACB486 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PryntTrimmerView_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -451,22 +460,22 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    cd ..\n    swiftlint autocorrect\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		E44E7905BE82308B08CA452C /* [CP] Check Pods Manifest.lock */ = {
+		F5E77A9213EA3F4AC23A25E9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${PODS_ROOT}/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PryntTrimmerView_Example-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PryntTrimmerView_Example/Pods-PryntTrimmerView_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -651,7 +660,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4456BDD210B024D264D0888 /* Pods-PryntTrimmerView_Example.debug.xcconfig */;
+			baseConfigurationReference = BB0863B385776CA3C12CF568 /* Pods-PryntTrimmerView_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9M5LJ68Y64;
@@ -668,7 +677,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB4D8D4A51CFFBB151546C59 /* Pods-PryntTrimmerView_Example.release.xcconfig */;
+			baseConfigurationReference = 1E32695D482731F4783E1045 /* Pods-PryntTrimmerView_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9M5LJ68Y64;
@@ -685,7 +694,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0E0C53092E03EC07C952C01 /* Pods-PryntTrimmerView_Tests.debug.xcconfig */;
+			baseConfigurationReference = C92734387EBBB572453D98BA /* Pods-PryntTrimmerView_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 9M5LJ68Y64;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -707,7 +716,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FECE6EE3130FF8A1D6795BD8 /* Pods-PryntTrimmerView_Tests.release.xcconfig */;
+			baseConfigurationReference = ED54DF4E84FA0BA6E7FA068A /* Pods-PryntTrimmerView_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 9M5LJ68Y64;
 				FRAMEWORK_SEARCH_PATHS = (

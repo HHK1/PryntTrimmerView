@@ -20,7 +20,7 @@ class VideoTrimmerViewController: AssetSelectionViewController {
     @IBOutlet weak var playerView: UIView!
     @IBOutlet weak var trimmerView: TrimmerView!
     @IBOutlet weak var mainTrimmerView: MainTrimmerView!
-    
+
     var player: AVPlayer?
     var playbackTimeCheckerTimer: Timer?
     var trimmerPositionChangedTimer: Timer?
@@ -53,6 +53,9 @@ class VideoTrimmerViewController: AssetSelectionViewController {
 //        trimmerView.maxDuration = CMTimeGetSeconds(asset.duration)
         trimmerView.asset = asset
         trimmerView.delegate = self
+        mainTrimmerView.asset = asset
+        mainTrimmerView.delegate = self
+
         addVideoPlayer(with: asset, playerView: playerView)
     }
 
@@ -106,10 +109,12 @@ class VideoTrimmerViewController: AssetSelectionViewController {
 
         let playBackTime = p.currentTime()
         trimmerView.seek(to: playBackTime)
+        mainTrimmerView.seek(to: playBackTime)
 
         if playBackTime >= endTime {
             p.seek(to: startTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
             trimmerView.seek(to: startTime)
+            mainTrimmerView.seek(to: startTime)
         }
     }
 }

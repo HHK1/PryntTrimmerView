@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 public class MainTrimmerView: UIView {
 
     public lazy var trimmerView: TrimmerView = {
         let trimmer = TrimmerView(frame: CGRect.zero)
         trimmer.translatesAutoresizingMaskIntoConstraints = false
+        trimmer.scrollDelegate = self
         addSubview(trimmer)
         return trimmer
     }()
@@ -22,15 +24,34 @@ public class MainTrimmerView: UIView {
         timestamp.translatesAutoresizingMaskIntoConstraints = false
         addSubview(timestamp)
 
-        timestamp.setupFor(duration: 65)
         return timestamp
     }()
+
+    public var asset: AVAsset? {
+        didSet {
+            trimmerView.asset = asset
+            guard let a = asset else {
+                return
+            }
+
+            let duration = CGFloat(CMTimeGetSeconds(a.duration))
+//            timestampScroll.setupFor(duration: duration)
+//            timestampScroll.addDotsFor(duration, withContentsSize: trimmerView.assetPreview.contentSize)
+            timestampScroll.addDotsWithLabelsFor(duration, withContentsSize: trimmerView.assetPreview.contentSize)
+        }
+    }
+
+    public weak var delegate: TrimmerViewDelegate? {
+        didSet {
+            trimmerView.delegate = delegate
+        }
+    }
 
     // MARK: - Initialization
     override public func awakeFromNib() {
         super.awakeFromNib()
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.setupConstraints()
+        translatesAutoresizingMaskIntoConstraints = false
+        setupConstraints()
     }
 
     // MARK: - Setup
@@ -39,16 +60,26 @@ public class MainTrimmerView: UIView {
     }
 
     public func setupConstraints() {
-        self.trimmerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        self.trimmerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        self.trimmerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        self.trimmerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        trimmerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        trimmerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        trimmerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        trimmerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        self.timestampScroll.leadingAnchor.constraint(equalTo: leadingAnchor, constant: self.trimmerView.handleWidth / 2.0).isActive = true
-        self.timestampScroll.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -self.trimmerView.handleWidth / 2.0).isActive = true
-        self.timestampScroll.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        self.timestampScroll.heightAnchor.constraint(equalToConstant: 30).isActive = true
-
+        timestampScroll.leadingAnchor.constraint(equalTo: leadingAnchor, constant: trimmerView.handleWidth).isActive = true
+        timestampScroll.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -trimmerView.handleWidth).isActive = true
+        timestampScroll.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        timestampScroll.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
 
+    // MARK: - Video Methods
+    public func seek(to time: CMTime) {
+        trimmerView.seek(to: time)
+    }
+
+}
+
+extension MainTrimmerView: TrimmerScrollDelegate {
+    public func scrollDidMove(_ contentOffset: CGPoint) {
+        timestampScroll.contentOffset = contentOffset
+    }
 }
