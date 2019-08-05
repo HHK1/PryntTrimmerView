@@ -64,11 +64,11 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lKA-lv-1M3" secondAttribute="trailing" constant="20" symbolic="YES" id="nSx-0D-PSK"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAu-Gh-hDh" customClass="TimestampScrollView" customModule="PryntTrimmerView">
-                                <rect key="frame" x="20" y="269" width="335" height="40"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAu-Gh-hDh" customClass="MainTrimmerView" customModule="PryntTrimmerView">
+                                <rect key="frame" x="20" y="269" width="335" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="kKs-5O-muk"/>
+                                    <constraint firstAttribute="height" constant="100" id="kKs-5O-muk"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F189F446B41A22CFCFA1EE0 /* Pods_PryntTrimmerView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2546D375231F430332EE5C /* Pods_PryntTrimmerView_Tests.framework */; };
 		24B4518A813C76B09F2F4A4B /* Pods_PryntTrimmerView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2AF731B842FEC297C5E9A38 /* Pods_PryntTrimmerView_Example.framework */; };
+		26004BB722F80E8D00AF3B21 /* TimestampScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26004BB522F80E8D00AF3B21 /* TimestampScrollView.swift */; };
+		26004BB922F80F3A00AF3B21 /* MainTrimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26004BB822F80F3A00AF3B21 /* MainTrimmerView.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		0B2546D375231F430332EE5C /* Pods_PryntTrimmerView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PryntTrimmerView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26004BB522F80E8D00AF3B21 /* TimestampScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampScrollView.swift; sourceTree = "<group>"; };
+		26004BB822F80F3A00AF3B21 /* MainTrimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTrimmerView.swift; sourceTree = "<group>"; };
 		27BE3317225C67028EF5D0BE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2EE2636FA3F2BB610680D644 /* PryntTrimmerView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PryntTrimmerView.podspec; path = ../PryntTrimmerView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* PryntTrimmerView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PryntTrimmerView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +218,8 @@
 				BA058632208FE161004E868E /* .gitkeep */,
 				BA058633208FE161004E868E /* Cropper */,
 				BA058637208FE161004E868E /* Trimmer */,
+				26004BB522F80E8D00AF3B21 /* TimestampScrollView.swift */,
+				26004BB822F80F3A00AF3B21 /* MainTrimmerView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -491,12 +497,14 @@
 			files = (
 				BA05863D208FE232004E868E /* AssetVideoScrollView.swift in Sources */,
 				BA05863E208FE232004E868E /* AVAssetTimeSelector.swift in Sources */,
+				26004BB722F80E8D00AF3B21 /* TimestampScrollView.swift in Sources */,
 				BA05863F208FE232004E868E /* ThumbSelectorView.swift in Sources */,
 				BA058640208FE232004E868E /* VideoCropView.swift in Sources */,
 				BA058641208FE232004E868E /* VideoScrollView.swift in Sources */,
 				BA058642208FE232004E868E /* CropMaskView.swift in Sources */,
 				BA058643208FE232004E868E /* HandlerView.swift in Sources */,
 				BA058644208FE232004E868E /* PryntTrimmerView.swift in Sources */,
+				26004BB922F80F3A00AF3B21 /* MainTrimmerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
