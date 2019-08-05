@@ -64,7 +64,7 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lKA-lv-1M3" secondAttribute="trailing" constant="20" symbolic="YES" id="nSx-0D-PSK"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAu-Gh-hDh" customClass="MainTrimmerView" customModule="PryntTrimmerView">
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAu-Gh-hDh" customClass="MainTrimmerView" customModule="PryntTrimmerView">
                                 <rect key="frame" x="20" y="269" width="335" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -90,6 +90,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mainTrimmerView" destination="DAu-Gh-hDh" id="Jam-HJ-uJb"/>
                         <outlet property="playButton" destination="lKA-lv-1M3" id="7qW-uM-ron"/>
                         <outlet property="playerView" destination="cRa-1R-GZG" id="J0A-Gq-Ta8"/>
                         <outlet property="selectAssetButton" destination="9Q0-Fn-7gy" id="cGV-dY-QEL"/>

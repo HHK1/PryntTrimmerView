@@ -19,7 +19,8 @@ class VideoTrimmerViewController: AssetSelectionViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playerView: UIView!
     @IBOutlet weak var trimmerView: TrimmerView!
-
+    @IBOutlet weak var mainTrimmerView: MainTrimmerView!
+    
     var player: AVPlayer?
     var playbackTimeCheckerTimer: Timer?
     var trimmerPositionChangedTimer: Timer?
