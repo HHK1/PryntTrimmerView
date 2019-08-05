@@ -9,6 +9,100 @@
 import AVFoundation
 import UIKit
 
+public class TimestampScrollViewCell: UIView {
+    func setupWith(number: Int) {
+        let circle = UIView()
+        circle.backgroundColor = UIColor.red
+        circle.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(circle)
+        circle.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        circle.widthAnchor.constraint(equalToConstant: 4).isActive = true
+        circle.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        circle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+
+        let label = UILabel()
+        label.text = number < 10 ? ":0\(number)" : ":\(number)"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(label)
+        label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    }
+
+    func setupSimple() {
+        let circle = UIView()
+        circle.backgroundColor = UIColor.red
+        circle.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(circle)
+        circle.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        circle.widthAnchor.constraint(equalToConstant: 2).isActive = true
+        circle.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        circle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    }
+}
+
+public class TimestampScrollView: UIScrollView {
+
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = UIColor.blue
+
+        self.setupFor(duration: 65)
+    }
+
+    func setupFor(duration: CGFloat) {
+        var lastView: TimestampScrollViewCell?
+        let numberOfLabelCells = Int(duration / 5)
+
+        for i in 0...numberOfLabelCells {
+            let timestampCell = TimestampScrollViewCell()
+            timestampCell.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(timestampCell)
+            timestampCell.setupWith(number: i * 5)
+
+            timestampCell.topAnchor.constraint(equalTo: topAnchor).isActive = true
+            timestampCell.widthAnchor.constraint(equalToConstant: 20).isActive = true
+            timestampCell.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+
+            if let lView = lastView {
+                timestampCell.leadingAnchor.constraint(equalTo: lView.trailingAnchor, constant: 0).isActive = true
+            } else {
+                timestampCell.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+            }
+
+            lastView = timestampCell as TimestampScrollViewCell
+
+            // If last
+            if i == numberOfLabelCells {
+                timestampCell.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+            } else {
+                for j in 0...3 {
+                    let timestampCell = TimestampScrollViewCell()
+                    timestampCell.translatesAutoresizingMaskIntoConstraints = false
+                    addSubview(timestampCell)
+                    timestampCell.setupSimple()
+
+                    timestampCell.topAnchor.constraint(equalTo: topAnchor).isActive = true
+                    timestampCell.widthAnchor.constraint(equalToConstant: 2).isActive = true
+                    timestampCell.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+
+                    if let lView = lastView {
+                        if j == 0 {
+                            timestampCell.leadingAnchor.constraint(equalTo: lView.trailingAnchor, constant: 0).isActive = true
+                        } else {
+                            timestampCell.leadingAnchor.constraint(equalTo: lView.trailingAnchor, constant: 8).isActive = true
+                        }
+
+                    }
+
+                    lastView = timestampCell as TimestampScrollViewCell
+                }
+            }
+        }
+    }
+
+}
+
 public protocol TrimmerViewDelegate: class {
     func didChangePositionBar(_ playerTime: CMTime)
     func positionBarStoppedMoving(_ playerTime: CMTime)
@@ -40,7 +134,7 @@ public protocol TrimmerViewDelegate: class {
     }
 
     /// The color of the position indicator
-    @IBInspectable public var positionBarColor: UIColor = UIColor.white {
+    @IBInspectable public var positionBarColor: UIColor = UIColor.red {
         didSet {
             positionBar.backgroundColor = positionBarColor
         }
@@ -61,10 +155,13 @@ public protocol TrimmerViewDelegate: class {
     private let leftMaskView = UIView()
     private let rightMaskView = UIView()
 
+    private let timestampScrollView = TimestampScrollView()
+
     // MARK: Constraints
 
     private var currentLeftConstraint: CGFloat = 0
     private var currentRightConstraint: CGFloat = 0
+    private var currentPositionConstraint: CGFloat = 0
     private var leftConstraint: NSLayoutConstraint?
     private var rightConstraint: NSLayoutConstraint?
     private var positionConstraint: NSLayoutConstraint?
@@ -92,9 +189,11 @@ public protocol TrimmerViewDelegate: class {
         setupHandleView()
         setupMaskView()
         setupPositionBar()
+        setupTimestampScrollView()
         setupGestures()
         updateMainColor()
         updateHandleColor()
+
     }
 
     override func constrainAssetPreview() {
@@ -186,19 +285,34 @@ public protocol TrimmerViewDelegate: class {
 
     private func setupPositionBar() {
 
-        positionBar.frame = CGRect(x: 0, y: 0, width: 3, height: frame.height)
+        positionBar.frame = CGRect(x: 0, y: 0, width: 20, height: frame.height)
         positionBar.backgroundColor = positionBarColor
         positionBar.center = CGPoint(x: leftHandleView.frame.maxX, y: center.y)
         positionBar.layer.cornerRadius = 1
         positionBar.translatesAutoresizingMaskIntoConstraints = false
-        positionBar.isUserInteractionEnabled = false
+        positionBar.isUserInteractionEnabled = true
         addSubview(positionBar)
 
         positionBar.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        positionBar.widthAnchor.constraint(equalToConstant: 3).isActive = true
+        positionBar.widthAnchor.constraint(equalToConstant: 20).isActive = true
         positionBar.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         positionConstraint = positionBar.leftAnchor.constraint(equalTo: leftHandleView.rightAnchor, constant: 0)
         positionConstraint?.isActive = true
+    }
+
+    private func setupTimestampScrollView() {
+        return
+
+        timestampScrollView.backgroundColor = UIColor.red
+        timestampScrollView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(timestampScrollView)
+
+        timestampScrollView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        timestampScrollView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+
+        timestampScrollView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+        timestampScrollView.topAnchor.constraint(equalTo: bottomAnchor, constant: 40)
     }
 
     private func setupGestures() {
@@ -207,6 +321,8 @@ public protocol TrimmerViewDelegate: class {
         leftHandleView.addGestureRecognizer(leftPanGestureRecognizer)
         let rightPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(TrimmerView.handlePanGesture))
         rightHandleView.addGestureRecognizer(rightPanGestureRecognizer)
+        let positionBarPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(TrimmerView.handlePositionGesture))
+        positionBar.addGestureRecognizer(positionBarPanGestureRecognizer)
     }
 
     private func updateMainColor() {
@@ -250,7 +366,61 @@ public protocol TrimmerViewDelegate: class {
             updateSelectedTime(stoppedMoving: false)
 
         case .cancelled, .ended, .failed:
-            updateSelectedTime(stoppedMoving: true)
+            updateSelectedTime(stoppedMoving: false)
+        default: break
+        }
+    }
+
+    @objc func handlePositionGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+        guard let view = gestureRecognizer.view, let superView = gestureRecognizer.view?.superview else { return }
+        let isLeftGesture = view == leftHandleView
+        switch gestureRecognizer.state {
+
+        case .began:
+            currentPositionConstraint = positionConstraint!.constant
+//            if isLeftGesture {
+//                currentLeftConstraint = leftConstraint!.constant
+//            } else {
+//                currentRightConstraint = rightConstraint!.constant
+//            }
+            updateSelectedTime(stoppedMoving: false)
+        case .changed:
+            let translation = gestureRecognizer.translation(in: superView)
+            let maxConstraint = rightHandleView.frame.origin.x - rightHandleView.frame.width - positionBar.frame.width
+            let minConstraint: CGFloat = 0
+
+            let translatedConstraint = currentPositionConstraint + translation.x
+            var newConstraint = translatedConstraint
+            if translatedConstraint < minConstraint {
+                newConstraint = minConstraint
+            }
+
+            if translatedConstraint > maxConstraint {
+                newConstraint = maxConstraint
+            }
+
+//            let maxConstraint = max(rightHandleView.frame.origin.x - handleWidth - minimumDistanceBetweenHandle, 0)
+//            let newConstraint = min(max(0, ), maxConstraint)
+            positionConstraint?.constant = newConstraint
+
+//            if isLeftGesture {
+//                updateLeftConstraint(with: translation)
+//            } else {
+//                updateRightConstraint(with: translation)
+//            }
+//            layoutIfNeeded()
+//            if let startTime = startTime, isLeftGesture {
+//                seek(to: startTime)
+//            } else if let endTime = endTime {
+//                seek(to: endTime)
+//            }
+
+            let time = getTime(from: newConstraint + assetPreview.contentOffset.x)
+            seek(to: time!)
+            updateSelectedTime(stoppedMoving: false)
+
+        case .cancelled, .ended, .failed:
+            updateSelectedTime(stoppedMoving: false)
         default: break
         }
     }
@@ -331,12 +501,12 @@ public protocol TrimmerViewDelegate: class {
     // MARK: - Scroll View Delegate
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        updateSelectedTime(stoppedMoving: true)
+        updateSelectedTime(stoppedMoving: false)
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            updateSelectedTime(stoppedMoving: true)
+            updateSelectedTime(stoppedMoving: false)
         }
     }
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {

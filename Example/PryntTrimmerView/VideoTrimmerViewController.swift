@@ -49,6 +49,7 @@ class VideoTrimmerViewController: AssetSelectionViewController {
 
     override func loadAsset(_ asset: AVAsset) {
 
+//        trimmerView.maxDuration = CMTimeGetSeconds(asset.duration)
         trimmerView.asset = asset
         trimmerView.delegate = self
         addVideoPlayer(with: asset, playerView: playerView)
@@ -91,15 +92,22 @@ class VideoTrimmerViewController: AssetSelectionViewController {
 
     @objc func onPlaybackTimeChecker() {
 
-        guard let startTime = trimmerView.startTime, let endTime = trimmerView.endTime, let player = player else {
+        guard let startTime = trimmerView.startTime, let endTime = trimmerView.endTime else {
             return
         }
 
-        let playBackTime = player.currentTime()
+//        let startTime = trimmerView.startTime
+//        let endTime = trimmerView.endTime
+
+        guard let p = player else {
+            return
+        }
+
+        let playBackTime = p.currentTime()
         trimmerView.seek(to: playBackTime)
 
         if playBackTime >= endTime {
-            player.seek(to: startTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+            p.seek(to: startTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
             trimmerView.seek(to: startTime)
         }
     }

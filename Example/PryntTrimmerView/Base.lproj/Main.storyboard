@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -66,16 +64,26 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lKA-lv-1M3" secondAttribute="trailing" constant="20" symbolic="YES" id="nSx-0D-PSK"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAu-Gh-hDh" customClass="TimestampScrollView" customModule="PryntTrimmerView">
+                                <rect key="frame" x="20" y="269" width="335" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="kKs-5O-muk"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cRa-1R-GZG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1LK-Oq-5a4"/>
+                            <constraint firstItem="DAu-Gh-hDh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="3wf-vH-DEf"/>
                             <constraint firstItem="qFP-ui-lpU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="7PE-Wt-fxy"/>
                             <constraint firstItem="qFP-ui-lpU" firstAttribute="top" secondItem="cRa-1R-GZG" secondAttribute="bottom" constant="56" id="AEr-oM-EA2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qFP-ui-lpU" secondAttribute="trailing" constant="24" id="KZ2-yJ-uM3"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YaM-S0-qXi" secondAttribute="bottom" id="Slw-XU-aM4"/>
                             <constraint firstItem="YaM-S0-qXi" firstAttribute="top" secondItem="qFP-ui-lpU" secondAttribute="bottom" constant="24" id="Xjw-p8-4mC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cRa-1R-GZG" secondAttribute="trailing" id="ar1-XS-aHn"/>
+                            <constraint firstItem="DAu-Gh-hDh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="249" id="bgf-WM-FIa"/>
+                            <constraint firstAttribute="trailing" secondItem="DAu-Gh-hDh" secondAttribute="trailing" constant="20" id="hQh-LE-hjz"/>
                             <constraint firstItem="YaM-S0-qXi" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="rCv-FI-2kD"/>
                             <constraint firstItem="YaM-S0-qXi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vwe-C1-gb5"/>
                             <constraint firstItem="cRa-1R-GZG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="zqq-0p-TKp"/>
@@ -133,7 +141,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tf-hJ-oj2">
-                                                <rect key="frame" x="170" y="7" width="34" height="30"/>
+                                                <rect key="frame" x="170.5" y="7" width="34" height="30"/>
                                                 <state key="normal" title="Crop">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
