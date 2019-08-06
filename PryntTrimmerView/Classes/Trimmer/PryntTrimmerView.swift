@@ -100,7 +100,6 @@ public protocol TrimmerScrollDelegate: class {
         setupHandleView()
         setupMaskView()
         setupPositionBar()
-        setupTimestampScrollView()
         setupGestures()
         updateMainColor()
         updateHandleColor()
@@ -211,21 +210,6 @@ public protocol TrimmerScrollDelegate: class {
         positionConstraint?.isActive = true
     }
 
-    private func setupTimestampScrollView() {
-        return
-
-        timestampScrollView.backgroundColor = UIColor.red
-        timestampScrollView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(timestampScrollView)
-
-        timestampScrollView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        timestampScrollView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-
-        timestampScrollView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-
-        timestampScrollView.topAnchor.constraint(equalTo: bottomAnchor, constant: 40)
-    }
-
     private func setupGestures() {
 
         let leftPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(TrimmerView.handlePanGesture))
@@ -283,17 +267,12 @@ public protocol TrimmerScrollDelegate: class {
     }
 
     @objc func handlePositionGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
-        guard let view = gestureRecognizer.view, let superView = gestureRecognizer.view?.superview else { return }
-        let isLeftGesture = view == leftHandleView
+        guard let superView = gestureRecognizer.view?.superview else { return }
         switch gestureRecognizer.state {
 
         case .began:
-            currentPositionConstraint = positionConstraint!.constant
-//            if isLeftGesture {
-//                currentLeftConstraint = leftConstraint!.constant
-//            } else {
-//                currentRightConstraint = rightConstraint!.constant
-//            }
+            currentPositionConstraint = positionConstraint!.constant + leftHandleView.frame.minX
+
             updateSelectedTime(stoppedMoving: false)
         case .changed:
             let translation = gestureRecognizer.translation(in: superView)
@@ -310,21 +289,7 @@ public protocol TrimmerScrollDelegate: class {
                 newConstraint = maxConstraint
             }
 
-//            let maxConstraint = max(rightHandleView.frame.origin.x - handleWidth - minimumDistanceBetweenHandle, 0)
-//            let newConstraint = min(max(0, ), maxConstraint)
             positionConstraint?.constant = newConstraint
-
-//            if isLeftGesture {
-//                updateLeftConstraint(with: translation)
-//            } else {
-//                updateRightConstraint(with: translation)
-//            }
-//            layoutIfNeeded()
-//            if let startTime = startTime, isLeftGesture {
-//                seek(to: startTime)
-//            } else if let endTime = endTime {
-//                seek(to: endTime)
-//            }
 
             let time = getTime(from: newConstraint + assetPreview.contentOffset.x)
             seek(to: time!)

@@ -96,24 +96,17 @@ class VideoTrimmerViewController: AssetSelectionViewController {
 
     @objc func onPlaybackTimeChecker() {
 
-        guard let startTime = trimmerView.startTime, let endTime = trimmerView.endTime else {
+        guard let startTime = trimmerView.startTime, let endTime = trimmerView.endTime, let player = player else {
             return
         }
 
-//        let startTime = trimmerView.startTime
-//        let endTime = trimmerView.endTime
-
-        guard let p = player else {
-            return
-        }
-
-        let playBackTime = p.currentTime()
-        trimmerView.seek(to: playBackTime)
+        let playBackTime = player.currentTime()
+//        trimmerView.seek(to: playBackTime)
         mainTrimmerView.seek(to: playBackTime)
 
         if playBackTime >= endTime {
-            p.seek(to: startTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
-            trimmerView.seek(to: startTime)
+            player.seek(to: startTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+//            trimmerView.seek(to: startTime)
             mainTrimmerView.seek(to: startTime)
         }
     }
@@ -130,7 +123,7 @@ extension VideoTrimmerViewController: TrimmerViewDelegate {
         stopPlaybackTimeChecker()
         player?.pause()
         player?.seek(to: playerTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
-        let duration = (trimmerView.endTime! - trimmerView.startTime!).seconds
-        print(duration)
+//        let duration = (trimmerView.endTime! - trimmerView.startTime!).seconds
+//        print(duration)
     }
 }
