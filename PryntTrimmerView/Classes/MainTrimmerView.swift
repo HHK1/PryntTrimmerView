@@ -11,7 +11,7 @@ import AVFoundation
 
 public class MainTrimmerView: UIView {
 
-    public lazy var trimmerView: TrimmerView = {
+    private lazy var trimmerView: TrimmerView = {
         let trimmer = TrimmerView(frame: CGRect.zero)
         trimmer.translatesAutoresizingMaskIntoConstraints = false
         trimmer.scrollDelegate = self
@@ -19,7 +19,7 @@ public class MainTrimmerView: UIView {
         return trimmer
     }()
 
-    public lazy var timestampScroll: TimestampScrollView = {
+    private lazy var timestampScroll: TimestampScrollView = {
         let timestamp = TimestampScrollView(frame: CGRect.zero)
         timestamp.translatesAutoresizingMaskIntoConstraints = false
         addSubview(timestamp)
@@ -76,6 +76,14 @@ public class MainTrimmerView: UIView {
     // MARK: - Video Methods
     public func seek(to time: CMTime) {
         trimmerView.seek(to: time)
+    }
+    
+    public func startTime() -> CMTime? {
+        return trimmerView.startTime
+    }
+    
+    public func endTime() -> CMTime? {
+        return trimmerView.endTime
     }
 
 }
