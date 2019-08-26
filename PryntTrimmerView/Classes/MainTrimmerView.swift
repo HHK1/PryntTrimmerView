@@ -29,14 +29,14 @@ public class MainTrimmerView: UIView {
 
     public var asset: AVAsset? {
         didSet {
-            trimmerView.asset = asset
+
             guard let a = asset else {
                 return
             }
+            
+            trimmerView.asset = asset
 
             let duration = CGFloat(CMTimeGetSeconds(a.duration))
-//            timestampScroll.setupFor(duration: duration)
-//            timestampScroll.addDotsFor(duration, withContentsSize: trimmerView.assetPreview.contentSize)
             timestampScroll.addDotsWithLabelsFor(duration, withContentsSize: trimmerView.assetPreview.contentSize)
         }
     }
@@ -59,6 +59,7 @@ public class MainTrimmerView: UIView {
     // MARK: - Setup
     public func setup() {
         clipsToBounds = true
+        self.timestampScroll.delegate = self
     }
 
     public func setupConstraints() {
@@ -91,5 +92,11 @@ public class MainTrimmerView: UIView {
 extension MainTrimmerView: TrimmerScrollDelegate {
     public func scrollDidMove(_ contentOffset: CGPoint) {
         timestampScroll.contentOffset = contentOffset
+    }
+}
+
+extension MainTrimmerView: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.trimmerView.assetPreview.contentOffset = scrollView.contentOffset
     }
 }

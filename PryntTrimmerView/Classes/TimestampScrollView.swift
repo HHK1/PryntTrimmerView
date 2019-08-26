@@ -66,7 +66,7 @@ public class TimestampScrollView: UIScrollView {
 
     // MARK: - Private
     private func setup() {
-        isUserInteractionEnabled = false
+//        isUserInteractionEnabled = false
         showsHorizontalScrollIndicator = false
         clipsToBounds = false
     }
