@@ -18,6 +18,18 @@ public protocol TrimmerScrollDelegate: class {
     func scrollDidMove(_ contentOffset: CGPoint)
 }
 
+fileprivate class PositionBar: UIView {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let hitFrame = bounds.insetBy(dx: -10, dy: -10)
+        return hitFrame.contains(point) ? self : nil
+    }
+    
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let hitFrame = bounds.insetBy(dx: -10, dy: -10)
+        return hitFrame.contains(point)
+    }
+}
+
 /// A view to select a specific time range of a video. It consists of an asset preview with thumbnails inside a scroll view, two
 /// handles on the side to select the beginning and the end of the range, and a position bar to synchronize the control with a
 /// video preview, typically with an `AVPlayer`.
@@ -44,7 +56,7 @@ public protocol TrimmerScrollDelegate: class {
     }
 
     /// The color of the position indicator
-    @IBInspectable public var positionBarColor: UIColor = UIColor.red {
+    @IBInspectable public var positionBarColor: UIColor = UIColor.white {
         didSet {
             positionBar.backgroundColor = positionBarColor
         }
@@ -60,7 +72,7 @@ public protocol TrimmerScrollDelegate: class {
     private let trimView = UIView()
     private let leftHandleView = HandlerView()
     private let rightHandleView = HandlerView()
-    private let positionBar = UIView()
+    private let positionBar = PositionBar()
     private let leftHandleKnob = UIView()
     private let rightHandleKnob = UIView()
     private let leftMaskView = UIView()
@@ -195,7 +207,7 @@ public protocol TrimmerScrollDelegate: class {
 
     private func setupPositionBar() {
 
-        positionBar.frame = CGRect(x: 0, y: 0, width: 20, height: frame.height)
+        positionBar.frame = CGRect(x: 0, y: 0, width: 5, height: frame.height)
         positionBar.backgroundColor = positionBarColor
         positionBar.center = CGPoint(x: leftHandleView.frame.maxX, y: center.y)
         positionBar.layer.cornerRadius = 1
@@ -204,7 +216,7 @@ public protocol TrimmerScrollDelegate: class {
         addSubview(positionBar)
 
         positionBar.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        positionBar.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        positionBar.widthAnchor.constraint(equalToConstant: 5).isActive = true
         positionBar.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         positionConstraint = positionBar.leftAnchor.constraint(equalTo: leftHandleView.rightAnchor, constant: 0)
         positionConstraint?.isActive = true

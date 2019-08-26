@@ -29,7 +29,7 @@ public class TimestampScrollView: UIScrollView {
             }
 
             let circle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: dotSize, height: dotSize))
-            circle.backgroundColor = UIColor.red
+            circle.backgroundColor = UIColor.black
             circle.translatesAutoresizingMaskIntoConstraints = false
             addSubview(circle)
 
