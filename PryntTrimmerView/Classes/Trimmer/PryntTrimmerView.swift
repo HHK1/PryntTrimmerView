@@ -42,14 +42,14 @@ fileprivate class PositionBar: UIView {
     // MARK: Color Customization
 
     /// The color of the main border of the view
-    @IBInspectable public var mainColor: UIColor = UIColor.orange {
+    @IBInspectable public var mainColor: UIColor = UIColor.black {
         didSet {
             updateMainColor()
         }
     }
 
     /// The color of the handles on the side of the view
-    @IBInspectable public var handleColor: UIColor = UIColor.gray {
+    @IBInspectable public var handleColor: UIColor = UIColor.white {
         didSet {
            updateHandleColor()
         }
