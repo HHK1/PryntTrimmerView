@@ -364,6 +364,7 @@ fileprivate class PositionBar: UIView {
         
         self.leftConstraint?.constant = startPositon - self.assetPreview.contentOffset.x
         self.rightConstraint?.constant = -(self.assetPreview.frame.width - (endPosition - self.assetPreview.contentOffset.x))
+        self.layoutIfNeeded()
     }
 
     /// Move the position bar to the given time.
