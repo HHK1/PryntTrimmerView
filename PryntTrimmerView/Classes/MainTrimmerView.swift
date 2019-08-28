@@ -87,6 +87,9 @@ public class MainTrimmerView: UIView {
         return trimmerView.endTime
     }
 
+    public func changeTo(startTime: CMTime, endTime: CMTime) {
+        self.trimmerView.changeTo(startTime: startTime, endTime: endTime)
+    }
 }
 
 extension MainTrimmerView: TrimmerScrollDelegate {

@@ -339,6 +339,32 @@ fileprivate class PositionBar: UIView {
     }
 
     // MARK: - Time Equivalence
+    
+    public func changeTo(startTime: CMTime, endTime: CMTime) {
+        let startTimeSeconds = CMTimeGetSeconds(startTime)
+        let endTimeSeconds = CMTimeGetSeconds(endTime)
+        
+        let middleSeconds = endTimeSeconds - (endTimeSeconds - startTimeSeconds) / 2
+        guard let middlePosition = getPosition(from: CMTime(seconds: middleSeconds, preferredTimescale: startTime.timescale)) else {
+            return
+        }
+        
+        // Add correct contentOffset (check left first)
+        self.assetPreview.contentOffset = CGPoint(x: middlePosition > self.assetPreview.frame.width ? middlePosition - self.assetPreview.frame.width / 2 : 0 , y: self.assetPreview.contentOffset.y)
+        
+        // Check content offset right
+        if (self.assetPreview.contentOffset.x + self.assetPreview.frame.width > self.assetPreview.contentView.frame.width) {
+            let diff = self.assetPreview.contentOffset.x + self.assetPreview.frame.width - self.assetPreview.contentView.frame.width
+            self.assetPreview.contentOffset = CGPoint(x: self.assetPreview.contentOffset.x - diff, y: self.assetPreview.contentOffset.y)
+        }
+        
+        guard let startPositon = getPosition(from: startTime), let endPosition = getPosition(from: endTime) else {
+            return
+        }
+        
+        self.leftConstraint?.constant = startPositon - self.assetPreview.contentOffset.x
+        self.rightConstraint?.constant = -(self.assetPreview.frame.width - (endPosition - self.assetPreview.contentOffset.x))
+    }
 
     /// Move the position bar to the given time.
     public func seek(to time: CMTime) {
