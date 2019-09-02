@@ -89,7 +89,7 @@ fileprivate class PositionBar: UIView {
     private var rightConstraint: NSLayoutConstraint?
     private var positionConstraint: NSLayoutConstraint?
 
-    public let handleWidth: CGFloat = 15
+    public let handleWidth: CGFloat = 16
 
     /// The maximum duration allowed for the trimming. Change it before setting the asset, as the asset preview
     public var maxDuration: Double = 25 {
@@ -144,7 +144,10 @@ fileprivate class PositionBar: UIView {
     private func setupHandleView() {
 
         leftHandleView.isUserInteractionEnabled = true
-        leftHandleView.layer.cornerRadius = 2.0
+        if #available(iOS 11.0, *) {
+            leftHandleView.layer.cornerRadius = 8.0
+            leftHandleView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        }
         leftHandleView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(leftHandleView)
 
@@ -156,13 +159,17 @@ fileprivate class PositionBar: UIView {
         leftHandleKnob.translatesAutoresizingMaskIntoConstraints = false
         leftHandleView.addSubview(leftHandleKnob)
 
-        leftHandleKnob.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
-        leftHandleKnob.widthAnchor.constraint(equalToConstant: 2).isActive = true
+        leftHandleKnob.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.33).isActive = true
+        leftHandleKnob.widthAnchor.constraint(equalToConstant: 3).isActive = true
         leftHandleKnob.centerYAnchor.constraint(equalTo: leftHandleView.centerYAnchor).isActive = true
         leftHandleKnob.centerXAnchor.constraint(equalTo: leftHandleView.centerXAnchor).isActive = true
+        leftHandleKnob.layer.cornerRadius = 2
 
         rightHandleView.isUserInteractionEnabled = true
-        rightHandleView.layer.cornerRadius = 2.0
+        if #available(iOS 11.0, *) {
+            rightHandleView.layer.cornerRadius = 8.0
+            rightHandleView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        }
         rightHandleView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(rightHandleView)
 
@@ -174,10 +181,11 @@ fileprivate class PositionBar: UIView {
         rightHandleKnob.translatesAutoresizingMaskIntoConstraints = false
         rightHandleView.addSubview(rightHandleKnob)
 
-        rightHandleKnob.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
-        rightHandleKnob.widthAnchor.constraint(equalToConstant: 2).isActive = true
+        rightHandleKnob.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.33).isActive = true
+        rightHandleKnob.widthAnchor.constraint(equalToConstant: 3).isActive = true
         rightHandleKnob.centerYAnchor.constraint(equalTo: rightHandleView.centerYAnchor).isActive = true
         rightHandleKnob.centerXAnchor.constraint(equalTo: rightHandleView.centerXAnchor).isActive = true
+        rightHandleKnob.layer.cornerRadius = 2
     }
 
     private func setupMaskView() {
@@ -207,16 +215,16 @@ fileprivate class PositionBar: UIView {
 
     private func setupPositionBar() {
 
-        positionBar.frame = CGRect(x: 0, y: 0, width: 5, height: frame.height)
+        positionBar.frame = CGRect(x: 0, y: 0, width: 4, height: frame.height)
         positionBar.backgroundColor = positionBarColor
         positionBar.center = CGPoint(x: leftHandleView.frame.maxX, y: center.y)
-        positionBar.layer.cornerRadius = 1
+        positionBar.layer.cornerRadius = 3
         positionBar.translatesAutoresizingMaskIntoConstraints = false
         positionBar.isUserInteractionEnabled = true
         addSubview(positionBar)
 
         positionBar.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        positionBar.widthAnchor.constraint(equalToConstant: 5).isActive = true
+        positionBar.widthAnchor.constraint(equalToConstant: 4).isActive = true
         positionBar.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         positionConstraint = positionBar.leftAnchor.constraint(equalTo: leftHandleView.rightAnchor, constant: 0)
         positionConstraint?.isActive = true
