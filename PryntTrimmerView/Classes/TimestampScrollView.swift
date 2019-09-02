@@ -9,7 +9,26 @@
 import UIKit
 
 public class TimestampScrollView: UIScrollView {
+    public var font: UIFont? {
+        didSet {
+            self.refresh()
+        }
+    }
+    
+    public var color: UIColor? {
+        didSet {
+            self.refresh()
+        }
+    }
+    
+    private var duration: CGFloat = CGFloat.zero
+    private var cSize: CGSize = CGSize.zero
+    
+    // MARK: - Public
     public func addDotsWithLabelsFor(_ duration: CGFloat, withContentsSize cSize: CGSize) {
+        self.duration = duration
+        self.cSize = cSize
+        
         // Remove everything and add again
         subviews.forEach { $0.removeFromSuperview() }
         setup()
@@ -29,7 +48,7 @@ public class TimestampScrollView: UIScrollView {
             }
 
             let circle = UIView(frame: CGRect(x: 0.0, y: 0.0, width: dotSize, height: dotSize))
-            circle.backgroundColor = UIColor.black
+            circle.backgroundColor = self.color ?? UIColor.black
             circle.translatesAutoresizingMaskIntoConstraints = false
             addSubview(circle)
 
@@ -58,16 +77,21 @@ public class TimestampScrollView: UIScrollView {
                 label.centerXAnchor.constraint(equalTo: circle.centerXAnchor).isActive = true
                 label.widthAnchor.constraint(equalToConstant: 30).isActive = true
                 label.textAlignment = .center
+                label.textColor = self.color ?? UIColor.black
 
-                label.font = label.font.withSize(13)
+                label.font = self.font ?? label.font.withSize(13)
             }
         }
     }
 
     // MARK: - Private
     private func setup() {
-//        isUserInteractionEnabled = false
         showsHorizontalScrollIndicator = false
         clipsToBounds = false
+    }
+    
+    // Refresh with the last data
+    private func refresh() {
+        self.addDotsWithLabelsFor(self.duration, withContentsSize: self.cSize)
     }
 }

@@ -26,6 +26,18 @@ public class MainTrimmerView: UIView {
 
         return timestamp
     }()
+    
+    public var timestampScrollFont: UIFont? {
+        didSet {
+            self.timestampScroll.font = self.timestampScrollFont
+        }
+    }
+    
+    public var timestampScrollColor: UIColor? {
+        didSet {
+            self.timestampScroll.color = self.timestampScrollColor
+        }
+    }
 
     public var asset: AVAsset? {
         didSet {
