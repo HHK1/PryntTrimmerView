@@ -52,6 +52,12 @@ public class MainTrimmerView: UIView {
             timestampScroll.addDotsWithLabelsFor(duration, withContentsSize: trimmerView.assetPreview.contentSize)
         }
     }
+    
+    public var maxDuration: Double = 25 {
+        didSet {
+            trimmerView.maxDuration = maxDuration
+        }
+    }
 
     public weak var delegate: TrimmerViewDelegate? {
         didSet {
