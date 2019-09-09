@@ -52,7 +52,6 @@ public class TimestampScrollView: UIScrollView {
             circle.translatesAutoresizingMaskIntoConstraints = false
             addSubview(circle)
 
-            circle.topAnchor.constraint(equalTo: topAnchor).isActive = true
             circle.widthAnchor.constraint(equalToConstant: dotSize).isActive = true
             circle.heightAnchor.constraint(equalToConstant: dotSize).isActive = true
             circle.layer.cornerRadius = dotSize / 2
@@ -60,8 +59,10 @@ public class TimestampScrollView: UIScrollView {
             if let lView = lastDot {
                 let leading = spaceBetween - circle.frame.width / 2 - lView.frame.width / 2
                 circle.leadingAnchor.constraint(equalTo: lView.trailingAnchor, constant: leading).isActive = true
+                circle.centerYAnchor.constraint(equalTo: lView.centerYAnchor).isActive = true
             } else {
                 circle.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+                circle.topAnchor.constraint(equalTo: topAnchor).isActive = true
             }
 
             lastDot = circle
