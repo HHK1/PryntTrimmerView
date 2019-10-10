@@ -45,6 +45,14 @@ public protocol TrimmerViewDelegate: class {
             positionBar.backgroundColor = positionBarColor
         }
     }
+  
+    /// The color used to mask unselected parts of the video
+    @IBInspectable public var maskColor: UIColor = UIColor.white {
+        didSet {
+            leftMaskView.backgroundColor = maskColor
+            rightMaskView.backgroundColor = maskColor
+        }
+    }
 
     // MARK: Interface
 
