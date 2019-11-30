@@ -16,6 +16,7 @@ class AssetVideoScrollView: UIScrollView {
     let contentView = UIView()
     public var maxDuration: Double = 15
     private var generator: AVAssetImageGenerator?
+    let blurEffectView: UIVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,11 +45,14 @@ class AssetVideoScrollView: UIScrollView {
         contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         widthConstraint = contentView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1.0)
         widthConstraint?.isActive = true
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(blurEffectView)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
         contentSize = contentView.bounds.size
+        blurEffectView.frame = bounds
     }
 
     internal func regenerateThumbnails(for asset: AVAsset) {
@@ -137,11 +141,15 @@ class AssetVideoScrollView: UIScrollView {
         let handler: AVAssetImageGeneratorCompletionHandler = { [weak self] (_, cgimage, _, result, error) in
             if let cgimage = cgimage, error == nil && result == AVAssetImageGenerator.Result.succeeded {
                 DispatchQueue.main.async(execute: { [weak self] () -> Void in
-
                     if count == 0 {
+                        self?.blurEffectView.alpha = 1
                         self?.displayFirstImage(cgimage, visibleThumbnails: visibleThumnails)
+                    } else {
+                        UIView.animate(withDuration: 0.33) {
+                            self?.blurEffectView.alpha = 0
+                        }
+                        self?.displayImage(cgimage, at: count, animated: true)
                     }
-                    self?.displayImage(cgimage, at: count)
                     count += 1
                 })
             }
@@ -152,14 +160,21 @@ class AssetVideoScrollView: UIScrollView {
 
     private func displayFirstImage(_ cgImage: CGImage, visibleThumbnails: Int) {
         for i in 0...visibleThumbnails {
-            displayImage(cgImage, at: i)
+            displayImage(cgImage, at: i, animated: false)
         }
     }
 
-    private func displayImage(_ cgImage: CGImage, at index: Int) {
+    private func displayImage(_ cgImage: CGImage, at index: Int, animated: Bool) {
         if let imageView = contentView.viewWithTag(index) as? UIImageView {
             let uiimage = UIImage(cgImage: cgImage, scale: 1.0, orientation: UIImage.Orientation.up)
             imageView.image = uiimage
+
+            if animated {
+                imageView.alpha = 0
+                UIView.animate(withDuration: 0.1) {
+                    imageView.alpha = 1
+                }
+            }
         }
     }
 }
