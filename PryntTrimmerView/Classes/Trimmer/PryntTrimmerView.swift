@@ -153,7 +153,9 @@ fileprivate class PositionBar: UIView {
 
         leftHandleView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         leftHandleView.widthAnchor.constraint(equalToConstant: handleWidth).isActive = true
-        leftHandleView.leftAnchor.constraint(equalTo: trimView.leftAnchor).isActive = true
+        let leftHandleViewConstraint = leftHandleView.leftAnchor.constraint(equalTo: trimView.leftAnchor)
+        leftHandleViewConstraint.priority = UILayoutPriority(999)
+        leftHandleViewConstraint.isActive = true
         leftHandleView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
         leftHandleKnob.translatesAutoresizingMaskIntoConstraints = false
@@ -175,7 +177,9 @@ fileprivate class PositionBar: UIView {
 
         rightHandleView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         rightHandleView.widthAnchor.constraint(equalToConstant: handleWidth).isActive = true
-        rightHandleView.rightAnchor.constraint(equalTo: trimView.rightAnchor).isActive = true
+        let rightHandleViewConstraint = rightHandleView.rightAnchor.constraint(equalTo: trimView.rightAnchor)
+        rightHandleViewConstraint.priority = UILayoutPriority(999)
+        rightHandleViewConstraint.isActive = true
         rightHandleView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
         rightHandleKnob.translatesAutoresizingMaskIntoConstraints = false
@@ -200,7 +204,7 @@ fileprivate class PositionBar: UIView {
         leftMaskView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         leftMaskView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         leftMaskView.rightAnchor.constraint(equalTo: leftHandleView.centerXAnchor).isActive = true
-
+      
         rightMaskView.isUserInteractionEnabled = false
         rightMaskView.backgroundColor = .white
         rightMaskView.alpha = 0.7
