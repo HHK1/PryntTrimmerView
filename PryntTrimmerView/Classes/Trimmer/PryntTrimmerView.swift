@@ -85,7 +85,6 @@ public protocol TrimmerViewDelegate: class {
 
     override func setupSubviews() {
         super.setupSubviews()
-        
         backgroundColor = UIColor.clear
         layer.zPosition = 1
         setupTrimmerView()
@@ -95,6 +94,13 @@ public protocol TrimmerViewDelegate: class {
         setupGestures()
         updateMainColor()
         updateHandleColor()
+    }
+
+    override func constrainAssetPreview() {
+        assetPreview.leftAnchor.constraint(equalTo: leftAnchor, constant: handleWidth).isActive = true
+        assetPreview.rightAnchor.constraint(equalTo: rightAnchor, constant: -handleWidth).isActive = true
+        assetPreview.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        assetPreview.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
     private func setupTrimmerView() {
@@ -110,11 +116,6 @@ public protocol TrimmerViewDelegate: class {
         rightConstraint = trimView.rightAnchor.constraint(equalTo: rightAnchor)
         leftConstraint?.isActive = true
         rightConstraint?.isActive = true
-        
-        assetPreview.leftAnchor.constraint(equalTo: leftAnchor, constant: handleWidth).isActive = true
-        assetPreview.rightAnchor.constraint(equalTo: rightAnchor, constant: -handleWidth).isActive = true
-        assetPreview.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        assetPreview.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
     private func setupHandleView() {
