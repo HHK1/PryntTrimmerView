@@ -77,7 +77,6 @@ public protocol TrimmerViewDelegate: class {
     // MARK: - View & constraints configurations
 
     override func setupSubviews() {
-
         super.setupSubviews()
         backgroundColor = UIColor.clear
         layer.zPosition = 1
@@ -98,7 +97,6 @@ public protocol TrimmerViewDelegate: class {
     }
 
     private func setupTrimmerView() {
-
         trimView.layer.borderWidth = 2.0
         trimView.layer.cornerRadius = 2.0
         trimView.translatesAutoresizingMaskIntoConstraints = false
