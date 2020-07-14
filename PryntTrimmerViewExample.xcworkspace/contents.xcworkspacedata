@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:PryntTrimmerView.xcodeproj">
+      location = "container:PryntTrimmerViewExample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:">
    </FileRef>
 </Workspace>

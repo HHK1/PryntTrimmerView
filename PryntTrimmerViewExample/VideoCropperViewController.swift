@@ -104,7 +104,7 @@ class VideoCropperViewController: AssetSelectionViewController {
         let videoComposition = AVMutableVideoComposition()
         videoComposition.renderSize = renderSize
         videoComposition.instructions = [mainInstructions]
-        videoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
+        videoComposition.frameDuration = CMTimeMake(value: 1, timescale:     30)
 
         let url = URL(fileURLWithPath: "\(NSTemporaryDirectory())TrimmedMovie.mp4")
         try? FileManager.default.removeItem(at: url)
