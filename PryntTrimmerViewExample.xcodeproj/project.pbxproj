@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB29084D24BE0D4500A55A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB29084C24BE0D4500A55A86 /* AppDelegate.swift */; };
+		AB29085424BE0D4500A55A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB29085224BE0D4500A55A86 /* Main.storyboard */; };
+		AB29085624BE0D4500A55A86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB29085524BE0D4500A55A86 /* Assets.xcassets */; };
+		AB29085924BE0D4500A55A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB29085724BE0D4500A55A86 /* LaunchScreen.storyboard */; };
+		AB4C682024BE24E000518B1A /* AssetVideoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4C681624BE24E000518B1A /* AssetVideoScrollView.swift */; };
+		AB4C682124BE24E000518B1A /* AVAssetTimeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4C681724BE24E000518B1A /* AVAssetTimeSelector.swift */; };
+		AB4C682224BE24E000518B1A /* ThumbSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4C681824BE24E000518B1A /* ThumbSelectorView.swift */; };
+		AB4C682324BE24E000518B1A /* VideoCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4C681A24BE24E000518B1A /* VideoCropView.swift */; };
+		AB4C682424BE24E000518B1A /* VideoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4C681B24BE24E000518B1A /* VideoScrollView.swift */; };
+		AB4C682524BE24E000518B1A /* CropMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4C681C24BE24E000518B1A /* CropMaskView.swift */; };
+		AB4C682624BE24E000518B1A /* HandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4C681E24BE24E000518B1A /* HandlerView.swift */; };
+		AB4C682724BE24E000518B1A /* PryntTrimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4C681F24BE24E000518B1A /* PryntTrimmerView.swift */; };
+		ABBCDAF924BE101700A4BF18 /* VideoCropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBCDAF524BE101700A4BF18 /* VideoCropperViewController.swift */; };
+		ABBCDAFA24BE101700A4BF18 /* AssetSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBCDAF624BE101700A4BF18 /* AssetSelectionViewController.swift */; };
+		ABBCDAFB24BE101700A4BF18 /* VideoTrimmerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBCDAF724BE101700A4BF18 /* VideoTrimmerViewController.swift */; };
+		ABBCDAFC24BE101700A4BF18 /* AVPlayer+isPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBCDAF824BE101700A4BF18 /* AVPlayer+isPlaying.swift */; };
+		ABBCDAFF24BE109500A4BF18 /* PryntTrimmerView in Frameworks */ = {isa = PBXBuildFile; productRef = ABBCDAFE24BE109500A4BF18 /* PryntTrimmerView */; };
+		ABBCDB0124BE11FD00A4BF18 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBCDB0024BE11FD00A4BF18 /* SceneDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AB29084924BE0D4500A55A86 /* PryntTrimmerViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PryntTrimmerViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB29084C24BE0D4500A55A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AB29085324BE0D4500A55A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB29085524BE0D4500A55A86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AB29085824BE0D4500A55A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AB29085A24BE0D4500A55A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB4C680B24BE248B00518B1A /* PryntTrimmerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PryntTrimmerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB4C681624BE24E000518B1A /* AssetVideoScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetVideoScrollView.swift; sourceTree = "<group>"; };
+		AB4C681724BE24E000518B1A /* AVAssetTimeSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAssetTimeSelector.swift; sourceTree = "<group>"; };
+		AB4C681824BE24E000518B1A /* ThumbSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbSelectorView.swift; sourceTree = "<group>"; };
+		AB4C681A24BE24E000518B1A /* VideoCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCropView.swift; sourceTree = "<group>"; };
+		AB4C681B24BE24E000518B1A /* VideoScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoScrollView.swift; sourceTree = "<group>"; };
+		AB4C681C24BE24E000518B1A /* CropMaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropMaskView.swift; sourceTree = "<group>"; };
+		AB4C681E24BE24E000518B1A /* HandlerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlerView.swift; sourceTree = "<group>"; };
+		AB4C681F24BE24E000518B1A /* PryntTrimmerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PryntTrimmerView.swift; sourceTree = "<group>"; };
+		ABBCDAF524BE101700A4BF18 /* VideoCropperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCropperViewController.swift; sourceTree = "<group>"; };
+		ABBCDAF624BE101700A4BF18 /* AssetSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetSelectionViewController.swift; sourceTree = "<group>"; };
+		ABBCDAF724BE101700A4BF18 /* VideoTrimmerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTrimmerViewController.swift; sourceTree = "<group>"; };
+		ABBCDAF824BE101700A4BF18 /* AVPlayer+isPlaying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVPlayer+isPlaying.swift"; sourceTree = "<group>"; };
+		ABBCDB0024BE11FD00A4BF18 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB29084624BE0D4500A55A86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABBCDAFF24BE109500A4BF18 /* PryntTrimmerView in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB4C680824BE248B00518B1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB29084024BE0D4500A55A86 = {
+			isa = PBXGroup;
+			children = (
+				AB29084B24BE0D4500A55A86 /* PryntTrimmerViewExample */,
+				AB4C680C24BE248B00518B1A /* PryntTrimmerView */,
+				AB29084A24BE0D4500A55A86 /* Products */,
+				ABBCDAFD24BE109500A4BF18 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AB29084A24BE0D4500A55A86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB29084924BE0D4500A55A86 /* PryntTrimmerViewExample.app */,
+				AB4C680B24BE248B00518B1A /* PryntTrimmerView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB29084B24BE0D4500A55A86 /* PryntTrimmerViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				ABBCDB0024BE11FD00A4BF18 /* SceneDelegate.swift */,
+				ABBCDAF624BE101700A4BF18 /* AssetSelectionViewController.swift */,
+				ABBCDAF824BE101700A4BF18 /* AVPlayer+isPlaying.swift */,
+				ABBCDAF524BE101700A4BF18 /* VideoCropperViewController.swift */,
+				ABBCDAF724BE101700A4BF18 /* VideoTrimmerViewController.swift */,
+				AB29084C24BE0D4500A55A86 /* AppDelegate.swift */,
+				AB29085224BE0D4500A55A86 /* Main.storyboard */,
+				AB29085524BE0D4500A55A86 /* Assets.xcassets */,
+				AB29085724BE0D4500A55A86 /* LaunchScreen.storyboard */,
+				AB29085A24BE0D4500A55A86 /* Info.plist */,
+			);
+			path = PryntTrimmerViewExample;
+			sourceTree = "<group>";
+		};
+		AB4C680C24BE248B00518B1A /* PryntTrimmerView */ = {
+			isa = PBXGroup;
+			children = (
+				AB4C681324BE24E000518B1A /* Sources */,
+			);
+			path = PryntTrimmerView;
+			sourceTree = "<group>";
+		};
+		AB4C681324BE24E000518B1A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AB4C681424BE24E000518B1A /* PryntTrimmerView */,
+			);
+			path = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		AB4C681424BE24E000518B1A /* PryntTrimmerView */ = {
+			isa = PBXGroup;
+			children = (
+				AB4C681524BE24E000518B1A /* Parents */,
+				AB4C681824BE24E000518B1A /* ThumbSelectorView.swift */,
+				AB4C681924BE24E000518B1A /* Cropper */,
+				AB4C681D24BE24E000518B1A /* Trimmer */,
+			);
+			path = PryntTrimmerView;
+			sourceTree = "<group>";
+		};
+		AB4C681524BE24E000518B1A /* Parents */ = {
+			isa = PBXGroup;
+			children = (
+				AB4C681624BE24E000518B1A /* AssetVideoScrollView.swift */,
+				AB4C681724BE24E000518B1A /* AVAssetTimeSelector.swift */,
+			);
+			path = Parents;
+			sourceTree = "<group>";
+		};
+		AB4C681924BE24E000518B1A /* Cropper */ = {
+			isa = PBXGroup;
+			children = (
+				AB4C681A24BE24E000518B1A /* VideoCropView.swift */,
+				AB4C681B24BE24E000518B1A /* VideoScrollView.swift */,
+				AB4C681C24BE24E000518B1A /* CropMaskView.swift */,
+			);
+			path = Cropper;
+			sourceTree = "<group>";
+		};
+		AB4C681D24BE24E000518B1A /* Trimmer */ = {
+			isa = PBXGroup;
+			children = (
+				AB4C681E24BE24E000518B1A /* HandlerView.swift */,
+				AB4C681F24BE24E000518B1A /* PryntTrimmerView.swift */,
+			);
+			path = Trimmer;
+			sourceTree = "<group>";
+		};
+		ABBCDAFD24BE109500A4BF18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AB4C680624BE248B00518B1A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AB29084824BE0D4500A55A86 /* PryntTrimmerViewExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB29085D24BE0D4500A55A86 /* Build configuration list for PBXNativeTarget "PryntTrimmerViewExample" */;
+			buildPhases = (
+				AB29084524BE0D4500A55A86 /* Sources */,
+				AB29084624BE0D4500A55A86 /* Frameworks */,
+				AB29084724BE0D4500A55A86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PryntTrimmerViewExample;
+			packageProductDependencies = (
+				ABBCDAFE24BE109500A4BF18 /* PryntTrimmerView */,
+			);
+			productName = PryntTrimmerViewExample;
+			productReference = AB29084924BE0D4500A55A86 /* PryntTrimmerViewExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AB4C680A24BE248B00518B1A /* PryntTrimmerView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB4C681224BE248B00518B1A /* Build configuration list for PBXNativeTarget "PryntTrimmerView" */;
+			buildPhases = (
+				AB4C680624BE248B00518B1A /* Headers */,
+				AB4C680724BE248B00518B1A /* Sources */,
+				AB4C680824BE248B00518B1A /* Frameworks */,
+				AB4C680924BE248B00518B1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PryntTrimmerView;
+			productName = PryntTrimmerView;
+			productReference = AB4C680B24BE248B00518B1A /* PryntTrimmerView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB29084124BE0D4500A55A86 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = hhk;
+				TargetAttributes = {
+					AB29084824BE0D4500A55A86 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					AB4C680A24BE248B00518B1A = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = AB29084424BE0D4500A55A86 /* Build configuration list for PBXProject "PryntTrimmerViewExample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AB29084024BE0D4500A55A86;
+			productRefGroup = AB29084A24BE0D4500A55A86 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AB29084824BE0D4500A55A86 /* PryntTrimmerViewExample */,
+				AB4C680A24BE248B00518B1A /* PryntTrimmerView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB29084724BE0D4500A55A86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB29085924BE0D4500A55A86 /* LaunchScreen.storyboard in Resources */,
+				AB29085624BE0D4500A55A86 /* Assets.xcassets in Resources */,
+				AB29085424BE0D4500A55A86 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB4C680924BE248B00518B1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB29084524BE0D4500A55A86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB29084D24BE0D4500A55A86 /* AppDelegate.swift in Sources */,
+				ABBCDAFC24BE101700A4BF18 /* AVPlayer+isPlaying.swift in Sources */,
+				ABBCDAFB24BE101700A4BF18 /* VideoTrimmerViewController.swift in Sources */,
+				ABBCDAFA24BE101700A4BF18 /* AssetSelectionViewController.swift in Sources */,
+				ABBCDAF924BE101700A4BF18 /* VideoCropperViewController.swift in Sources */,
+				ABBCDB0124BE11FD00A4BF18 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB4C680724BE248B00518B1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB4C682524BE24E000518B1A /* CropMaskView.swift in Sources */,
+				AB4C682724BE24E000518B1A /* PryntTrimmerView.swift in Sources */,
+				AB4C682324BE24E000518B1A /* VideoCropView.swift in Sources */,
+				AB4C682024BE24E000518B1A /* AssetVideoScrollView.swift in Sources */,
+				AB4C682424BE24E000518B1A /* VideoScrollView.swift in Sources */,
+				AB4C682624BE24E000518B1A /* HandlerView.swift in Sources */,
+				AB4C682124BE24E000518B1A /* AVAssetTimeSelector.swift in Sources */,
+				AB4C682224BE24E000518B1A /* ThumbSelectorView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AB29085224BE0D4500A55A86 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB29085324BE0D4500A55A86 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AB29085724BE0D4500A55A86 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB29085824BE0D4500A55A86 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AB29085B24BE0D4500A55A86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AB29085C24BE0D4500A55A86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AB29085E24BE0D4500A55A86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GXH324789Z;
+				INFOPLIST_FILE = PryntTrimmerViewExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.hhk.PryntTrimmerViewExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AB29085F24BE0D4500A55A86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GXH324789Z;
+				INFOPLIST_FILE = PryntTrimmerViewExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.hhk.PryntTrimmerViewExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AB4C681024BE248B00518B1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GXH324789Z;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.hhk.PryntTrimmerView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AB4C681124BE248B00518B1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GXH324789Z;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.hhk.PryntTrimmerView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB29084424BE0D4500A55A86 /* Build configuration list for PBXProject "PryntTrimmerViewExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB29085B24BE0D4500A55A86 /* Debug */,
+				AB29085C24BE0D4500A55A86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB29085D24BE0D4500A55A86 /* Build configuration list for PBXNativeTarget "PryntTrimmerViewExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB29085E24BE0D4500A55A86 /* Debug */,
+				AB29085F24BE0D4500A55A86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB4C681224BE248B00518B1A /* Build configuration list for PBXNativeTarget "PryntTrimmerView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB4C681024BE248B00518B1A /* Debug */,
+				AB4C681124BE248B00518B1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ABBCDAFE24BE109500A4BF18 /* PryntTrimmerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PryntTrimmerView;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AB29084124BE0D4500A55A86 /* Project object */;
+}
