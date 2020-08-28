@@ -192,7 +192,7 @@ public protocol TrimmerViewDelegate: class {
         positionBar.center = CGPoint(x: leftHandleView.frame.maxX, y: center.y)
         positionBar.layer.cornerRadius = 1
         positionBar.translatesAutoresizingMaskIntoConstraints = false
-        positionBar.isUserInteractionEnabled = false
+        positionBar.isUserInteractionEnabled = true
         addSubview(positionBar)
 
         positionBar.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -208,6 +208,8 @@ public protocol TrimmerViewDelegate: class {
         leftHandleView.addGestureRecognizer(leftPanGestureRecognizer)
         let rightPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(TrimmerView.handlePanGesture))
         rightHandleView.addGestureRecognizer(rightPanGestureRecognizer)
+        let positionBarPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(TrimmerView.handlePanGesture))
+        positionBar.addGestureRecognizer(positionBarPanGestureRecognizer)
     }
 
     private func updateMainColor() {
@@ -225,6 +227,7 @@ public protocol TrimmerViewDelegate: class {
 
     @objc func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let view = gestureRecognizer.view, let superView = gestureRecognizer.view?.superview else { return }
+        let isPositionBarGesture = view == positionBar
         let isLeftGesture = view == leftHandleView
         switch gestureRecognizer.state {
 
@@ -237,13 +240,18 @@ public protocol TrimmerViewDelegate: class {
             updateSelectedTime(stoppedMoving: false)
         case .changed:
             let translation = gestureRecognizer.translation(in: superView)
-            if isLeftGesture {
+            if isPositionBarGesture {
+                updatePositionBarConstraint(with: translation)
+                gestureRecognizer.setTranslation(.zero, in: superView)
+            } else if isLeftGesture {
                 updateLeftConstraint(with: translation)
             } else {
                 updateRightConstraint(with: translation)
             }
             layoutIfNeeded()
-            if let startTime = startTime, isLeftGesture {
+            if isPositionBarGesture, let positionBarTime = positionBarTime {
+                seek(to: positionBarTime)
+            } else if let startTime = startTime, isLeftGesture {
                 seek(to: startTime)
             } else if let endTime = endTime {
                 seek(to: endTime)
@@ -266,6 +274,11 @@ public protocol TrimmerViewDelegate: class {
         let maxConstraint = min(2 * handleWidth - frame.width + leftHandleView.frame.origin.x + minimumDistanceBetweenHandle, 0)
         let newConstraint = max(min(0, currentRightConstraint + translation.x), maxConstraint)
         rightConstraint?.constant = newConstraint
+    }
+    
+    private func updatePositionBarConstraint(with translation: CGPoint) {
+        let newConstraint = positionConstraint!.constant + translation.x
+        positionConstraint?.constant = newConstraint
     }
 
     // MARK: - Asset loading
