@@ -263,6 +263,15 @@ public protocol TrimmerViewDelegate: class {
         default: break
         }
     }
+    
+    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let frame = positionBar.frame.insetBy(dx: -15, dy: 0)
+        if frame.contains(point) {
+            return positionBar
+        }
+        
+        return super.hitTest(point, with: event)
+    }
 
     private func updateLeftConstraint(with translation: CGPoint) {
         let maxConstraint = max(rightHandleView.frame.origin.x - handleWidth - minimumDistanceBetweenHandle, 0)
