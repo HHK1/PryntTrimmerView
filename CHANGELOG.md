@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.0.1] 07-14-2020
 
 Add SPM support
+Fix CSTime to NSValue casting
 
 ## [4.0.0]
 
