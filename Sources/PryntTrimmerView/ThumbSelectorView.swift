@@ -138,7 +138,7 @@ public class ThumbSelectorView: AVAssetTimeSelector {
 
     private func generateThumbnailImage(for time: CMTime) {
 
-        generator?.generateCGImagesAsynchronously(forTimes: [time as NSValue],
+        generator?.generateCGImagesAsynchronously(forTimes: [NSValue(time: time)],
                                                   completionHandler: { (_, image, _, _, _) in
             guard let image = image else {
                 return
