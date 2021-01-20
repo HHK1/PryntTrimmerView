@@ -436,7 +436,7 @@ fileprivate class PositionBar: UIView {
     // MARK: - Scroll View Delegate
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        updateSelectedTime(stoppedMoving: false)
+        updateSelectedTime(stoppedMoving: true)
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
