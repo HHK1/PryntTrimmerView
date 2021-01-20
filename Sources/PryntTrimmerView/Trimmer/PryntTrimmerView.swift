@@ -293,7 +293,7 @@ fileprivate class PositionBar: UIView {
             updateSelectedTime(stoppedMoving: false)
 
         case .cancelled, .ended, .failed:
-            updateSelectedTime(stoppedMoving: false)
+            updateSelectedTime(stoppedMoving: true)
         default: break
         }
     }
