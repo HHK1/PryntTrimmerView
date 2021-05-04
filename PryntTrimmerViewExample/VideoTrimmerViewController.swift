@@ -72,6 +72,9 @@ class VideoTrimmerViewController: AssetSelectionViewController {
     @objc func itemDidFinishPlaying(_ notification: Notification) {
         if let startTime = trimmerView.startTime {
             player?.seek(to: startTime)
+            if (player?.isPlaying != true) {
+                player?.play()
+            }
         }
     }
 
