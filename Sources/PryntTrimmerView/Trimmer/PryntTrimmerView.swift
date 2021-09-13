@@ -9,7 +9,7 @@
 import AVFoundation
 import UIKit
 
-public protocol TrimmerViewDelegate: class {
+public protocol TrimmerViewDelegate: AnyObject {
     func didChangePositionBar(_ playerTime: CMTime)
     func positionBarStoppedMoving(_ playerTime: CMTime)
 }
