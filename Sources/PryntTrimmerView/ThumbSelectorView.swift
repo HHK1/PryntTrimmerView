@@ -11,7 +11,7 @@ import AVFoundation
 
 /// A delegate to be notified of when the thumb position has changed. Useful to link an instance of the ThumbSelectorView to a
 /// video preview like an `AVPlayer`.
-public protocol ThumbSelectorViewDelegate: class {
+public protocol ThumbSelectorViewDelegate: AnyObject {
     func didChangeThumbPosition(_ imageTime: CMTime)
 }
 
