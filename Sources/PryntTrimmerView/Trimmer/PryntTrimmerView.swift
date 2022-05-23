@@ -246,7 +246,7 @@ public protocol TrimmerViewDelegate: AnyObject {
             if let startTime = startTime, isLeftGesture {
                 seek(to: startTime)
             } else if let endTime = endTime {
-                seek(to: endTime)
+                seek(to: .zero)
             }
             updateSelectedTime(stoppedMoving: false)
 
