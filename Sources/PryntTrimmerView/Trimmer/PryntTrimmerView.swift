@@ -35,7 +35,7 @@ public protocol TrimmerViewDelegate: AnyObject {
     /// The color of the handles on the side of the view
     @IBInspectable public var handleColor: UIColor = UIColor.gray {
         didSet {
-           updateHandleColor()
+            updateHandleColor()
         }
     }
 
@@ -83,7 +83,6 @@ public protocol TrimmerViewDelegate: AnyObject {
     public var minDuration: Double = 3
 
     // MARK: - View & constraints configurations
-
     override func setupSubviews() {
         super.setupSubviews()
         layer.cornerRadius = 2
@@ -122,7 +121,6 @@ public protocol TrimmerViewDelegate: AnyObject {
     }
 
     private func setupHandleView() {
-
         leftHandleView.isUserInteractionEnabled = true
         leftHandleView.layer.cornerRadius = 2.0
         leftHandleView.translatesAutoresizingMaskIntoConstraints = false
@@ -161,7 +159,6 @@ public protocol TrimmerViewDelegate: AnyObject {
     }
 
     private func setupMaskView() {
-
         leftMaskView.isUserInteractionEnabled = false
         leftMaskView.backgroundColor = .white
         leftMaskView.alpha = 0.7
@@ -186,7 +183,6 @@ public protocol TrimmerViewDelegate: AnyObject {
     }
 
     private func setupPositionBar() {
-
         positionBar.frame = CGRect(x: 0, y: 0, width: 3, height: frame.height)
         positionBar.backgroundColor = positionBarColor
         positionBar.center = CGPoint(x: leftHandleView.frame.maxX, y: center.y)
@@ -203,7 +199,6 @@ public protocol TrimmerViewDelegate: AnyObject {
     }
 
     private func setupGestures() {
-
         let leftPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(TrimmerView.handlePanGesture))
         leftHandleView.addGestureRecognizer(leftPanGestureRecognizer)
         let rightPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(TrimmerView.handlePanGesture))
@@ -286,10 +281,8 @@ public protocol TrimmerViewDelegate: AnyObject {
     /// Move the position bar to the given time.
     public func seek(to time: CMTime) {
         if let newPosition = getPosition(from: time) {
-
             let offsetPosition = newPosition - assetPreview.contentOffset.x - leftHandleView.frame.origin.x
-            let maxPosition = rightHandleView.frame.origin.x - (leftHandleView.frame.origin.x + handleWidth)
-                              - positionBar.frame.width
+            let maxPosition = rightHandleView.frame.origin.x - (leftHandleView.frame.origin.x + handleWidth) - positionBar.frame.width
             let normalizedPosition = min(max(0, offsetPosition), maxPosition)
             positionConstraint?.constant = normalizedPosition
             layoutIfNeeded()
@@ -298,14 +291,22 @@ public protocol TrimmerViewDelegate: AnyObject {
 
     /// The selected start time for the current asset.
     public var startTime: CMTime? {
-        let startPosition = leftHandleView.frame.origin.x + assetPreview.contentOffset.x
-        return getTime(from: startPosition)
+        get {
+            let startPosition = leftHandleView.frame.origin.x + assetPreview.contentOffset.x
+            return getTime(from: startPosition)
+        } set {
+            self.startTime = newValue
+        }
     }
 
     /// The selected end time for the current asset.
     public var endTime: CMTime? {
-        let endPosition = rightHandleView.frame.origin.x + assetPreview.contentOffset.x - handleWidth
-        return getTime(from: endPosition)
+        get {
+            let endPosition = rightHandleView.frame.origin.x + assetPreview.contentOffset.x - handleWidth
+            return getTime(from: endPosition)
+        } set {
+            self.endTime = newValue
+        }
     }
 
     private func updateSelectedTime(stoppedMoving: Bool) {
@@ -330,7 +331,6 @@ public protocol TrimmerViewDelegate: AnyObject {
     }
 
     // MARK: - Scroll View Delegate
-
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         updateSelectedTime(stoppedMoving: true)
     }
@@ -340,6 +340,7 @@ public protocol TrimmerViewDelegate: AnyObject {
             updateSelectedTime(stoppedMoving: true)
         }
     }
+
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateSelectedTime(stoppedMoving: false)
     }
