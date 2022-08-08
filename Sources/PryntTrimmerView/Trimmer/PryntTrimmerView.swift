@@ -260,6 +260,8 @@ public protocol TrimmerViewDelegate: AnyObject {
     private func updateRightConstraint(with translation: CGPoint) {
         let maxConstraint = min(2 * handleWidth - frame.width + leftHandleView.frame.origin.x + minimumDistanceBetweenHandle, 0)
         let newConstraint = max(min(0, currentRightConstraint + translation.x), maxConstraint)
+        print("XX MAX CONSTRAINT :: \(maxConstraint)")
+        print("XX NEW CONSTRAINT :: \(newConstraint)")
         rightConstraint?.constant = newConstraint
     }
 
@@ -295,7 +297,10 @@ public protocol TrimmerViewDelegate: AnyObject {
             let startPosition = leftHandleView.frame.origin.x + assetPreview.contentOffset.x
             return getTime(from: startPosition)
         } set {
-            self.startTime = newValue
+            if let value = newValue, let position = getPosition(from: value) {
+                let newPosition = position - assetPreview.contentOffset.x
+                updateLeftConstraint(with: CGPoint(x: newPosition, y: 0))
+            }
         }
     }
 
@@ -305,7 +310,11 @@ public protocol TrimmerViewDelegate: AnyObject {
             let endPosition = rightHandleView.frame.origin.x + assetPreview.contentOffset.x - handleWidth
             return getTime(from: endPosition)
         } set {
-            self.endTime = newValue
+            if let value = newValue, let position = getPosition(from: value) {
+                let newPosition = position - assetPreview.contentOffset.x + handleWidth
+                print("XX -- NEW Value :: \(position) -- \(newPosition)")
+                updateRightConstraint(with: CGPoint(x: newPosition, y: 0))
+            }
         }
     }
 
