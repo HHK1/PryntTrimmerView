@@ -130,7 +130,16 @@ class AssetVideoScrollView: UIScrollView {
         generator = AVAssetImageGenerator(asset: asset)
         generator?.appliesPreferredTrackTransform = true
 
-        let scaledSize = CGSize(width: maximumSize.width * UIScreen.main.scale, height: maximumSize.height * UIScreen.main.scale)
+        var scale: CGFloat = 0
+        
+        if #available(iOS 13.0, *) {
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            scale = windowScene?.screen.scale ?? .zero
+        } else {
+            scale = UIScreen.main.scale
+        }
+        
+        let scaledSize = CGSize(width: maximumSize.width * scale, height: maximumSize.height * scale)
         generator?.maximumSize = scaledSize
         var count = 0
 

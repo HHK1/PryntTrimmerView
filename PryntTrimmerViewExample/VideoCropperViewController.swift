@@ -51,8 +51,15 @@ class VideoCropperViewController: AssetSelectionViewController {
             var actualTime = CMTime.zero
             let image = try? generator.copyCGImage(at: selectedTime, actualTime: &actualTime)
             if let image = image {
-
-                let selectedImage = UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .up)
+                var scale: CGFloat = 0
+                
+                if #available(iOS 13.0, *) {
+                    scale = view.window?.windowScene?.screen.scale ?? .zero
+                } else {
+                    scale = UIScreen.main.scale
+                }
+                
+                let selectedImage = UIImage(cgImage: image, scale: scale, orientation: .up)
                 let croppedImage = selectedImage.crop(in: videoCropView.getImageCropFrame())!
                 UIImageWriteToSavedPhotosAlbum(croppedImage, nil, nil, nil)
             }

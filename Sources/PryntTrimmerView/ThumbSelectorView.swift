@@ -132,7 +132,17 @@ public class ThumbSelectorView: AVAssetTimeSelector {
         let maxDimension = max(assetSize.width, assetSize.height)
         let minDimension = min(assetSize.width, assetSize.height)
         let ratio = maxDimension / minDimension
-        let side = thumbView.frame.height * ratio * UIScreen.main.scale
+        
+        var scale: CGFloat = 0
+        
+        if #available(iOS 13.0, *) {
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            scale = windowScene?.screen.scale ?? .zero
+        } else {
+            scale = UIScreen.main.scale
+        }
+        
+        let side = thumbView.frame.height * ratio * scale
         return CGSize(width: side, height: side)
     }
 
