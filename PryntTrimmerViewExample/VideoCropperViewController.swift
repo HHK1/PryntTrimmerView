@@ -54,7 +54,7 @@ class VideoCropperViewController: AssetSelectionViewController {
                 var scale: CGFloat = 0
                 
                 if #available(iOS 13.0, *) {
-                    scale = view.window?.windowScene?.screen.scale ?? .zero
+                    scale = view.window?.windowScene?.screen.scale ?? 1.0
                 } else {
                     scale = UIScreen.main.scale
                 }
